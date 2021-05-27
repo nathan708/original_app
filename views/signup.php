@@ -1,11 +1,23 @@
 <?php
-if ($_POST['name'] === ''){
-    echo '名前が入力されていません';
+if (empty($_POST['username'])){
+    $error['username'] = 'blank';
+}
+if (empty($_POST['email'])){
+    $error['email'] = 'blank';
+}
+if (empty($_POST['password'])){
+    $error['password'] = 'blank';
+}
+if (empty($_POST['password_conf'])){
+    $error['password_conf'] = 'blank';
+}elseif ($_POST['password_conf'] !== $_POST['password']){
+    $error['password_conf'] = 'wrong';
 }
 ?>
 
-
-
+今後の方針
+ページを開くといきなりエラーメッセージが出てしまう
+登録後どのようにしていくか
 
 
 
@@ -16,19 +28,34 @@ if ($_POST['name'] === ''){
         <form action="" method="POST">
             <p>
                 <label for="username">ユーザー名　　：</label>
-                <input type="text" name="username" value="<?php echo $_POST?>"><br>
+                <input type="text" name="username" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['username']), ENT_QUOTES);?>"> <br>
+                <?php if ($error['username'] === 'blank'): ?>
+                <p>ユーザーネームを入力してください。</p>
+                <?php endif; ?>
             </p>
+
             <p>
                 <label for="email">メールアドレス： </label>
-                <input type="email" name="email" value=""><br>
+                <input type="email" name="email" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['email']), ENT_QUOTES);?>"><br>
+                <?php if ($error['email'] === 'blank'): ?>
+                <p>Emailを入力してください。</p>
+                <?php endif; ?>
             </p>
             <p>
                 <label for="password"> パスワード　　： </label>
-                <input type="text" name="password" value=""><br>
+                <input type="text" name="password" size="10" maxlength="20" value="<?php echo htmlspecialchars(($_POST['password']), ENT_QUOTES);?>"><br>
+                <?php if ($error['password'] === 'blank'): ?>
+                <p>パスワードを入力してください。</p>
+                <?php endif; ?>
             </p>
             <p>
                 <label for="password_conf"> パスワード確認： </label>
-                <input type="text" name="password_conf" value=""><br>
+                <input type="text" name="password_conf" size="10" maxlength="20" value="<?php echo htmlspecialchars(($_POST['password']), ENT_QUOTES);?>"><br>
+                <?php if ($error['password_conf'] === 'blank'): ?>
+                <p>確認用のパスワードを入力してください。</p>
+                <?php elseif ($error['password_conf'] === 'wrong'): ?>
+                <p>同じパスワードを入力してください。</p>
+                <?php endif; ?>
             </p>
 
             <input type="submit" name="submit" value="新規登録"><br>

@@ -30,7 +30,7 @@ if (!empty($_POST)){
     }
 }
 // ※書き直し を再現したい できていない
-if ($_REQUEST['action'] == 'rewite' && isset($_SESSION['join'])){
+if ($_REQUEST['action'] == 'rewrite' && isset($_SESSION['join'])){
     $_POST = $_SESSION['join'];
 }
 

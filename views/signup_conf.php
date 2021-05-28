@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// データベースに接続したら 完了画面に遷移したい
 // sessionの中身をまず確認  うまく処理できていない
 if (!isset($_SESSION['join'])){
     header('Locaiton: signup.php');
@@ -15,6 +15,7 @@ if (!isset($_SESSION['join'])){
 <body>
   <p>記入した内容を確認して、「登録」ボタンをクリックしてください。</p>
   <form action="" method="POST" value='submit'>
+    <input type="hidden" name="action" value="submit">
     <dl>
       <dt>ニックネーム</dt>
       <dd>

@@ -7,6 +7,7 @@
         <ul class="top_nav">
           <li><a href="signup.php">新規登録</a></li>
           <li><a href="login.php">ログイン</a></li>
+          <li><a href="contact.php">お問い合わせ</a></li>
         </ul>
       </nav>
     </header> 

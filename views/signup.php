@@ -1,21 +1,23 @@
 <?php
+// ※付きは課題
+// ※アカウントを重複しないようにするには
 session_start();
 // エラーチェック
 if (!empty($_POST)){
     
-    if ($_POST['name'] === ''){
+    if (empty($_POST['name'])){
         $error['name'] = 'blank';
     }
-    if ($_POST['email'] === ''){
+    if (empty($_POST['email'])){
         $error['email'] = 'blank';
     }
     if (strlen($_POST['password']) < 4 ){
         $error['password'] = 'length';
     }
-    if ($_POST['password'] === ''){
+    if (empty($_POST['password'])){
         $error['password'] = 'blank';
     }
-    if ($_POST['password_conf'] === ''){
+    if (empty($_POST['password_conf'])){
         $error['password_conf'] = 'blank';
     }elseif ($_POST['password_conf'] !== $_POST['password']){
         $error['password_conf'] = 'wrong';
@@ -27,7 +29,7 @@ if (!empty($_POST)){
         exit();
     }
 }
-// 書き直し を再現したい できていない
+// ※書き直し を再現したい できていない
 if ($_REQUEST['action'] == 'rewite' && isset($_SESSION['join'])){
     $_POST = $_SESSION['join'];
 }
@@ -47,7 +49,6 @@ if ($_REQUEST['action'] == 'rewite' && isset($_SESSION['join'])){
                 <p>ユーザーネームを入力してください。</p>
                 <?php endif; ?>
             </p>
-
             <p>
                 <label for="email">メールアドレス： </label>
                 <input type="email" name="email" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['email']), ENT_QUOTES);?>"><br>

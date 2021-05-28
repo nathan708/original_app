@@ -1,35 +1,49 @@
 <?php
-if (empty($_POST['username'])){
-    $error['username'] = 'blank';
+session_start();
+// エラーチェック
+if (!empty($_POST)){
+    
+    if ($_POST['name'] === ''){
+        $error['name'] = 'blank';
+    }
+    if ($_POST['email'] === ''){
+        $error['email'] = 'blank';
+    }
+    if (strlen($_POST['password']) < 4 ){
+        $error['password'] = 'length';
+    }
+    if ($_POST['password'] === ''){
+        $error['password'] = 'blank';
+    }
+    if ($_POST['password_conf'] === ''){
+        $error['password_conf'] = 'blank';
+    }elseif ($_POST['password_conf'] !== $_POST['password']){
+        $error['password_conf'] = 'wrong';
+    }
+// エラーが無ければ次に進む
+    if (empty($error)){
+        $_SESSION['join'] = $_POST;
+        header('Location: signup_conf.php');
+        exit();
+    }
 }
-if (empty($_POST['email'])){
-    $error['email'] = 'blank';
+// 書き直し を再現したい できていない
+if ($_REQUEST['action'] == 'rewite' && isset($_SESSION['join'])){
+    $_POST = $_SESSION['join'];
 }
-if (empty($_POST['password'])){
-    $error['password'] = 'blank';
-}
-if (empty($_POST['password_conf'])){
-    $error['password_conf'] = 'blank';
-}elseif ($_POST['password_conf'] !== $_POST['password']){
-    $error['password_conf'] = 'wrong';
-}
+
 ?>
-
-今後の方針
-ページを開くといきなりエラーメッセージが出てしまう
-登録後どのようにしていくか
-
 
 
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
-<div class="register_layout wrapper">
-    <div class="register_form">
+<div class="signup_layout wrapper">
+    <div class="signup_form">
         <form action="" method="POST">
             <p>
                 <label for="username">ユーザー名　　：</label>
-                <input type="text" name="username" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['username']), ENT_QUOTES);?>"> <br>
-                <?php if ($error['username'] === 'blank'): ?>
+                <input type="text" name="name" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['name']), ENT_QUOTES);?>"> <br>
+                <?php if ($error['name'] === 'blank'): ?>
                 <p>ユーザーネームを入力してください。</p>
                 <?php endif; ?>
             </p>
@@ -44,6 +58,9 @@ if (empty($_POST['password_conf'])){
             <p>
                 <label for="password"> パスワード　　： </label>
                 <input type="text" name="password" size="10" maxlength="20" value="<?php echo htmlspecialchars(($_POST['password']), ENT_QUOTES);?>"><br>
+                <?php if ($error['password'] === 'length'): ?>
+                <p>パスワードを４文字以上で入力してください。</p>
+                <?php endif; ?>
                 <?php if ($error['password'] === 'blank'): ?>
                 <p>パスワードを入力してください。</p>
                 <?php endif; ?>

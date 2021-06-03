@@ -1,5 +1,6 @@
 <?php 
 echo "testtesttest";
+echo 'もっともっと';
 
 // ルーティングの一覧
 

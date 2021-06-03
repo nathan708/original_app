@@ -27,7 +27,7 @@ if (!empty($_POST)){
         <input type="text" name="name" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['email']), ENT_QUOTES);?>"><br>
     
         <?php if ($error['name'] === 'blank'): ?>
-        <p>お名前を入力してください。</p>
+        <p class="error">お名前を入力してください。</p>
         <?php endif; ?>
     </p>
     <p>
@@ -35,7 +35,7 @@ if (!empty($_POST)){
         <input type="email" name="email" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['email']), ENT_QUOTES);?>"><br>
     
         <?php if ($error['email'] === 'blank'): ?>
-        <p>Emailを入力してください。</p>
+        <p class="error">Emailを入力してください。</p>
         <?php endif; ?>
     </p>
     <p>
@@ -43,11 +43,14 @@ if (!empty($_POST)){
         <textarea name="kanso"  cols="60" rows="10"></textarea>
     
         <?php if ($error['kanso'] === 'blank'): ?>
-        <p>お問合わせ内容を入力してください。</p>
+        <p class="error">お問合わせ内容を入力してください。</p>
         <?php endif; ?>
     </p>
     <input type="submit" name="send" value="送信">
   </form>
+
+<h3><a href="user_delete.php">退会を希望される方はこちら</a></h3>
+
 
 </body>
 <?php require_once(dirname(__FILE__).'/footer.php'); ?>

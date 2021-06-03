@@ -14,22 +14,11 @@
       </ul>
     </nav>
     <!-- ログアウトの設置場所はここでよいか？ -->
-    <h3><a href="logout_fin.php"> ログアウト</a></h3>
+    <h3><a href="logout_fin.php">ログアウト</a></h3>
   </div>  
   <div class="mypage_layout">
-    <div class="aside">
-      <h3>割合</h3>
-      <div class="percent">box</div>
-  <h3><?php echo date('m') . "月"?>は</h3>
-  <h2 class="amount">
-    <!-- データベースから総額を引っ張ってくる -->
-    13000
-  </h2>
-  <h2>円</h2>
-    
-  </div>
+ 
   <div class="main">
-    <h3><?php echo date('m') . "月"?>支払い一覧</h3>
     <!-- ※データベースから引っ張りたい -->
     <!-- コレ自体もforeachで一括でできるはず -->
     <table class="service_list">
@@ -40,6 +29,8 @@
         <th>ジャンル</th>
         <th>支払い方法</th>
         <th>備考</th>
+        <th>編集／削除</th>
+
       </tr>
       <tr>
         <!-- データベースから引っ張りたい -->
@@ -49,6 +40,12 @@
         <td>動画 $user['genre']</td>
         <td>クレジットカード['payment_method']</td>
         <td>なし $user['note']</td>
+        <td>
+          <a href='mylist_edit.php'>編集</a>
+          <p>／</p>
+          <a href="mylist_delete.php">削除</a>
+        </td>
+
       </tr>
       <tr>
         <!-- データベースから引っ張りたい -->
@@ -58,6 +55,11 @@
         <td>動画</td>
         <td>クレジットカード</td>
         <td>年会費</td>
+        <td>
+          <a href="$user['id'] ">編集</a>
+          <p>／</p>
+          <a href="$user['id'] ">削除</a>
+        </td>
       </tr>
       <tr>
         <!-- データベースから引っ張りたい -->

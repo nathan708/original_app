@@ -18,6 +18,16 @@ img {
     max-width: 100%;
 }
 
+a:hover {
+    color: blue;
+}
+
+
+
+.error {
+    color: red;
+}
+
 /* 全体Wrapper */
 .wrapper {
     margin: 0 auto;
@@ -93,6 +103,79 @@ img {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* マイページ トップ */
+.mypage_logout {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+}
+.mypage_logout h3 {
+    line-height: 60px;
+    margin: 0;
+}
+
+.mypage_layout {
+    display: flex;
+}
+
+.mypage_logout .mypage_nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.mypage_nav li {
+    margin: 0 30px;
+}
+
+
+.aside {
+
+    width: 22%;
+    height: 100vh;
+    text-align: center;
+}
+
+.percent {
+    background-color: lightblue;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+
+.amount {
+    border: 3px solid black;
+}
+
+.main {
+    width: 76%;
+    height: 100vh;
+    margin: 0 20px;
+
+}
+.service_list {
+    border-collapse: collapse;
+}
+.service_list td {
+    border: 1px solid black ;
+    
+}
 
 
 

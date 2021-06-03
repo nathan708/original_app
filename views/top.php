@@ -1,8 +1,8 @@
 <html lang="ja">
-  <?php require_once(dirname(__FILE__).'/head.php'); ?>
+  <?php require_once(dirname(__FILE__).'/../views/head.php'); ?>
 <body>
   
-  <?php require_once(dirname(__FILE__).'/header.php'); ?>
+  <?php require_once(dirname(__FILE__).'/../views/header.php'); ?>
   
   <main>
     <div class="bg_img">
@@ -19,6 +19,6 @@
   
   
   
-  <?php require_once(dirname(__FILE__).'/footer.php'); ?>
+  <?php require_once(dirname(__FILE__).'/../views/footer.php'); ?>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 // エラーチェック
+// 空の場合
 if (!empty($_POST)){
     if (empty($_POST['email'])){
         $error['email'] = 'blank';
@@ -8,16 +9,15 @@ if (!empty($_POST)){
     if (empty($_POST['password'])){
         $error['password'] = 'blank';
     }
+// DBと合っているかどうか
+
+
 // ※エラーが無ければ次に進むが どうやってdbと合わせるのか
     if (empty($error)){
         //???? $_SESSION['join'] = $_POST;
         header('Location: mypage.php');
         exit();
     }
-}
-// ※書き直し を再現したい できていない
-if ($_REQUEST['action'] == 'rewite' && isset($_SESSION['join'])){
-    $_POST = $_SESSION['join'];
 }
 
 ?>
@@ -36,10 +36,13 @@ if ($_REQUEST['action'] == 'rewite' && isset($_SESSION['join'])){
             <label for="email">メールアドレス： </label>
             <input type="email" name="email" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['email']), ENT_QUOTES);?>"><br>
         
-            <!-- ※dbと一致しているか確認する処理 -->
             <?php if ($error['email'] === 'blank'): ?>
-            <p>Emailを入力してください。</p>
+            <p class="error">メールアドレスを入力してください。</p>
             <?php endif; ?>
+            <!-- ※dbと一致しているか確認する処理 -->
+            <!-- <?php if ($error['email'] === 'blank'): ?>
+            <p>正しいメールアドレスとパスワードを入力してください。</p>
+            <?php endif; ?> -->
         </p>
         <p>
             <label for="password"> パスワード　　： </label>
@@ -47,7 +50,7 @@ if ($_REQUEST['action'] == 'rewite' && isset($_SESSION['join'])){
             
             <!-- ※dbと一致しているか確認する処理 -->
             <?php if ($error['password'] === 'blank'): ?>
-            <p>パスワードを入力してください。</p>
+            <p class="error">パスワードを入力してください。</p>
             <?php endif; ?>
         </p>
         <input type="submit" name="login" value="ログイン">

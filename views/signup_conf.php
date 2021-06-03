@@ -1,9 +1,20 @@
 <?php
 session_start();
 // ※データベースに接続したら 完了画面に遷移したい
+
+//中身が無ければもとに戻す
 if (!isset($_SESSION['join'])) {
   header('Location: signup.php');
   exit();
+}
+
+// ※登録するが押されたらデータベースに接続して、データベースに挿入する
+if (!empty($_POST)) {
+
+  unset($_SESSION['join']);
+  header('Location:signup_fin.php');
+  exit();
+  
 }
 
 ?>

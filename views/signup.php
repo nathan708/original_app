@@ -43,8 +43,6 @@
         </form>
         既に登録済みの方はこちらから <a href="login.php">ログイン</a> してください。
     </div>
-                    <?php var_dump($_SESSION); ?>
-                    <?php var_dump($_POST); ?>
     <div class="register_right">
 
 

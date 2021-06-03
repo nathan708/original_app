@@ -1,29 +1,3 @@
-<?php
-session_start();
-// エラーチェック
-// 空の場合
-if (!empty($_POST)){
-    if (empty($_POST['email'])){
-        $error['email'] = 'blank';
-    }
-    if (empty($_POST['password'])){
-        $error['password'] = 'blank';
-    }
-// DBと合っているかどうか
-
-
-// ※エラーが無ければ次に進むが どうやってdbと合わせるのか
-    if (empty($error)){
-        //???? $_SESSION['join'] = $_POST;
-        header('Location: mypage.php');
-        exit();
-    }
-}
-
-?>
-
-
-
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
@@ -55,10 +29,10 @@ if (!empty($_POST)){
         </p>
         <input type="submit" name="login" value="ログイン">
     </form>
-    <p>新規登録は<a href="signup.php">　こちらから　</a>お願いします。</p>
+    <p>新規登録は<a href="/signup">　こちらから　</a>お願いします。</p>
     <br>
     <br>
-    <p><a href="password_form.php">パスワードを忘れた方はこちら</a></p>
+    <p><a href="/pass_form">パスワードを忘れた方はこちら</a></p>
 </body>
 <?php require_once(dirname(__FILE__).'/footer.php'); ?>
 </html>

@@ -21,6 +21,30 @@ const ROUTE_LIST = array(
     'post_function' =>  'signup_fin'
   ),
 
+  '/login' => array(
+    'controller'    =>  'LoginController',
+    'get_function'  =>  'input',
+    'post_function' =>  'login'
+  ),
+
+  '/pass_form' => array(
+    'controller'    =>  'PassFormController',
+    'get_function'  =>  'input',
+    'post_function' =>  'send'
+  ),
+
+  '/contact' => array(
+    'controller'    =>  'ContactController',
+    'get_function'  =>  'input',
+    'post_function' =>  'send'
+  ),
+
+  '/delete' => array(
+    'controller'    =>  'UserController',
+    'get_function'  =>  'delete',
+    'post_function' =>  'send'
+  ),
+
 
 
 
@@ -38,6 +62,13 @@ const ROUTE_LIST = array(
 const PAGE_TITLE = array(
   'TOP'       => 'サブスクリプション管理',
   'SIGNUP'    => 'ユーザー新規登録',
+  'LOGIN'    => 'ログイン',
+  'PASSFORM'    => 'パスワード再設定',
+  'CONTACT'     => 'お問い合わせ',
+  'USERDELETE'     => 'ユーザー情報削除',
+
 );
+
+
 
 ?>

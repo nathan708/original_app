@@ -22,7 +22,7 @@ function test_index(){
     $payment_type = array(
         0 => '年額', 1 => '月額'
     );
-    // var_dump($data);
+
 
     $view_string = 'テスト';
 

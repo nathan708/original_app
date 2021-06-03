@@ -1,20 +1,15 @@
-<!-- ヘッダーをページごとに変更するには？ -->
-<?php 
-if (!empty($_POST)) {
-  header('Location: user_delete_fin.php');
-}
-?>
+
 
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
- 
+  
   <div class="main">
   <form action="" method="POST">
     <!-- ※ユーザー情報をデータベースから引っ張りたい -->
     <!-- コレ自体もforeachで一括でできるはず -->
-
+  <h2><?=$page_title?></h2>
     <table>
       <tr>
         <th>ユーザー名</th>

@@ -1,24 +1,11 @@
-<?php
-// エラーチェック
-if (!empty($_POST)){
-    if (empty($_POST['name'])){
-        $error['name'] = 'blank';
-    }
-    if (empty($_POST['email'])){
-        $error['email'] = 'blank';
-    }
-    if (empty($_POST['kanso'])){
-        $error['kanso'] = 'blank';
-    }
-}
-?>
+
 
 
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
-  <h2>お問い合わせを</h2>
+  <h2><?=$page_title?></h2>
   <p>ご意見、ご感想やお問い合わせはこちらからお願いいたします。</p>
 
   <form action="" method="POST">
@@ -49,7 +36,7 @@ if (!empty($_POST)){
     <input type="submit" name="send" value="送信">
   </form>
 
-<h3><a href="user_delete.php">退会を希望される方はこちら</a></h3>
+<h3><a href="/delete">退会を希望される方はこちら</a></h3>
 
 
 </body>

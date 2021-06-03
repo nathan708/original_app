@@ -3,7 +3,7 @@
 // 入力画面表示
 function create(){
     // タイトル
-    $page_title = PAGE_TITLE['SIGNUP'];
+    $page_title = PAGE_TITLE['SIGNUP_CONF'];
     // ビューファイル読み込み
     require(dirname(__FILE__).'/../views/signup.php');
 }
@@ -12,13 +12,11 @@ function create(){
 function signup(){
    // ※付きは課題
     // ※アカウントを重複しないようにするには
-    // session_start();
-$page_title = PAGE_TITLE['SIGNUP'];
-$validation_msg = '';
-
+    session_start();
+    $page_title = PAGE_TITLE['SIGNUP'];
+    $validation_msg = '';
 
     // エラーチェック
-    var_dump($_POST);
     if (!empty($_POST)){
         
         if (empty($_POST['name'])){
@@ -45,19 +43,47 @@ $validation_msg = '';
         }else{
             // POSTからsend を外す
             unset($_POST['send']);
+            // passwordconf も外す
+            unset($_POST['password_conf']);
+
+            // 確認画面のためのSession
+            $_SESSION['signup'] = $_POST;
+
+            // View関係
+            require(dirname(__FILE__).'/../views/signup_conf.php');
         }
         
-        // エラーが無ければ次に進む
-        if (empty($error)){
-            $_SESSION['join'] = $_POST;
-            header('Location: signup_conf.php');
-            exit();
-        }
+        
     }
-    // ※書き直し
-    if ($_REQUEST['action'] == 'rewrite' && isset($_SESSION['join'])){
-        $_POST = $_SESSION['join'];
+    // ※書き直し---sessionがうまく効かず
+    if ($_REQUEST['action'] == 'rewrite' && isset($_SESSION['signup'])){
+        $_POST = $_SESSION['signup'];
     }
+}
+// 確認画面
+function signup_conf(){
+    session_start();
+    $page_title = PAGE_TITLE['SIGNUP_CONF'];
+    
+// ※データベースに接続したら 完了画面に遷移したい
 
+//中身が無ければもとに戻す
+// if (!isset($_SESSION['signup'])) {
+//   header('Location: signup.php');
+//   exit();
+// }
+
+// ※登録するが押されたらデータベースに接続して、データベースに挿入する
+if (!empty($_POST)) {
+    // // POST値をDB処理するパラメータとして定義
+    // $db_param = $_POST;
+    // // ユーザー登録処理（返り値に登録したユーザー情報）
+    // $user = user_insert($db_param);
+
+    // ビューファイル読み込み
+  unset($_SESSION['signup']);
+    require(dirname(__FILE__).'/../views/signup_fin.php');
+
+}
 
 }

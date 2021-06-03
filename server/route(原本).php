@@ -9,7 +9,7 @@ $url = $_SERVER['REQUEST_URI'];
 
 if($url == '/'){
     require(dirname(__FILE__).'/../controllers/TopController.php');
-    top_index();
+    // top_index();
 }
 
 // elseif($url == '/login'){

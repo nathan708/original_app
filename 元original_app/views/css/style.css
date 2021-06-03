@@ -1,0 +1,191 @@
+@charset "UTF-8";
+
+/* 共通部分 */
+
+html{
+    font-size: 100%;
+}
+body {
+    font-family: "Yu Gothic Medium", "游ゴシック Medium", YuGothic, "游ゴシック体", "ヒラギノ角ゴ Pro W3", sans-serif;
+    line-height: 1.7;
+    color: #432;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+img {
+    max-width: 100%;
+}
+
+a:hover {
+    color: blue;
+}
+
+
+
+.error {
+    color: red;
+}
+
+/* 全体Wrapper */
+.wrapper {
+    margin: 0 auto;
+    padding: 0 4%;
+}
+
+/* ヘッダー */
+#page_header {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+#page_header h1 {
+    font-size: 30px;
+}
+
+#page_header a:hover {
+    color: gray;
+}
+２
+
+#page_header h1 {
+    line-height: 70px;
+}
+
+.top_nav {
+    list-style: none;
+    display: flex;
+
+
+}
+
+
+.top_nav li {
+    margin: 20px;
+}
+
+
+/* メイン */
+
+/* トップページ */
+
+.bg_img {
+    background-image: url(../images/top_bg.jpeg);
+    /* background-size: cover; */
+    width: 100%;
+    text-align: center;
+    min-height: 75vh;
+    position: relative;
+
+}
+
+.top_layout {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 新規登録ページ */
+.signup_layout {
+    height: 500px;
+}
+.signup_form a:hover {
+    color: gray;
+}
+
+
+
+
+/* ログインページ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* マイページ トップ */
+.mypage_logout {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+}
+.mypage_logout h3 {
+    line-height: 60px;
+    margin: 0;
+}
+
+.mypage_layout {
+    display: flex;
+}
+
+.mypage_logout .mypage_nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.mypage_nav li {
+    margin: 0 30px;
+}
+
+
+.aside {
+
+    width: 22%;
+    height: 100vh;
+    text-align: center;
+}
+
+.percent {
+    background-color: lightblue;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+
+.amount {
+    border: 3px solid black;
+}
+
+.main {
+    width: 76%;
+    height: 100vh;
+    margin: 0 20px;
+
+}
+.service_list {
+    border-collapse: collapse;
+}
+.service_list td {
+    border: 1px solid black ;
+    
+}
+
+
+
+/* フッター */
+footer {
+    width: 100%;
+    height: 60px;
+    text-align: center;
+}
+
+small {
+    line-height: 60px;
+}

@@ -15,12 +15,6 @@ const ROUTE_LIST = array(
     'post_function' =>  'signup'
   ),
 
-  '/signup/conf' => array(
-    'controller'    =>  'UserController',
-    'get_function'  =>  '',
-    'post_function' =>  'signup_conf'
-  ),
-
   '/signup/fin' => array(
     'controller'    =>  'UserController',
     'get_function'  =>  '',
@@ -44,8 +38,6 @@ const ROUTE_LIST = array(
 const PAGE_TITLE = array(
   'TOP'       => 'サブスクリプション管理',
   'SIGNUP'    => 'ユーザー新規登録',
-  'SIGNUP_CONF'    => 'ユーザー新規登録確認',
-  'SIGNUP_FIN'    => 'ユーザー新規登録完了',
 );
 
 ?>

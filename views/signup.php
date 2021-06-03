@@ -3,7 +3,7 @@
 <?php require_once(dirname(__FILE__).'/../views/header.php'); ?>
 <div class="signup_layout wrapper">
     <div class="signup_form">
-        <form action="/signup/conf" method="POST">
+        <form action="" method="POST">
             <p>
                 <label for="username">ユーザー名　　：</label>
                 <input type="text" name="name" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['name']), ENT_QUOTES);?>"> <br>

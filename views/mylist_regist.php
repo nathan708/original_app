@@ -11,7 +11,7 @@
     <p>ジャンル： 
       <select name="genre" id="">
         <?php foreach( $genre as $i => $v){ ?>
-          <option value=" <?php echo $i; ?> "><?php echo $v; ?></option>
+          <option value="<?php echo $i; ?>"><?php echo $v; ?></option>
         <?php } ?>
       </select>
     </p>
@@ -19,7 +19,7 @@
     <p>支払い種別：
         <select name="payment_type" id="">
           <?php foreach( $payment_type as $i => $v){ ?>
-            <option value=" <?php echo $i; ?> "><?php echo $v; ?></option>
+            <option value="<?php echo $i; ?>"><?php echo $v; ?></option>
           <?php } ?>
           </select>
     </p>
@@ -34,7 +34,7 @@
     <p>支払い方法：
       <select name="payment_method" id="">
         <?php foreach( $payment_method as $i => $v) { ?>
-          <option value=" <?php echo $i; ?> "><?php echo $v; ?></option>
+          <option value="<?php echo $i; ?>"><?php echo $v; ?></option>
         <?php } ?>
       </select>
     </p>

@@ -8,7 +8,7 @@
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
   <h2>登録が完了しました。</h2>
-  <h2><a href="mypage.php"> マイページへ</a></h2>
+  <h2><a href="/mypage"> マイページへ</a></h2>
 
 </body>
 <?php require_once(dirname(__FILE__).'/footer.php'); ?>

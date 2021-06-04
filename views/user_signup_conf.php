@@ -8,11 +8,11 @@
     <input type="hidden" name="action" value="submit">
       <p>
         <label for="">ニックネーム：</label>
-        <?php echo htmlspecialchars($_SESSION['signup']['name'],ENT_QUOTES);?>
+        <?php echo htmlspecialchars($_POST['name'],ENT_QUOTES);?>
       </p>
       <p>
         <label for="">メールアドレス：</label>
-        <?php echo htmlspecialchars($_SESSION['signup']['email'],ENT_QUOTES);?>
+        <?php echo htmlspecialchars($_POST['email'],ENT_QUOTES);?>
         </p>
       <p>
         <label for="">パスワード：</label>

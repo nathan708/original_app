@@ -3,7 +3,6 @@
 // 入力画面表示
 function create(){
 
-    session_start();
     // タイトル
     $page_title = PAGE_TITLE['SIGNUP'];
     // ビューファイル読み込み
@@ -15,7 +14,6 @@ function create(){
 function signup(){
    // ※付きは課題
     // ※アカウントを重複しないようにするには
-    session_start();
     $page_title = PAGE_TITLE['SIGNUP'];
 
     // エラーチェック
@@ -47,12 +45,10 @@ function signup(){
             // passwordconf も外す
             unset($_POST['password_conf']);
 
-            // 確認画面のためのSession
-            $_SESSION['signup'] = $_POST;
             require(dirname(__FILE__).'/../views/user_signup_conf.php');
             }
     }
-        // ※書き直し---sessionがうまく効かず
+        // ※書き直し
     if ($_REQUEST['action'] == 'rewrite' && isset($_SESSION['signup'])){
         $_POST = $_SESSION['signup'];
     }
@@ -60,7 +56,7 @@ function signup(){
 
 // 確認画面
 function signup_fin(){
-    session_start();
+
     // View関係
     $page_title = PAGE_TITLE['TOP'];
     
@@ -80,7 +76,7 @@ function signup_fin(){
             // ビューファイル読み込み
             //   unset($_SESSION['signup']);
             //     require(dirname(__FILE__).'/../views/signup_fin.php');
-            unset($_SESSION);
+
             require(dirname(__FILE__).'/../views/user_signup_fin.php');
 
 }

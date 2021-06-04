@@ -18,16 +18,14 @@
       <tr>
         <th>ジャンル：　</th>
         <td>
-        <?= GENRE[$_POST['genre']] ?><br>
-        <?php var_dump(GENRE['2']);?><br>
-        <?php var_dump($_POST['genre']);?>
+        <?php echo htmlspecialchars(GENRE[$_POST['genre']],ENT_QUOTES); ?><br>
         </td>
       </tr>
 
       <tr>
         <th>支払い種別：　</th>
         <td>
-        <?php echo htmlspecialchars($_POST['payment_type'],ENT_QUOTES);?>
+        <?php echo htmlspecialchars(PAYMENT_TYPE[$_POST['payment_type']],ENT_QUOTES);?>
         </td>
       </tr>
       <tr>
@@ -45,7 +43,7 @@
       <tr>
         <th>支払い方法：　</th>
         <td>
-        <?php echo htmlspecialchars($_POST['payment_method'],ENT_QUOTES);?>
+        <?php echo htmlspecialchars(PAYMENT_METHOD[$_POST['payment_method']],ENT_QUOTES);?>
         </td>
       </tr>
       <tr>

@@ -1,52 +1,62 @@
-<!-- ヘッダーをページごとに変更するには？ -->
-<?php 
-if (!empty($_POST)) {
-  header('Location: mylist_regist_fin.php');
-}
-?>
+
+
 
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
-<?php require_once(dirname(__FILE__).'/header.php'); ?>
+<?php require_once(dirname(__FILE__).'/header2.php'); ?>
 <body>
  
   <div class="main">
-  <form action="" method="POST">
-    <!-- ※データベースから引っ張りたい -->
-    <!-- コレ自体もforeachで一括でできるはず -->
-
+  <form action="/mypage/mylist/regist/fin" method="POST">
     <table>
       <tr>
-        <th>サービス名</th>
-        <td>Netflix(DBから読み込む)</td>
+        <th>サービス名：　</th>
+        <td>
+        <?php echo htmlspecialchars($_POST['name'],ENT_QUOTES);?>
+        </td>
       </tr>
       <tr>
-        <th>金額</th>
-        <td>Netflix(DBから読み込む)</td>
+        <th>ジャンル：　</th>
+        <td>
+        <?= GENRE[$_POST['genre']] ?><br>
+        <?php var_dump(GENRE['2']);?><br>
+        <?php var_dump($_POST['genre']);?>
+        </td>
+      </tr>
+
+      <tr>
+        <th>支払い種別：　</th>
+        <td>
+        <?php echo htmlspecialchars($_POST['payment_type'],ENT_QUOTES);?>
+        </td>
       </tr>
       <tr>
-        <th>サービス名</th>
-        <td>800(DBから読み込む)円</td>
+        <th>金額：　</th>
+        <td>
+        <?php echo htmlspecialchars($_POST['pay'],ENT_QUOTES);?>
+        </td>
       </tr>
       <tr>
-        <th>支払い種別</th>
-        <td>月額(DBから読み込む)</td>
+        <th>支払日：　</th>
+        <td>
+        <?php echo htmlspecialchars($_POST['payment_date'],ENT_QUOTES);?>
+        </td>
       </tr>
       <tr>
-        <th>ジャンル</th>
-        <td>動画(DBから読み込む)</td>
+        <th>支払い方法：　</th>
+        <td>
+        <?php echo htmlspecialchars($_POST['payment_method'],ENT_QUOTES);?>
+        </td>
       </tr>
       <tr>
-        <th>支払い方法</th>
-        <td>クレジットカード(DBから読み込む)</td>
-      </tr>
-      <tr>
-        <th>備考</th>
-        <td>~~~(DBから読み込む)</td>
+        <th>備考：　</th>
+        <td>
+        <?php echo htmlspecialchars($_POST['note'],ENT_QUOTES);?>
+        </td>
       </tr>
     </table>
     <p>上記の情報を登録します。よろしいですか？</p>
-    <input type="submit" name="delete" value="登録">
+    <a href="/mypage/mylist/regist?action=rewrite">&laquo;&nbsp;書き直す</a> | <input type="submit" name="regist" value="登録する" /></div>
   </form>
 
       

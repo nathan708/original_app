@@ -86,7 +86,7 @@ function signup_fin(){
 }
 
 
-// 削除確認画面
+// 削除確認画面 お問い合わせに組み込んだが、ログインしてから出ないと消せないはず
 function delete(){
 
     // View関係

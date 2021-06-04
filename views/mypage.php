@@ -1,21 +1,9 @@
-<!-- ヘッダーをページごとに変更するには？ -->
-
 
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
-<?php require_once(dirname(__FILE__).'/header.php'); ?>
+<?php require_once(dirname(__FILE__).'/header2.php'); ?>
 <body>
-  <div class="mypage_logout">
-    <h2><?php echo date('m') . "月"?></h2>
-    <nav class="mypage_nav">
-      <ul>
-        <li><a href="mylist.php">マイサブスクリプション一覧</a></li>
-        <li><a href="mylist_regist.php">マイサブスクリプション登録</a></li>
-      </ul>
-    </nav>
-    <!-- ログアウトの設置場所はここでよいか？ -->
-    <h3><a href="logout_fin.php"> ログアウト</a></h3>
-  </div>  
+  <h2>〇〇<!--db接続をしておく $member['name']-->さんのサブスク</h2>         
   <div class="mypage_layout">
     <div class="aside">
       <h3>割合</h3>

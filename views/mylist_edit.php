@@ -30,13 +30,13 @@ if (!empty($_POST)){
 
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
-<?php require_once(dirname(__FILE__).'/header.php'); ?>
+<?php require_once(dirname(__FILE__).'/header2.php'); ?>
 <body>
 <form action="" method="POST">
 
 <!-- ※DBから予め登録したデータを引っ張りたい -->
 
-    <p>サービス名：<input type="text" name="name" value="<?php echo htmlspecialchars(($_POST['name']), ENT_QUOTES);?>"></p>
+    <p>サービス名：<input type="text" name="name" value="DBから引っ張ってくる"></p>
     <?php if ($error['name'] === 'blank'): ?>
       <p class="error">サービス名を入力してください。</p>
     <?php  endif; ?>

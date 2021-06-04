@@ -121,15 +121,7 @@ a:hover {
 
 
 /* マイページ トップ */
-.mypage_logout {
-    display: flex;
-    justify-content: space-between;
-    height: 60px;
-}
-.mypage_logout h3 {
-    line-height: 60px;
-    margin: 0;
-}
+
 
 .mypage_layout {
     display: flex;

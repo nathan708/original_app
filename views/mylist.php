@@ -3,19 +3,9 @@
 
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
-<?php require_once(dirname(__FILE__).'/header.php'); ?>
+<?php require_once(dirname(__FILE__).'/header2.php'); ?>
 <body>
-  <div class="mypage_logout">
-    <h2><?php echo date('m') . "月"?></h2>
-    <nav class="mypage_nav">
-      <ul>
-        <li><a href="mylist.php">マイサブスクリプション一覧</a></li>
-        <li><a href="mylist_regist.php">マイサブスクリプション登録</a></li>
-      </ul>
-    </nav>
-    <!-- ログアウトの設置場所はここでよいか？ -->
-    <h3><a href="logout_fin.php">ログアウト</a></h3>
-  </div>  
+
   <div class="mypage_layout">
  
   <div class="main">
@@ -41,7 +31,7 @@
         <td>クレジットカード['payment_method']</td>
         <td>なし $user['note']</td>
         <td>
-          <a href='mylist_edit.php'>編集</a>
+          <a href='/mypage/mylist/edit'>編集</a>
           <p>／</p>
           <a href="mylist_delete.php">削除</a>
         </td>

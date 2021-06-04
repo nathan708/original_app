@@ -45,6 +45,37 @@ const ROUTE_LIST = array(
     'post_function' =>  'send'
   ),
 
+  '/mypage' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  'top_index',
+    'post_function' =>  ''
+  ),
+
+  '/mypage/mylist' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  'mylist',
+    'post_function' =>  ''
+  ),
+
+  '/mypage/mylist/regist' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  'mylist_regist',
+    'post_function' =>  'mylist_regist_conf'
+  ),
+
+  '/mypage/mylist/regist/fin' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  '',
+    'post_function' =>  'mylist_regist_fin'
+  ),
+
+  '/mypage/mylist/edit' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  'mylist_edit',
+    'post_function' =>  ''
+  ),
+
+
 
 
 
@@ -68,7 +99,18 @@ const PAGE_TITLE = array(
   'USERDELETE'     => 'ユーザー情報削除',
 
 );
+  
 
+const GENRE = array(
+  '選択してください', '動画' ,'本・雑誌', 'ウェブサービス', 'ショッピング', 'その他',
+);
 
+const PAYMENT_TYPE = array(
+  '選択してください', '月額' ,'年額', 'その他'
+);
+
+const PAYMENT_METHOD = array(
+  '選択してください', "クレジットカード", "銀行引き落とし", "その他"
+);
 
 ?>

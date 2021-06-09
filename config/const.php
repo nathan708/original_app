@@ -7,8 +7,6 @@ const DBNAME = '';
 const PORT = '3306';
 
 
-
-
 // ルーティングの一覧
 
 const ROUTE_LIST = array(

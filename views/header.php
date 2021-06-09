@@ -14,12 +14,4 @@
         </ul>
       </nav>
     </header> 
-
-    こちらはMASTER
-<<<<<<< HEAD
   </div>
-=======
-  </div>
-
-
->>>>>>> MVCお試し

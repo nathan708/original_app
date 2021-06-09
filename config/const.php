@@ -3,7 +3,7 @@
 const HOST = '127.0.0.1';
 const USERNAME = 'root';
 const PASSWORD = 'root';
-const DBNAME = '';
+const DBNAME = 'original_db';
 const PORT = '3306';
 
 

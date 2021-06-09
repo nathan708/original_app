@@ -63,25 +63,24 @@ function signup(){
 // 確認画面
 function signup_fin(){
     
+    // ※「登録する」が押されたらデータベースに接続して、データベースに挿入する
     // ※データベースに接続したら 完了画面に遷移したい
     
     //中身が無ければもとに戻す
+    // POSTから外す
+    if (!empty($_POST)) {
 
-
-        
-        // ※「登録する」が押されたらデータベースに接続して、データベースに挿入する
-        // if (!empty($_POST)) {
-            // // POST値をDB処理するパラメータとして定義
-            // $db_param = $_POST;
-            // // ユーザー登録処理（返り値に登録したユーザー情報）
-            // $user = user_insert($db_param);
+    unset($_POST['send']);
+    unset($_POST['password_conf']);
+    
+    // POST値をDB処理するパラメータとして定義
+    $db_param = $_POST;
+    // ユーザー登録処理（返り値に登録したユーザー情報）
+    $user = user_insert($db_param);
             
-            // ビューファイル読み込み
-            //   unset($_SESSION['signup']);
-            //     require(dirname(__FILE__).'/../views/signup_fin.php');
-
-            require(dirname(__FILE__).'/../views/user_signup_fin.php');
-
+    // ビューファイル読み込み
+    require(dirname(__FILE__).'/../views/user_signup_fin.php');
+    }
 }
 
 

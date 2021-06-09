@@ -1,3 +1,5 @@
+
+
 <html lang="ja">
   <?php require_once(dirname(__FILE__).'/../views/head.php'); ?>
 <body>
@@ -16,9 +18,9 @@
     </div>
     
   </main>
-  
-  
+
   
   <?php require_once(dirname(__FILE__).'/../views/footer.php'); ?>
 </body>
 </html>
+

@@ -1,6 +1,10 @@
 
+
+
   <div class="wrapper">
     <header id="page_header">
+    <!-- ログイン前トップ -->
+
       <h1><a href="/">サブスクリプション管理</a></h1>
       <nav>
         <ul class="top_nav">
@@ -10,4 +14,10 @@
         </ul>
       </nav>
     </header> 
+<<<<<<< HEAD
   </div>
+=======
+  </div>
+
+
+>>>>>>> MVCお試し

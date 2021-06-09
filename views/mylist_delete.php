@@ -1,10 +1,3 @@
-<!-- ヘッダーをページごとに変更するには？ -->
-<?php 
-if (!empty($_POST)) {
-  header('Location: mylist_delete_fin.php');
-}
-?>
-
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header2.php'); ?>

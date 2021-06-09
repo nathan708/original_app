@@ -8,7 +8,7 @@
     <div class="aside">
       <h3>割合</h3>
       <div class="percent">box</div>
-  <h3><?php echo date('m') . "月"?>は</h3>
+  <h3><?php echo date('n') . "月"?>は</h3>
   <h2 class="amount">
     <!-- データベースから総額を引っ張ってくる -->
     13000
@@ -17,7 +17,7 @@
     
   </div>
   <div class="main">
-    <h3><?php echo date('m') . "月"?>支払い一覧</h3>
+    <h3><?php echo date('n') . "月"?>の支払い一覧</h3>
     <!-- ※データベースから引っ張りたい -->
     <!-- コレ自体もforeachで一括でできるはず -->
     <table class="service_list">

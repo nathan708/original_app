@@ -1,4 +1,12 @@
 <?php 
+// DB接続情報
+const HOST = '127.0.0.1';
+const USERNAME = 'root';
+const PASSWORD = 'root';
+const DBNAME = '';
+const PORT = '3306';
+
+
 
 // ルーティングの一覧
 
@@ -22,7 +30,7 @@ const ROUTE_LIST = array(
   ),
 
   '/login' => array(
-    'controller'    =>  'LoginController',
+    'controller'    =>  'LogInOutController',
     'get_function'  =>  'input',
     'post_function' =>  'login'
   ),
@@ -72,6 +80,18 @@ const ROUTE_LIST = array(
   '/mypage/mylist/edit' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'mylist_edit',
+    'post_function' =>  'mylist_edit_fin'
+  ),
+
+  '/mypage/mylist/delete' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  'mylist_delete',
+    'post_function' =>  'mylist_delete_fin'
+  ),
+
+  '/logout' => array(
+    'controller'    =>  'LogInOutController',
+    'get_function'  =>  'logout',
     'post_function' =>  ''
   ),
 

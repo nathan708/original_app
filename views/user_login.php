@@ -22,9 +22,11 @@
             <label for="password"> パスワード　　： </label>
             <input type="text" name="password" size="10" maxlength="20" value="<?php echo htmlspecialchars(($_POST['password']), ENT_QUOTES);?>"><br>
             
-            <!-- ※dbと一致しているか確認する処理 -->
             <?php if ($error['password'] === 'blank'): ?>
             <p class="error">パスワードを入力してください。</p>
+            <?php endif; ?>
+            <?php if ($error['password'] === 'length'): ?>
+                <p class="error">パスワードを４文字以上で入力してください。</p>
             <?php endif; ?>
         </p>
         <input type="submit" name="login" value="ログイン">

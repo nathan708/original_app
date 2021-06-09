@@ -33,32 +33,36 @@ function signup(){
         }
         if (empty($_POST['password_conf'])){
             $error['password_conf'] = 'blank';
-        }elseif ($_POST['password_conf'] !== $_POST['password']){
+        }
+        if ($_POST['password_conf'] !== $_POST['password']){
             $error['password_conf'] = 'wrong';
         }
         // エラーが有るなら書き直す
         if (!empty($error)){
             require(dirname(__FILE__).'/../views/user_signup.php');
+        // エラーが無いなら、必要なPOSTを外して、DB処理する
         }else{
             // POSTからsend を外す
             unset($_POST['send']);
             // passwordconf も外す
             unset($_POST['password_conf']);
+            // 残ったPOSTをDB処理するパラメーターとして定義
+            $db_param = $_POST;
+
+
 
             require(dirname(__FILE__).'/../views/user_signup_conf.php');
             }
     }
-        // ※書き直し
-    if ($_REQUEST['action'] == 'rewrite' && isset($_SESSION['signup'])){
-        $_POST = $_SESSION['signup'];
+        // ※書き直し ここをどうしたら良いのか
+
+    if ($_REQUEST['action'] == 'rewrite'){
+
     }
 }
 
 // 確認画面
 function signup_fin(){
-
-    // View関係
-    $page_title = PAGE_TITLE['TOP'];
     
     // ※データベースに接続したら 完了画面に遷移したい
     
@@ -66,7 +70,7 @@ function signup_fin(){
 
 
         
-        // ※登録するが押されたらデータベースに接続して、データベースに挿入する
+        // ※「登録する」が押されたらデータベースに接続して、データベースに挿入する
         // if (!empty($_POST)) {
             // // POST値をDB処理するパラメータとして定義
             // $db_param = $_POST;

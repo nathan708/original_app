@@ -11,6 +11,7 @@
       <tr>
         <th>サービス名</th>
         <td>Netflix(DBから読み込む)</td>
+            ※DBから読み込めないから全画面からSESSION?
       </tr>
       <tr>
         <th>金額</th>
@@ -38,7 +39,7 @@
       </tr>
     </table>
   <h2>上記のデータの削除が完了しました。</h2>
-  <h2><a href="mypage.php"> マイページへ</a></h2>
+  <h2><a href="/mypage"> マイページへ</a></h2>
 
 </body>
 <?php require_once(dirname(__FILE__).'/footer.php'); ?>

@@ -8,7 +8,6 @@ $url = $_SERVER['REQUEST_URI'];
 $url = strtok($url,'?');
 
 
-
 // アクセス時に使用されたメソッド（ GET or POST ）
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -35,9 +34,6 @@ foreach(ROUTE_LIST as $key => $value){
         break;
     }
 }
-
-// 次の課題
-// 一通りOKだったらどうしようか。
 
 
 // アクセスされたURLがルーティング定義に存在しなかった場合

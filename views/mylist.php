@@ -19,7 +19,6 @@
         <th>ジャンル</th>
         <th>支払い方法</th>
         <th>備考</th>
-        <th>編集／削除</th>
 
       </tr>
       <tr>
@@ -33,7 +32,7 @@
         <td>
           <a href='/mypage/mylist/edit'>編集</a>
           <p>／</p>
-          <a href="mylist_delete.php">削除</a>
+          <a href="/mypage/mylist/delete">削除</a>
         </td>
 
       </tr>

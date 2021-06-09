@@ -18,25 +18,30 @@ function login(){
         if (empty($_POST['email'])){
             $error['email'] = 'blank';
         }
+        if (strlen($_POST['password']) < 4 ){
+            $error['password'] = 'length';
+        }
         if (empty($_POST['password'])){
             $error['password'] = 'blank';
         }
-        if (!empty($error)) {
-            require (dirname(__FILE__).'/../views/user_login.php');
-        }else {
+        if (empty($error)) {
             // DBと合っているかどうか照合 違う場合
-            
-            
             // ※エラーが無ければ次に進むが どうやってdbと合わせるのか
-            
-            // if (empty($error)){
-                // ???? $_SESSION['join'] = $_POST;
-                //     header('Location: mypage.php');
-                //     exit();
-                // }
-                // }
+            // マイページに行く
             require (dirname(__FILE__).'/../views/mypage.php');
+            
+
+            
+        }else {
+            require (dirname(__FILE__).'/../views/user_login.php');
             }        
-    // マイページに行く
     }
+}
+
+
+// ログアウト処理
+function logout(){
+    // DBから解除？　Cookieを消す？
+
+    require (dirname(__FILE__).'/../views/user_logout.php');
 }

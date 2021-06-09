@@ -31,7 +31,7 @@
       <tr>
         <th>金額：　</th>
         <td>
-        <?php echo htmlspecialchars($_POST['pay'],ENT_QUOTES);?>
+        <?php echo htmlspecialchars($_POST['pay'],ENT_QUOTES);?>円
         </td>
       </tr>
       <tr>

@@ -30,67 +30,67 @@ const ROUTE_LIST = array(
     'get_function'  =>  '',
     'post_function' =>  'signup_fin'
   ),
-
+// ログイン処理
   '/login' => array(
     'controller'    =>  'LogInOutController',
     'get_function'  =>  'input',
     'post_function' =>  'login'
   ),
-
+// パスワード問い合わせ処理
   '/pass_form' => array(
     'controller'    =>  'PassFormController',
     'get_function'  =>  'input',
     'post_function' =>  'send'
   ),
-
+// お問い合わせ処理
   '/contact' => array(
     'controller'    =>  'ContactController',
     'get_function'  =>  'input',
     'post_function' =>  'send'
   ),
-
+// ユーザー情報削除
   '/delete' => array(
     'controller'    =>  'UserController',
     'get_function'  =>  'delete',
     'post_function' =>  'send'
   ),
-
+// マイページトップ
   '/mypage' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'top_index',
     'post_function' =>  ''
   ),
-
+// マイリスト一覧
   '/mypage/mylist' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'mylist',
     'post_function' =>  ''
   ),
-
+// マイリスト登録
   '/mypage/mylist/regist' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'mylist_regist',
     'post_function' =>  'mylist_regist_conf'
   ),
-
+// マイリスト登録確認ー完了
   '/mypage/mylist/regist/fin' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  '',
     'post_function' =>  'mylist_regist_fin'
   ),
-
+// マイリスト編集
   '/mypage/mylist/edit' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'mylist_edit',
     'post_function' =>  'mylist_edit_fin'
   ),
-
+// マイリスト削除
   '/mypage/mylist/delete' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'mylist_delete',
     'post_function' =>  'mylist_delete_fin'
   ),
-
+// ログアウト
   '/logout' => array(
     'controller'    =>  'LogInOutController',
     'get_function'  =>  'logout',
@@ -102,7 +102,7 @@ const ROUTE_LIST = array(
 
 
 
-
+// 指定URL以外を表示した場合のエラー
   '/error' => array(
     'controller'    => 'ErrorController',
     'get_function'  => 'error_404',

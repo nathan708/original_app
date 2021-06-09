@@ -8,21 +8,23 @@ const PORT = '3306';
 
 
 
+
 // ルーティングの一覧
 
 const ROUTE_LIST = array(
+  // トップページ
   '/' => array(
     'controller'       => 'TopController',
     'get_function'     =>'index',
     'post_function'    =>''
   ),
-
+// 新規登録
   '/signup' => array(
     'controller'    =>  'UserController',
     'get_function'  =>  'create',
     'post_function' =>  'signup'
   ),
-
+// 新規登録確認ー完了
   '/signup/fin' => array(
     'controller'    =>  'UserController',
     'get_function'  =>  '',
@@ -110,6 +112,8 @@ const ROUTE_LIST = array(
 );
 
 
+// トップページ
+
 const PAGE_TITLE = array(
   'TOP'       => 'サブスクリプション管理',
   'SIGNUP'    => 'ユーザー新規登録',
@@ -121,6 +125,10 @@ const PAGE_TITLE = array(
 );
   
 
+
+
+
+// セレクタ関連
 const GENRE = array(
   '選択してください', '動画' ,'本・雑誌', 'ウェブサービス', 'ショッピング', 'その他',
 );

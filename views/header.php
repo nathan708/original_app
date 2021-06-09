@@ -1,6 +1,9 @@
+<?php var_dump($_SERVER['SCRIPT_NAME']); ?>
+
 
   <div class="wrapper">
     <header id="page_header">
+    <!-- ログイン前トップ -->
       <h1><a href="/">サブスクリプション管理</a></h1>
       <nav>
         <ul class="top_nav">

@@ -14,6 +14,8 @@
         </ul>
       </nav>
     </header> 
+
+    こちらはMASTER
 <<<<<<< HEAD
   </div>
 =======

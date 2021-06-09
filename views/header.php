@@ -14,6 +14,7 @@
         </ul>
       </nav>
     </header> 
+    MVCお試し
 <<<<<<< HEAD
   </div>
 =======

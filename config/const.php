@@ -13,7 +13,7 @@ const ROUTE_LIST = array(
   // トップページ
   '/' => array(
     'controller'       => 'TopController',
-    'get_function'     =>'index',
+    'get_function'     =>'top',
     'post_function'    =>''
   ),
 // 新規登録
@@ -124,6 +124,13 @@ const PAGE_TITLE = array(
   
 
 
+// エラーメッセージ
+const ERROR_MEASSAGE = array(
+  'blank' => '入力してください',
+  'wrong' => '同じものを入力してください',
+  'length' => '4文字以上で入力してください',
+
+);
 
 
 // セレクタ関連

@@ -12,7 +12,6 @@ function create(){
 // 登録処理
 
 function signup(){
-   // ※付きは課題
     // ※アカウントを重複しないようにするには
     $page_title = PAGE_TITLE['SIGNUP'];
 

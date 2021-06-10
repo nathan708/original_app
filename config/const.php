@@ -119,6 +119,7 @@ const PAGE_TITLE = array(
   'PASSFORM'    => 'パスワード再設定',
   'CONTACT'     => 'お問い合わせ',
   'USERDELETE'     => 'ユーザー情報削除',
+  
 
 );
   
@@ -126,11 +127,11 @@ const PAGE_TITLE = array(
 
 // エラーメッセージ
 const ERROR_MEASSAGE = array(
-  'blank' => '入力してください',
-  'wrong' => '同じものを入力してください',
+  'blank' => '入力されていない項目があります。',
+  'wrong' => '１つ目のパスワードと同じものを入力してください',
   'length' => '4文字以上で入力してください',
   'duplicate' => '指定されたアドレスは登録済みです',
-
+  'LOGIN_FAILED'   => 'メールアドレスとパスワードが一致しません。'
 );
 
 

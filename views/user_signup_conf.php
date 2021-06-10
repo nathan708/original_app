@@ -21,7 +21,7 @@
     <!-- HiddenでPost送信 -->
       <input type="hidden" name="name" value="<?=htmlspecialchars($_POST['name'],ENT_QUOTES)?>">
       <input type="hidden" name="address" value="<?=htmlspecialchars($_POST['address'],ENT_QUOTES)?>">
-      <input type="hidden" name="password" value="<?=htmlspecialchars($_POST['name'],ENT_QUOTES)?>">
+      <input type="hidden" name="password" value="<?=htmlspecialchars($_POST['password'],ENT_QUOTES)?>">
 
       <a href="/signup?action=rewrite">&laquo;&nbsp;書き直す</a> | <input type="submit" name="regist" value="登録する" /></div>
   </form>

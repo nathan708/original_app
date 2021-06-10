@@ -40,7 +40,7 @@ function user_insert($param){
     return $result;
 }
 
-// アカウントの重複をチェック
+// アカウントの重複をチェック・・・機能していない
 function address_duplicate() {
 
     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
@@ -51,18 +51,9 @@ function address_duplicate() {
         $error['address'] = 'duplicate';
         }
     $dbh = null;
-        
-        echo '<pre>';
-        var_dump($user);
-        var_dump($record);
+}
 
-        echo '</pre>';
-        
-    }
+// ログイン処理
+function login() {
 
-
-
-
-
-
-
+}

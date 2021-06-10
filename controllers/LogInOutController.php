@@ -11,31 +11,34 @@ function input(){
 // ログイン処理
 function login(){
     session_start();
-    
-    // エラーチェック
-    // 空の場合
-    if (!empty($_POST)){
-        if (empty($_POST['email'])){
-            $error['email'] = 'blank';
-        }
-        if (strlen($_POST['password']) < 4 ){
-            $error['password'] = 'length';
-        }
-        if (empty($_POST['password'])){
-            $error['password'] = 'blank';
-        }
-        if (empty($error)) {
-            // DBと合っているかどうか照合 違う場合
-            // ※エラーが無ければ次に進むが どうやってdbと合わせるのか
-            // マイページに行く
-            require (dirname(__FILE__).'/../views/mypage.php');
-            
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // 空ならログイン処理を行わない
+    if(!empty($_POST)) {
+        if ($_POST['address'] !== '' && $_POST['password'] !== '') {
+            $login = $dbh->prepare('SELECT * FROM users WHERE address=? AND password=?');
+            $login->execute(array (
+                $_POST['address'],
+                $_POST['password']
+            ));
+            $member = $login->fetch();
+            // ログインに成功していたら
+            if($member) {
+                $_SESSION['id'] = $member['id'];
+                $_SESSION['time'] = time();
+                require (dirname(__FILE__).'/../views/mypage.php');
+            // ログインに失敗したら
+            }else {
+                $error['login'] = 'failed';
+                require (dirname(__FILE__).'/../views/user_login.php');
 
-            
+            }
         }else {
+            $error['login'] = 'blank';
             require (dirname(__FILE__).'/../views/user_login.php');
-            }        
+        }
     }
+
+
 }
 
 

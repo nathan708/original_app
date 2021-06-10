@@ -15,30 +15,45 @@ function create(){
 // 登録処理
 
 function signup(){
-    // ※アカウントを重複しないようにするには
     $page_title = PAGE_TITLE['SIGNUP'];
+    $validation_msg = '';
 
     // エラーチェック
     if (!empty($_POST)){
-        
-        if (empty($_POST['name'])){
-            $error['name'] = 'blank';
-        }
-        if (empty($_POST['address'])){
-            $error['address'] = 'blank';
+        if (empty($_POST['name']) ||
+            empty($_POST['address'])||
+            empty($_POST['password'])||
+            empty($_POST['password_conf'])
+            ) {
+                $error = 'blank';
+                $validation_msg = ERROR_MEASSAGE['blank'];
+            }
+        if ($_POST['password'] !== $_POST['password_conf']) {
+            $error['password_conf'] = 'wrong';
         }
         if (strlen($_POST['password']) < 4 ){
             $error['password'] = 'length';
         }
-        if (empty($_POST['password'])){
-            $error['password'] = 'blank';
+        if (strlen($_POST['password_conf']) < 4 ){
+            $error['password_conf'] = 'length';
         }
-        if (empty($_POST['password_conf'])){
-            $error['password_conf'] = 'blank';
-        }
-        if ($_POST['password_conf'] !== $_POST['password']){
-            $error['password_conf'] = 'wrong';
-        }
+
+        
+        // if (empty($_POST['name'])){
+        //     $error['name'] = 'blank';
+        // }
+        // if (empty($_POST['address'])){
+        //     $error['address'] = 'blank';
+        // }
+        // if (empty($_POST['password'])){
+        //     $error['password'] = 'blank';
+        // }
+        // if (empty($_POST['password_conf'])){
+        //     $error['password_conf'] = 'blank';
+        // }
+        // if ($_POST['password_conf'] !== $_POST['password']){
+        //     $error['password_conf'] = 'wrong';
+        // }
 
         // エラーが無いなら、確認画面にいく
         if (empty($error)){
@@ -84,7 +99,6 @@ function signup_fin(){
         $db_param = $_POST;
         // // ユーザー登録処理（返り値に登録したユーザー情報）
         $user = user_insert($db_param);
-
     }
             
     // ビューファイル読み込み

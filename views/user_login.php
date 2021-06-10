@@ -7,28 +7,31 @@
 
     <form action="" method="POST"
         <p>
-            <label for="email">メールアドレス： </label>
-            <input type="email" name="email" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['email']), ENT_QUOTES);?>"><br>
+            <label for="address">メールアドレス： </label>
+            <input type="email" name="address" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['address']), ENT_QUOTES);?>"><br>
         
-            <?php if ($error['email'] === 'blank'): ?>
-            <p class="error">メールアドレスを入力してください。</p>
-            <?php endif; ?>
-            <!-- ※dbと一致しているか確認する処理 -->
-            <!-- <?php if ($error['email'] === 'blank'): ?>
-            <p>正しいメールアドレスとパスワードを入力してください。</p>
-            <?php endif; ?> -->
+            
+
         </p>
         <p>
             <label for="password"> パスワード　　： </label>
             <input type="text" name="password" size="10" maxlength="20" value="<?php echo htmlspecialchars(($_POST['password']), ENT_QUOTES);?>"><br>
             
-            <?php if ($error['password'] === 'blank'): ?>
-            <p class="error">パスワードを入力してください。</p>
-            <?php endif; ?>
-            <?php if ($error['password'] === 'length'): ?>
-                <p class="error">パスワードを４文字以上で入力してください。</p>
-            <?php endif; ?>
+            
         </p>
+        <p>
+        <!-- エラーメッセージ -->
+            <?php if ($error['login'] === 'blank'): ?>
+            <p class="error"><?= ERROR_MEASSAGE['blank']?></p>
+            <?php endif; ?>
+            <?php if ($error['login'] === 'failed'): ?>
+            <p class="error"><?= ERROR_MEASSAGE['LOGIN_FAILED']?></p>
+            <?php endif; ?>
+
+        </p>
+
+
+
         <input type="submit" name="login" value="ログイン">
     </form>
     <p>新規登録は<a href="/signup">　こちらから　</a>お願いします。</p>

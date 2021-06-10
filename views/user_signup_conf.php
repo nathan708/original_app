@@ -1,5 +1,4 @@
 <html lang="ja">
-<?php var_dump($_POST); ?>
 
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
@@ -16,7 +15,7 @@
         </p>
       <p>
         <label for="">パスワード：</label>
-        <?php echo htmlspecialchars($_POST['password'],ENT_QUOTES);?>
+        表示されません
       </p>
       
     <!-- HiddenでPost送信 -->

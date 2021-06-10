@@ -38,7 +38,31 @@ function user_insert($param){
     $dbh = null;
 
     return $result;
-
-
 }
+
+// アカウントの重複をチェック
+function address_duplicate() {
+
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    $user = $dbh->prepare('SELECT COUNT(*) AS cnt FROM users WHERE address=?');
+    $user->execute(array($_POST['address']));
+    $record = $user->fetch();
+    if ($record['cnt'] > 0 ) {
+        $error['address'] = 'duplicate';
+        }
+    $dbh = null;
+        
+        echo '<pre>';
+        var_dump($user);
+        var_dump($record);
+
+        echo '</pre>';
+        
+    }
+
+
+
+
+
+
 

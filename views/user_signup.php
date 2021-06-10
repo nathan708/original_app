@@ -16,9 +16,12 @@
 
             <p>
                 <label for="email">メールアドレス： </label>
-                <input type="email" name="address" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['email']), ENT_QUOTES);?>"><br>
+                <input type="email" name="address" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['address']), ENT_QUOTES);?>"><br>
                 <?php if ($error['address'] === 'blank'): ?>
                 <p class="error"><?= ERROR_MEASSAGE['blank']?></p>
+                <?php endif; ?>
+                <?php if ($error['address'] === 'duplicate'): ?>
+                <p class="error"><?= ERROR_MEASSAGE['duplicate']?></p>
                 <?php endif; ?>
             </p>
             <p>

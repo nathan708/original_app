@@ -129,6 +129,7 @@ const ERROR_MEASSAGE = array(
   'blank' => '入力してください',
   'wrong' => '同じものを入力してください',
   'length' => '4文字以上で入力してください',
+  'duplicate' => '指定されたアドレスは登録済みです',
 
 );
 

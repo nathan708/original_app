@@ -16,8 +16,8 @@
 
             <p>
                 <label for="email">メールアドレス： </label>
-                <input type="email" name="email" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['email']), ENT_QUOTES);?>"><br>
-                <?php if ($error['email'] === 'blank'): ?>
+                <input type="email" name="address" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['email']), ENT_QUOTES);?>"><br>
+                <?php if ($error['address'] === 'blank'): ?>
                 <p class="error"><?= ERROR_MEASSAGE['blank']?></p>
                 <?php endif; ?>
             </p>

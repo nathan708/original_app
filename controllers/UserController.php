@@ -1,4 +1,7 @@
 <?php
+// ユーザモデルの読み込み　ほとんどのfunctionで呼び出しているから最初に定義
+require(dirname(__FILE__).'/../models/UserModel.php');
+
 
 // 入力画面表示
 function create(){
@@ -21,8 +24,8 @@ function signup(){
         if (empty($_POST['name'])){
             $error['name'] = 'blank';
         }
-        if (empty($_POST['email'])){
-            $error['email'] = 'blank';
+        if (empty($_POST['address'])){
+            $error['address'] = 'blank';
         }
         if (strlen($_POST['password']) < 4 ){
             $error['password'] = 'length';
@@ -41,15 +44,7 @@ function signup(){
             require(dirname(__FILE__).'/../views/user_signup.php');
         // エラーが無いなら、必要なPOSTを外して、DB処理する
         }else{
-            // POSTからsend を外す
-            unset($_POST['send']);
-            // passwordconf も外す
-            unset($_POST['password_conf']);
-            // 残ったPOSTをDB処理するパラメーターとして定義
-            $db_param = $_POST;
-
-
-
+         
             require(dirname(__FILE__).'/../views/user_signup_conf.php');
             }
     }
@@ -70,17 +65,17 @@ function signup_fin(){
     // POSTから外す
     if (!empty($_POST)) {
 
-    unset($_POST['send']);
-    unset($_POST['password_conf']);
+    unset($_POST['regist']);
     
-    // POST値をDB処理するパラメータとして定義
+    // // POST値をDB処理するパラメータとして定義
     $db_param = $_POST;
-    // ユーザー登録処理（返り値に登録したユーザー情報）
+    // // ユーザー登録処理（返り値に登録したユーザー情報）
     $user = user_insert($db_param);
+
+    }
             
     // ビューファイル読み込み
     require(dirname(__FILE__).'/../views/user_signup_fin.php');
-    }
 }
 
 

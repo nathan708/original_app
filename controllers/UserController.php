@@ -25,35 +25,20 @@ function signup(){
             empty($_POST['password'])||
             empty($_POST['password_conf'])
             ) {
-                $error = 'blank';
+                $error['blank'] = 'blank';
                 $validation_msg = ERROR_MEASSAGE['blank'];
             }
-        if ($_POST['password'] !== $_POST['password_conf']) {
-            $error['password_conf'] = 'wrong';
-        }
+        
         if (strlen($_POST['password']) < 4 ){
             $error['password'] = 'length';
+        }
+            
+        if ($_POST['password'] !== $_POST['password_conf']) {
+            $error['password_conf'] = 'wrong';
         }
         if (strlen($_POST['password_conf']) < 4 ){
             $error['password_conf'] = 'length';
         }
-
-        
-        // if (empty($_POST['name'])){
-        //     $error['name'] = 'blank';
-        // }
-        // if (empty($_POST['address'])){
-        //     $error['address'] = 'blank';
-        // }
-        // if (empty($_POST['password'])){
-        //     $error['password'] = 'blank';
-        // }
-        // if (empty($_POST['password_conf'])){
-        //     $error['password_conf'] = 'blank';
-        // }
-        // if ($_POST['password_conf'] !== $_POST['password']){
-        //     $error['password_conf'] = 'wrong';
-        // }
 
         // エラーが無いなら、確認画面にいく
         if (empty($error)){

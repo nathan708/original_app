@@ -19,7 +19,8 @@ function top_index(){
     
     } else {
       // ログイン画面へ遷移する
-        require(dirname(__FILE__).'/../views/user_login.php');
+        header( "Location: /login" );
+
     }
 
 

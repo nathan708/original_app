@@ -47,13 +47,23 @@ function address_duplicate() {
     $user = $dbh->prepare('SELECT COUNT(*) AS cnt FROM users WHERE address=?');
     $user->execute(array($_POST['address']));
     $record = $user->fetch();
-    if ($record['cnt'] > 0 ) {
-        $error['address'] = 'duplicate';
-        }
+    return $record;
     $dbh = null;
 }
 
 // ログイン処理
-function login() {
-
+function login_check() {
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // 空ならログイン処理を行わない
+    if(!empty($_POST)) {
+        if ($_POST['address'] !== '' && $_POST['password'] !== '') {
+            $login = $dbh->prepare('SELECT * FROM users WHERE address=? AND password=?');
+            $login->execute(array (
+                $_POST['address'],
+                $_POST['password']
+            ));
+            $user = $login->fetch();
+            return $user ;
+        }    
+    }
 }

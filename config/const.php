@@ -119,6 +119,7 @@ const PAGE_TITLE = array(
   'PASSFORM'    => 'パスワード再設定',
   'CONTACT'     => 'お問い合わせ',
   'USERDELETE'     => 'ユーザー情報削除',
+  'LOGOUT'     => 'ログアウト',
   
 
 );

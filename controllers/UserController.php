@@ -42,26 +42,17 @@ function signup(){
 
         // エラーが無いなら、確認画面にいく
         if (empty($error)){
-            // アカウントの重複をチェック postの中身が空ではないか確認してから
-            // UserModelに関数として入れようとしてもうまく挙動しない。。。
-            // address_duplicate();
-            $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-            $user = $dbh->prepare('SELECT COUNT(*) AS cnt FROM users WHERE address=?');
-            $user->execute(array($_POST['address']));
-            $record = $user->fetch();
+            $record = address_duplicate();
             if ($record['cnt'] > 0 ) {
                 $error['address'] = 'duplicate';
                 }
-            $dbh = null;
         }        
         if (empty($error)){
-
             require(dirname(__FILE__).'/../views/user_signup_conf.php');
-                  // エラーが有るなら書き直す
+            // エラーが有るなら書き直す
         }else{
             require(dirname(__FILE__).'/../views/user_signup.php');
             }
-    
         // ※書き直し ここをどうしたら良いのか
 
     // if ($_REQUEST['action'] == 'rewrite'){
@@ -73,7 +64,6 @@ function signup(){
 function signup_fin(){
     
     // ※「登録する」が押されたらデータベースに接続して、データベースに挿入する
-    // ※データベースに接続したら 完了画面に遷移したい
     
     //中身が無ければもとに戻す
     // POSTから外す
@@ -84,10 +74,10 @@ function signup_fin(){
         $db_param = $_POST;
         // // ユーザー登録処理（返り値に登録したユーザー情報）
         $user = user_insert($db_param);
+        // ビューファイル読み込み
+        require(dirname(__FILE__).'/../views/user_signup_fin.php');
     }
-            
-    // ビューファイル読み込み
-    require(dirname(__FILE__).'/../views/user_signup_fin.php');
+        
 }
 
 

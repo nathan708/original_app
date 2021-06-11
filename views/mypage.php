@@ -1,7 +1,7 @@
 
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
-<?php require_once(dirname(__FILE__).'/header2.php'); ?>
+<?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
   <h2><?= htmlspecialchars($user['name'], ENT_QUOTES); ?>さんのサブスク</h2>         
   <div class="mypage_layout">

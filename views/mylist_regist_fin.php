@@ -4,34 +4,36 @@
 <?php require_once(dirname(__FILE__).'/header2.php'); ?>
 <body>
   <table>
+    <?php foreach($mylist as $value): ?>
       <tr>
-        <th>サービス名</th>
-        <td>Netflix(DBから読み込む)</td>
+        <th>サービス名：</th>
+        <td><?= $value['name'] ?></td>
       </tr>
       <tr>
-        <th>金額</th>
-        <td>Netflix(DBから読み込む)</td>
+        <th>ジャンル：</th>
+        <td><?= GENRE[$value['genre']] ?></td>
       </tr>
       <tr>
-        <th>サービス名</th>
-        <td>800(DBから読み込む)円</td>
+        <th>支払い種別：</th>
+        <td><?= GENRE[$value['payment_type']] ?></td>
       </tr>
       <tr>
-        <th>支払い種別</th>
-        <td>月額(DBから読み込む)</td>
+        <th>金額：</th>
+        <td><?= $value['monthly_fee'] ?>円</td>
       </tr>
       <tr>
-        <th>ジャンル</th>
-        <td>動画(DBから読み込む)</td>
+        <th>支払い日：</th>
+        <td><?= $value['payment_date'] ?></td>
       </tr>
       <tr>
-        <th>支払い方法</th>
-        <td>クレジットカード(DBから読み込む)</td>
+        <th>支払い方法：</th>
+        <td><?= GENRE[$value['payment_method']] ?></td>
       </tr>
       <tr>
-        <th>備考</th>
-        <td>~~~(DBから読み込む)</td>
+        <th>備考：</th>
+        <td><?= $value['note'] ?></td>
       </tr>
+      <?php endforeach; ?>
     </table>
   <h2>上記のデータの登録が完了しました。</h2>
   <h2><a href="/mypage"> マイページへ</a></h2>

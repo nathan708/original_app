@@ -42,6 +42,7 @@ function signup(){
 
         // エラーが無いなら、確認画面にいく
         if (empty($error)){
+            // アドレスの重複チェック
             $record = address_duplicate();
             if ($record['cnt'] > 0 ) {
                 $error['address'] = 'duplicate';
@@ -74,6 +75,9 @@ function signup_fin(){
         $db_param = $_POST;
         // // ユーザー登録処理（返り値に登録したユーザー情報）
         $user = user_insert($db_param);
+
+
+        // ※POSTの値が残っているので、更新すると何回も登録されてしまう
         // ビューファイル読み込み
         require(dirname(__FILE__).'/../views/user_signup_fin.php');
     }
@@ -81,7 +85,7 @@ function signup_fin(){
 }
 
 
-// 削除確認画面 お問い合わせに組み込んだが、ログインしてから出ないと消せないはず
+// ※削除確認画面 お問い合わせに組み込んだが、ログインしてから出ないと消せないはず
 function delete(){
 
     // View関係

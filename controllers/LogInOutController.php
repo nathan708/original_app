@@ -3,6 +3,7 @@
 require(dirname(__FILE__).'/../models/UserModel.php');
 
 
+
 // 入力画面表示
 function input(){
     // タイトル
@@ -21,7 +22,6 @@ function login(){
             $_SESSION['id'] = $user['id'];
             $_SESSION['time'] = time();
             header("Location: /mypage");
-            // require (dirname(__FILE__).'/../views/mypage.php');
 
             // ログインに失敗したら
         }else {

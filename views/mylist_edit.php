@@ -35,8 +35,8 @@
       <p class="error">支払い種別を選択してください。</p>
     <?php  endif; ?>
 
-    <p>金額：<input type="text" name="pay" value="<?php echo htmlspecialchars(($_POST['pay']), ENT_QUOTES);?>">円</p>
-    <?php if ($error['pay'] === 'blank' || $error['pay'] === 'wrong'): ?>
+    <p>金額：<input type="text" name="monthly_fee" value="<?php echo htmlspecialchars(($_POST['pay']), ENT_QUOTES);?>">円</p>
+    <?php if ($error['monthly_fee'] === 'blank' || $error['monthly_fee'] === 'wrong'): ?>
       <p class="error">0より大きい金額を入力してください。</p>
     <?php  endif; ?>
 

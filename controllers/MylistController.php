@@ -1,9 +1,28 @@
 <?php
-// 毎回DBとSessionで照合しないといけないのでは
-// 入力画面表示
+// ユーザモデルの読み込み　ほとんどのfunctionで呼び出しているから最初に定義
+require(dirname(__FILE__).'/../models/UserModel.php');
+
+// マイページのトップ画面
 function top_index(){
-    // ビューファイル読み込み
-    require(dirname(__FILE__).'/../views/mypage.php');
+    session_start();
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    
+    if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
+        $_SESSION['time'] = time();
+
+        $users = $dbh->prepare('SELECT * FROM users WHERE id=?');
+        $users->execute(array($_SESSION['id']));
+        $user = $users->fetch();
+        
+        // ビューファイル読み込み
+        require(dirname(__FILE__).'/../views/mypage.php');
+    
+    } else {
+      // ログイン画面へ遷移する
+        require(dirname(__FILE__).'/../views/user_login.php');
+    }
+
+
 }
 
 function mylist(){

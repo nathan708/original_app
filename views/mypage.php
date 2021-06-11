@@ -3,7 +3,7 @@
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header2.php'); ?>
 <body>
-  <h2>〇〇<!--db接続をしておく $member['name']-->さんのサブスク</h2>         
+  <h2><?= htmlspecialchars($user['name'], ENT_QUOTES); ?>さんのサブスク</h2>         
   <div class="mypage_layout">
     <div class="aside">
       <h3>割合</h3>

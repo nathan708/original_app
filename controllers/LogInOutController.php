@@ -20,13 +20,13 @@ function login(){
                 $_POST['address'],
                 $_POST['password']
             ));
-            $member = $login->fetch();
+            $user = $login->fetch();
             // ログインに成功していたら
-            if($member) {
-                $_SESSION['id'] = $member['id'];
+            if($user) {
+                $_SESSION['id'] = $user['id'];
                 $_SESSION['time'] = time();
                 require (dirname(__FILE__).'/../views/mypage.php');
-            // ログインに失敗したら
+    //         // ログインに失敗したら
             }else {
                 $error['login'] = 'failed';
                 require (dirname(__FILE__).'/../views/user_login.php');

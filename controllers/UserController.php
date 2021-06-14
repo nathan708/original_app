@@ -79,6 +79,7 @@ function signup_fin(){
 
         // ※POSTの値が残っているので、更新すると何回も登録されてしまう
         // ビューファイル読み込み
+        // header("Location: /signup/fin");
         require(dirname(__FILE__).'/../views/user_signup_fin.php');
     }
         
@@ -89,7 +90,7 @@ function signup_fin(){
 function delete(){
 
     // View関係
-    $page_title = PAGE_TITLE['DELETE'];
+    $page_title = PAGE_TITLE['USERDELETE'];
     require(dirname(__FILE__).'/../views/user_delete.php');
 
     // データベースから引っ張って画面に写したい

@@ -48,10 +48,11 @@
           <option value="<?php echo $i; ?>"><?php echo $v; ?></option>
         <?php } ?>
       </select>
-      <?php if ($error['payment_type'] === 'blank'): ?>
-        <p class="error">支払い方法を選択してください。</p>
-      <?php  endif; ?>
     </p>
+    <?php if ($error['payment_type'] === 'blank'): ?>
+      <p class="error">支払い方法を選択してください。</p>
+    <?php  endif; ?>
+
     <p>備考：<br>
     <textarea name="note" id="" cols="40" rows="10"><?= $value['note'] ?></textarea></p>
     <input type="submit" name="submit" value="更新">

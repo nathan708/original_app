@@ -6,7 +6,6 @@
   <table>
       <tr>
         <th>サービス名</th>
-        <?php var_dump($_POST); ?>
         <td><?= $_POST['name'] ?></td>
 
       </tr>

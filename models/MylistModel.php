@@ -31,6 +31,26 @@ function get_user($user_id) {
     
 }
 
+// 当月の支払総額計算
+// 年額以外のものを足せば良い  -> 支払い種別が"1" のものだけ全部足せば良い。 id と　userid を指定する？
+// 例    SELECT SUM(monthly_fee) FROM services WHERE payment_type=1 AND user_id=15
+function get_amount($user_id) {
+    // DB接続
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // 指定したユーザーIDの月額のものだけ足す
+    $query = "SELECT SUM(monthly_fee) FROM services WHERE payment_type=1 AND user_id = {$user_id};";
+
+    $result =  $dbh->query($query);
+
+    $dbh = null;
+    return $result;
+
+}
+
+
+
+
+
 
 
 // マイリスト登録処理
@@ -88,7 +108,7 @@ function mylist_last_insert(){
     return $result;
 }
 
-// mylist一覧を読み込む
+// 特定のユーザーのservice一覧を読み込む
 function get_services_all($user_id) {
     // DBの接続
     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);

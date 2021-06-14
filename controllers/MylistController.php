@@ -23,16 +23,21 @@ function log_check() {
 function top_index(){
 // Sessionが入ってるか確認
     log_check();
+
     // 呼び出したいユーザーIDをを指定
     $user_id = $_SESSION['id'];
-    // ユーザー情報を呼び出す
+    // 指定のユーザー情報を呼び出す  名前を表示するため
     $user = get_user($user_id);
 
+    // その月の総額を読み込む ...SQLはあっていると思うが、表示させられない。
+    $amount = get_amount($user_id); 
+
+    
+    // 指定のユーザーのservice情報を呼び出す
+    $services = get_services_all($user_id);
 
     // ビュー読み込み
     require(dirname(__FILE__).'/../views/mypage.php');
-
-
 }
 
 
@@ -46,7 +51,6 @@ function mylist_regist(){
 
     // ビューファイル読み込み
     require(dirname(__FILE__).'/../views/mylist_regist.php');
-
 }
 
 // サブスク登録確認画面
@@ -112,12 +116,12 @@ function mylist_regist_fin(){
 }
 
 
-// mylist 一覧を呼び出せれば。。。　トップページができればこちらも
+
 // 多重投稿防止の為
 function mylist_regist_conp() {
     log_check();
 
-
+// 最後に入力したIDを呼び出せたらと思うがうまく機能せず
     $mylist = mylist_last_insert();
     
 
@@ -128,19 +132,12 @@ function mylist_regist_conp() {
 
 // 登録しているサブスクの一覧表示
 function mylist(){
-
-
-
-    
     // Sessionに入っているか確認
     log_check();
     // user_idを取り込む
     $user_id = $_SESSION['id'];
     // 特定のuser_idの登録データを読み込む
     $myservices = get_services_all($user_id);
-
-
-
 
     // ビューファイル読み込み
     require(dirname(__FILE__).'/../views/mylist.php');
@@ -158,10 +155,18 @@ function mylist_edit(){
     $payment_type = PAYMENT_TYPE;
     $payment_method = PAYMENT_METHOD;
     
+
+
     // GETパラーメータとして付与されているidをユーザIDをとして定義
+    // このままでは他のidの人が登録できてしまうためNG
     $service_id = $_GET['id'];
     // サービスIDを元に更新対象のデータ情報の取得
     $service = get_service($service_id);
+
+
+
+
+
 
     // DBから引っ張ってくる。”編集”をクリックした時点でidとリンクしていないといけないのでは
     require(dirname(__FILE__).'/../views/mylist_edit.php');
@@ -191,21 +196,22 @@ function mylist_edit_fin(){
         }
         if (empty($_POST['monthly_fee'])) {
             $error['monthly_fee'] = 'blank';
-            } elseif ($_POST['monthly_fee'] <= 0) {
+        } elseif ($_POST['monthly_fee'] <= 0) {
             $error['monthly_fee'] = 'wrong';
         }
         if (empty($_POST['payment_date'])) {
             $error['payment_date'] = 'blank';
         }
         if ($_POST['payment_method'] <= 0) {
-            $error['payment_method'] ;
+            $error['payment_method'] = 'blank';
         }
         
         // エラーが無ければDBに送って　次に進む
         if (!empty($error)){
+
             $service = get_service($service_id);
             require(dirname(__FILE__).'/../views/mylist_edit.php');
-            exit;
+
         }else {
             unset($_POST['submit']);
             $db_param = $_POST;

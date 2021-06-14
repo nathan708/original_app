@@ -120,6 +120,8 @@ const PAGE_TITLE = array(
   'CONTACT'     => 'お問い合わせ',
   'USERDELETE'     => 'ユーザー情報削除',
   'LOGOUT'     => 'ログアウト',
+
+  
   
 
 );
@@ -138,7 +140,7 @@ const ERROR_MEASSAGE = array(
 
 // セレクタ関連
 const GENRE = array(
-  '選択してください', '動画' ,'本・雑誌', 'ウェブサービス', 'ショッピング', 'その他',
+  '選択してください', '音楽', '動画' ,'本・雑誌', 'ウェブサービス', 'ショッピング', 'その他',
 );
 
 const PAYMENT_TYPE = array(

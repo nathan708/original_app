@@ -12,6 +12,8 @@
   <h2 class="amount">
     <!-- データベースから総額を引っ張ってくる -->
     13000
+    <!-- <?= $amoun ?> -->
+    <?php var_dump($amount); ?>
   </h2>
   <h2>円</h2>
     
@@ -23,67 +25,28 @@
     <table class="service_list">
       <tr>
         <th>サービス名</th>
-        <th>金額</th>
-        <th>支払日</th>
         <th>ジャンル</th>
+        <th>金額</th>
+        <th>支払い日</th>
         <th>支払い方法</th>
         <th>備考</th>
       </tr>
+    <?php if(!is_null($services)): ?>
+      <?php foreach($services as $service):  ?>
+        <tr>
+          <td><?= $service['name'] ?></td>
+          <td><?= GENRE[$service['genre']] ?></td>
+          <td><?= $service['monthly_fee'] ?>円</td>
+          <td><?= $service['payment_date'] ?></td>
+          <td><?= PAYMENT_METHOD[$service['payment_method']] ?></td>
+          <td><?= $service['note'] ?></td>
+        </tr>
+      <?php endforeach; ?>
+    <?php else: ?>
       <tr>
-        <!-- データベースから引っ張りたい -->
-        <td>Netflix $user['name']</td>
-        <td>800円 $user['pay']</td>
-        <td>5月15日 $user['payment_date']</td>
-        <td>動画 $user['genre']</td>
-        <td>クレジットカード['payment_method']</td>
-        <td>なし $user['note']</td>
+      <td colspan="4"></td>
       </tr>
-      <tr>
-        <!-- データベースから引っ張りたい -->
-        <td>Amazon Prime</td>
-        <td>3600円</td>
-        <td>5月20日</td>
-        <td>動画</td>
-        <td>クレジットカード</td>
-        <td>年会費</td>
-      </tr>
-      <tr>
-        <!-- データベースから引っ張りたい -->
-        <td>スポーツジム</td>
-        <td>6000円</td>
-        <td>5月25日</td>
-        <td>動画</td>
-        <td>三井住友銀行</td>
-        <td>4月に更新費6000円</td>
-      </tr>
-      <tr>
-        <!-- データベースから引っ張りたい -->
-        <td>Netflix</td>
-        <td>800円</td>
-        <td>5月15日</td>
-        <td>動画</td>
-        <td>クレジットカード</td>
-        <td>なし</td>
-      </tr>
-      <tr>
-        <!-- データベースから引っ張りたい -->
-        <td>Netflix</td>
-        <td>800円</td>
-        <td>5月15日</td>
-        <td>動画</td>
-        <td>クレジットカード</td>
-        <td>なし</td>
-      </tr>
-      <tr>
-        <!-- データベースから引っ張りたい -->
-        <td>Netflix</td>
-        <td>800円</td>
-        <td>5月15日</td>
-        <td>動画</td>
-        <td>クレジットカード</td>
-        <td>なし</td>
-      </tr>
-
+    <?php endif; ?>
     
     </table>
   </div>

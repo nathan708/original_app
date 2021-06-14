@@ -15,7 +15,7 @@
       </tr>
       <tr>
         <th>支払い種別：</th>
-        <td><?= GENRE[$value['payment_type']] ?></td>
+        <td><?= PAYMENT_TYPE[$value['payment_type']] ?></td>
       </tr>
       <tr>
         <th>金額：</th>
@@ -27,7 +27,7 @@
       </tr>
       <tr>
         <th>支払い方法：</th>
-        <td><?= GENRE[$value['payment_method']] ?></td>
+        <td><?= PAYMENT_METHOD[$value['payment_method']] ?></td>
       </tr>
       <tr>
         <th>備考：</th>

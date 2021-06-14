@@ -43,8 +43,8 @@
       <p class="error">０より大きい金額を入力してください。</p>
     <?php  endif; ?>
 
-    <!-- ここはどうするべきか -->
-    <p>支払い日：<input type="text" name="payment_date" value="<?php echo htmlspecialchars(($_POST['payment_date']), ENT_QUOTES);?>"></p>
+<!-- 直近の支払日を入力してもらい、種別で月額なら毎月表示する、年額なら毎年表示する -->
+    <p>支払い日：<input type="date" name="payment_date" value="<?php echo htmlspecialchars(($_POST['payment_date']), ENT_QUOTES);?>"></p>
     <p>支払い方法：
       <select name="payment_method" id="">
         <?php foreach( $payment_method as $i => $v) { ?>

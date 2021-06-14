@@ -1,7 +1,3 @@
-<?php 
-// ※セッションでログインしたままにして、マイページへ移動する必要がある。
-?>
-
 
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
@@ -10,32 +6,33 @@
   <table>
       <tr>
         <th>サービス名</th>
-        <td>Netflix(DBから読み込む)</td>
-            ※DBから読み込めないから全画面からSESSION?
-      </tr>
-      <tr>
-        <th>金額</th>
-        <td>Netflix(DBから読み込む)</td>
-      </tr>
-      <tr>
-        <th>サービス名</th>
-        <td>800(DBから読み込む)円</td>
-      </tr>
-      <tr>
-        <th>支払い種別</th>
-        <td>月額(DBから読み込む)</td>
+        <?php var_dump($_POST); ?>
+        <td><?= $_POST['name'] ?></td>
+
       </tr>
       <tr>
         <th>ジャンル</th>
-        <td>動画(DBから読み込む)</td>
+        <td><?= GENRE[$_POST['genre']] ?></td>
+      </tr>
+      <tr>
+        <th>支払い種別</th>
+        <td><?= PAYMENT_TYPE[$_POST['payment_type']] ?></td>
+      </tr>
+      <tr>
+        <th>金額</th>
+        <td><?= $_POST['monthly_fee'] ?>円</td>
+      </tr>
+      <tr>
+        <th>支払い日</th>
+        <td><?= $_POST['payment_date'] ?></td>
       </tr>
       <tr>
         <th>支払い方法</th>
-        <td>クレジットカード(DBから読み込む)</td>
+        <td><?= PAYMENT_METHOD[$_POST['payment_method']] ?></td>
       </tr>
       <tr>
         <th>備考</th>
-        <td>~~~(DBから読み込む)</td>
+        <td><?= $_POST['note'] ?></td>
       </tr>
     </table>
   <h2>上記のデータの削除が完了しました。</h2>

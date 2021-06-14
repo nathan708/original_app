@@ -14,78 +14,39 @@
     <table class="service_list">
       <tr>
         <th>サービス名</th>
-        <th>金額</th>
-        <th>支払日</th>
         <th>ジャンル</th>
+        <th>支払い種別</th>
+        <th>金額</th>
+        <th>支払い日</th>
         <th>支払い方法</th>
         <th>備考</th>
 
       </tr>
+        <!-- データベースから引ってくる -->
+        <?php if(!is_null($myservices)): ?>
+          <?php foreach($myservices as $myservice): ?>
+            <tr>
+              <td><?= $myservice['name'] ?></td>
+              <td><?= GENRE[$myservice['genre']] ?></td>
+              <td><?= PAYMENT_TYPE[$myservice['payment_type']] ?></td>
+              <td><?= $myservice['monthly_fee'] ?>円</td>
+              <!-- 毎月とか毎年とかにしたい -->
+              <td><?= $myservice['payment_date'] ?></td>
+              <td><?= PAYMENT_METHOD[$myservice['payment_method']] ?></td>
+              <td><?= $myservice['note'] ?></td>
+              <td>
+                <a href="/mypage/mylist/edit?id=<?= $myservice['id'] ?>">編集</a>
+                <p>／</p>
+                <a href="/mypage/mylist/delete?id=<?= $myservice['id'] ?>">削除</a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+              <td colspan="4"></td>
+            </tr>
+        <?php endif; ?>
       <tr>
-        <!-- データベースから引っ張りたい -->
-        <td>Netflix $user['name']</td>
-        <td>800円 $user['pay']</td>
-        <td>5月15日 $user['payment_date']</td>
-        <td>動画 $user['genre']</td>
-        <td>クレジットカード['payment_method']</td>
-        <td>なし $user['note']</td>
-        <td>
-          <a href='/mypage/mylist/edit'>編集</a>
-          <p>／</p>
-          <a href="/mypage/mylist/delete">削除</a>
-        </td>
-
-      </tr>
-      <tr>
-        <!-- データベースから引っ張りたい -->
-        <td>Amazon Prime</td>
-        <td>3600円</td>
-        <td>5月20日</td>
-        <td>動画</td>
-        <td>クレジットカード</td>
-        <td>年会費</td>
-        <td>
-          <a href="$user['id'] ">編集</a>
-          <p>／</p>
-          <a href="$user['id'] ">削除</a>
-        </td>
-      </tr>
-      <tr>
-        <!-- データベースから引っ張りたい -->
-        <td>スポーツジム</td>
-        <td>6000円</td>
-        <td>5月25日</td>
-        <td>動画</td>
-        <td>三井住友銀行</td>
-        <td>4月に更新費6000円</td>
-      </tr>
-      <tr>
-        <!-- データベースから引っ張りたい -->
-        <td>Netflix</td>
-        <td>800円</td>
-        <td>5月15日</td>
-        <td>動画</td>
-        <td>クレジットカード</td>
-        <td>なし</td>
-      </tr>
-      <tr>
-        <!-- データベースから引っ張りたい -->
-        <td>Netflix</td>
-        <td>800円</td>
-        <td>5月15日</td>
-        <td>動画</td>
-        <td>クレジットカード</td>
-        <td>なし</td>
-      </tr>
-      <tr>
-        <!-- データベースから引っ張りたい -->
-        <td>Netflix</td>
-        <td>800円</td>
-        <td>5月15日</td>
-        <td>動画</td>
-        <td>クレジットカード</td>
-        <td>なし</td>
-      </tr>
 
     
     </table>

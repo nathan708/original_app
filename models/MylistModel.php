@@ -19,7 +19,7 @@ function login_check() {
     }
 }
 
-// ユーザーの情報を呼び出す
+// ユーザーの情報を呼び出す・・・これはここで良いのか？
 function get_user($user_id) {
     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
 
@@ -29,8 +29,6 @@ function get_user($user_id) {
     $dbh = null;
     return $user;
     
-    // ビューファイル読み込み
-    // require(dirname(__FILE__).'/../views/mypage.php');
 }
 
 
@@ -69,4 +67,94 @@ function mylist_insert($param){
     $dbh = null;
 
     return $result;
+}
+
+// 最後に追加したmylistのデータを呼び出す　　機能せず
+// id　が一番大きな物を読み込む？
+function mylist_last_insert(){
+    // DBの接続
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+
+    $insert_id = $dbh->lastInsertId();
+
+    // 登録したユーザー情報を取得する
+    $query = "SELECT * FROM services WHERE id = {$insert_id};";
+    // SQL実行
+    $result = $dbh->query($query);
+
+    // 接続を閉じる
+    $dbh = null;
+
+    return $result;
+}
+
+// mylist一覧を読み込む
+function get_services_all($user_id) {
+    // DBの接続
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // ログインuser_idのserviceテーブルの全てのデータを取得する
+    $query = "SELECT * FROM services WHERE user_id={$user_id};";
+    // SQL実行　
+    $result = $dbh -> query($query);
+    // DB接続を閉じる
+    $dbh = null;
+
+    return $result;
+}
+
+
+// 指定されたserviceを読み込む
+function get_service($service_id) {
+        // DBの接続
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    
+        // 登録したユーザー情報を取得する
+        $query = "SELECT * FROM services WHERE id = {$service_id};";
+        // SQL実行
+        $result = $dbh->query($query);
+    
+        // 接続を閉じる
+        $dbh = null;
+    
+        return $result;
+}
+
+
+
+// mylist更新処理
+function services_update($param, $update_id) {
+    // DB接続
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // $col_values配列の定義
+    $col_values = array();
+    // DB処理を行うためのパラメータの整形
+    foreach($param as $key => $value) {
+        // $columns配列に$key,$valueを使用した文字列を追加する
+        $col_values[] = $key . " = '" . $value . "'";
+    }
+        // $col_values配列をカンマ区切りで文字列に整形
+        $col_values = implode(', ', $col_values);
+        // serviceテーブルへの更新処理用のSQL
+        $query = "UPDATE services SET {$col_values} WHERE id = {$update_id};";
+        // SQL実行
+        $result = $dbh->query($query);
+        // 接続を閉じる
+        $dbh = null;
+        return $result;
+}
+
+
+// サービス削除処理
+function service_delete($delete_id){
+        // DBの接続
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+        // serviceテーブルへの削除処理用のSQL
+        $query  = "DELETE FROM services WHERE id = {$delete_id}";
+        // SQL実行
+        $result = $dbh->query($query);
+        // 接続を閉じる
+        $dbh = null;
+        
+        return $result;
+
 }

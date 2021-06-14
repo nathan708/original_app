@@ -73,7 +73,7 @@ const ROUTE_LIST = array(
 // マイリスト登録確認ー完了
   '/mypage/mylist/regist/fin' => array(
     'controller'    =>  'MyListController',
-    'get_function'  =>  '',
+    'get_function'  =>  'mylist_regist_conp',
     'post_function' =>  'mylist_regist_fin'
   ),
 // マイリスト編集

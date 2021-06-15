@@ -12,31 +12,31 @@
     <?php foreach($service as $value): ?>
       <tr>
         <th>サービス名</th>
-        <td><?= $value['name']?></td>
+        <td><?= h($value['name'])?></td>
       </tr>
       <tr>
         <th>ジャンル</th>
-        <td><?= GENRE[$value['genre']]?></td>
+        <td><?= h(GENRE[$value['genre']])?></td>
       </tr>
         <th>支払い種別</th>
-          <td><?= PAYMENT_TYPE[$value['payment_type']]?></td>
+          <td><?= h(PAYMENT_TYPE[$value['payment_type']])?></td>
       </tr>
       <tr>
         <th>金額</th>
-        <td><?= $value['monthly_fee']?>円</td>
+        <td><?= h($value['monthly_fee'])?>円</td>
       </tr>
       <tr>
       <tr>
         <th>支払い日</th>
-        <td><?= $value['payment_date']?></td>
+        <td><?= h($value['payment_date'])?></td>
       </tr>
       <tr>
         <th>支払い方法</th>
-        <td><?= PAYMENT_METHOD[$value['payment_method']]?></td>
+        <td><?= h(PAYMENT_METHOD[$value['payment_method']])?></td>
       </tr>
       <tr>
         <th>備考</th>
-        <td><?= $value['note']?></td>
+        <td><?= h($value['note'])?></td>
       </tr>
     <?php endforeach; ?>
     </table>

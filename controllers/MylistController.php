@@ -3,9 +3,6 @@
 require(dirname(__FILE__).'/../models/MylistModel.php');
 
 
-
-
-
 // マイページのトップ画面　未完
 function top_index(){
 // Sessionが入ってるか確認
@@ -59,8 +56,6 @@ function mylist_regist(){
 
 // サブスク登録確認画面
 function mylist_regist_conf(){
-
-
     
     log_check();
     
@@ -111,9 +106,6 @@ function mylist_regist_fin(){
     }
     unset ($_SESSION['one_token']);
 
-
-
-
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
     $payment_method = PAYMENT_METHOD;
@@ -130,7 +122,6 @@ function mylist_regist_fin(){
     // 多重投稿のためもう一度読み込む
     // header("Location: /mypage/mylist/regist/fin");
     require(dirname(__FILE__).'/../views/mylist_regist_fin.php');
-
 }
 
 
@@ -148,10 +139,6 @@ function mylist(){
     require(dirname(__FILE__).'/../views/mylist.php');
 }
 
-
-
-
-
 // マイリスト編集画面表示 ///idの数字を変えたら他の人のデータを編集できるのでは。
 function mylist_edit(){
     log_check();
@@ -159,12 +146,8 @@ function mylist_edit(){
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
     $payment_method = PAYMENT_METHOD;
-    
 
-
-    
-    // GETパラーメータとして付与されているidをユーザIDをとして定義
-    // このままでは他のidの人が登録できてしまうためNG
+    // POST値で付与されているidをユーザIDをとして定義
     $service_id = $_POST['service_id'];
 
     // サービスIDを元に更新対象のデータ情報の取得
@@ -232,7 +215,7 @@ function mylist_delete(){
 
     // DBから引っ張ってくる　削除　をクリックした時点でidと照合されてないといけない
 
-     // GETパラメータとして付与されているidをユーザIDとして定義
+     // POST値のidをユーザIDとして定義
     $service_id = $_POST['service_id'];
     // 指定された情報読み込み
     $service = get_service($service_id);

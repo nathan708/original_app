@@ -54,10 +54,6 @@ function signup(){
         }else{
             require(dirname(__FILE__).'/../views/user_signup.php');
             }
-        // ※書き直し ここをどうしたら良いのか
-
-    // if ($_REQUEST['action'] == 'rewrite'){
-    // }
     }
 }
 
@@ -76,11 +72,10 @@ function signup_fin(){
 
 
     //中身が無ければもとに戻す
-    // POSTから外す
+    // POSTからいらないものを外す
     if (!empty($_POST)) {
         unset($_POST['regist']);
         unset($_POST['one_token']);
-
     
         // // POST値をDB処理するパラメータとして定義
         $db_param = $_POST;
@@ -136,4 +131,3 @@ function destroy() {
     require(dirname(__FILE__).'/../views/user_delete_fin.php');
 
 }
-

@@ -6,32 +6,32 @@
   <table>
       <tr>
         <th>サービス名</th>
-        <td><?= $_POST['name'] ?></td>
+        <td><?= h($_POST['name']) ?></td>
 
       </tr>
       <tr>
         <th>ジャンル</th>
-        <td><?= GENRE[$_POST['genre']] ?></td>
+        <td><?= h(GENRE[$_POST['genre']]) ?></td>
       </tr>
       <tr>
         <th>支払い種別</th>
-        <td><?= PAYMENT_TYPE[$_POST['payment_type']] ?></td>
+        <td><?= h(PAYMENT_TYPE[$_POST['payment_type']]) ?></td>
       </tr>
       <tr>
         <th>金額</th>
-        <td><?= $_POST['monthly_fee'] ?>円</td>
+        <td><?= h($_POST['monthly_fee'])?>円</td>
       </tr>
       <tr>
         <th>支払い日</th>
-        <td><?= $_POST['payment_date'] ?></td>
+        <td><?= h($_POST['payment_date']) ?></td>
       </tr>
       <tr>
         <th>支払い方法</th>
-        <td><?= PAYMENT_METHOD[$_POST['payment_method']] ?></td>
+        <td><?= h(PAYMENT_METHOD[$_POST['payment_method']]) ?></td>
       </tr>
       <tr>
         <th>備考</th>
-        <td><?= $_POST['note'] ?></td>
+        <td><?= h($_POST['note']) ?></td>
       </tr>
     </table>
   <h2>上記のデータの削除が完了しました。</h2>

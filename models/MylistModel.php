@@ -45,6 +45,8 @@ function get_services_all($user_id) {
     return $result;
 }
 
+
+// 検討中
 // 特定のユーザーの当月の支払い一覧を読み込む（トップページ用）
 // function get_services_month($user_id) {
 //     // DBの接続
@@ -76,9 +78,10 @@ function get_service($service_id) {
         return $result;
 }
 
-
+// 検討中
 // 当月の支払総額計算
 function get_amount($user_id) {
+
     // 取得したものをPHP上で足す・・・わからない
 //     //DB接続 
 //     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
@@ -145,27 +148,6 @@ function mylist_insert($param){
 
     return $result;
 }
-
-// 最後に追加したmylistのデータを呼び出す　　機能せず
-// id　が一番大きな物を読み込む？
-function mylist_last_insert(){
-    // DBの接続
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-
-    $insert_id = $dbh->lastInsertId();
-
-    // 登録したユーザー情報を取得する
-    $query = "SELECT * FROM services WHERE id = {$insert_id};";
-    // SQL実行
-    $result = $dbh->query($query);
-
-    // 接続を閉じる
-    $dbh = null;
-
-    return $result;
-}
-
-
 
 
 // mylist更新処理

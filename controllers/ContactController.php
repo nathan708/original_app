@@ -1,15 +1,23 @@
 <?php
+// ユーザモデルの読み込み　ほとんどのfunctionで呼び出しているから最初に定義
+require(dirname(__FILE__).'/../models/MylistModel.php');
+
 
 // 入力画面表示
-function input(){
+function input() {
+    session_start();
+    // log_check();
+
     // タイトル
     $page_title = PAGE_TITLE['CONTACT'];
     // ビューファイル読み込み
     require(dirname(__FILE__).'/../views/contact.php');
 }
 
-// ログイン処理
+// 送信処理
 function send(){
+    session_start();
+
     $page_title = PAGE_TITLE['CONTACT'];
 // エラーチェック
     if (!empty($_POST)){

@@ -97,44 +97,43 @@ function signup_fin(){
 
 // ※削除確認画面 お問い合わせに組み込んだが、ログインしてから出ないと消せないはず
 function delete(){
+    log_check();
 
     // View関係
     $page_title = PAGE_TITLE['USERDELETE'];
-    require(dirname(__FILE__).'/../views/user_delete.php');
-
-    // データベースから引っ張って画面に写したい
-
-
-
-    // ※データベースに接続したら 完了画面に遷移したい
     
-    //中身が無ければもとに戻す
-    // if (!isset($_SESSION['signup'])) {
-    //       header('Location: signup.php');
-    //       exit();
-
-        
-        // ※登録するが押されたらデータベースに接続して、データベースに挿入する
-        // if (!empty($_POST)) {
-            // // POST値をDB処理するパラメータとして定義
-            // $db_param = $_POST;
-            // // ユーザー登録処理（返り値に登録したユーザー情報）
-            // $user = user_insert($db_param);
-            
-            // ビューファイル読み込み
-            //   unset($_SESSION['signup']);
-            //     require(dirname(__FILE__).'/../views/signup_fin.php');
-            require(dirname(__FILE__).'/../views/user_signup_fin.php');
-        
+    // データベースから引っ張って画面に写したい
+    $user_id = $_SESSION['id'];
+    //ユーザIDを元に取得
+    $user = get_user($user_id);
+    
+    // ビューファイル読み込み
+    require(dirname(__FILE__).'/../views/user_delete.php');
 }
 
-function send() {
-    // これはこのままで良いのか？
-    if (empty($_POST)) {
-            require(dirname(__FILE__).'/../views/user_delete.php');
-    } else {
-        // dbから削除する記述
-        require(dirname(__FILE__).'/../views/user_delete_fin.php');
+// 削除処理
+function destroy() {
+    log_check();
 
+    // ユーザーIDを取得
+    $user_id = $_SESSION['id'];
+    // ユーザー情報を取得
+    $user = get_user($user_id);
+    // ユーザー情報及びサービス情報削除
+    all_delete($user_id);
+
+
+    // セッションの中身を消す
+    $_SESSION = array();
+    if (ini_set('session.use_cookies')) {
+        $params = session_get_cookie_params();
+        setcookie(session_name() . '', time() - 42000, 
+            $params['path'], $params['domain'], $params['secure'], $params['httponly']);
     }
+    session_destroy();
+
+    //ビューファイル読み込み
+    require(dirname(__FILE__).'/../views/user_delete_fin.php');
+
 }
+

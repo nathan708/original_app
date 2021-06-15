@@ -1,17 +1,22 @@
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
+
+    
 <body>
-<table>
+  <table>
+    <?php foreach($user as $value): ?>
       <tr>
         <th>ユーザー名</th>
-        <td>naoya(DBから読み込む)</td>
+        <td><?= $value['name'] ?></td>
       </tr>
       <tr>
         <th>メールアドレス</th>
-        <td>fuga@...(DBから読み込む)</td>
+        <td><?= $value['address'] ?></td>
       </tr>
-    </table>
+    <?php endforeach; ?>
+  </table>
+
   <h2>上記のデータの削除が完了しました。</h2>
   <h2><a href="/"> トップページへ</a></h2>
 

@@ -50,7 +50,7 @@ const ROUTE_LIST = array(
   '/delete' => array(
     'controller'    =>  'UserController',
     'get_function'  =>  'delete',
-    'post_function' =>  'send'
+    'post_function' =>  'destroy'
   ),
 // マイページトップ
   '/mypage' => array(
@@ -192,5 +192,17 @@ function h($str) {
   return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
+// ログインしている状態か確認
+function log_check() {
+  session_start();
 
+  // ログインをして、最後に動作をしたのは一時間以内か
+  if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
+      $_SESSION['time'] = time();
+
+  } else {
+    // でなければ、ログイン画面へ遷移する
+      header( "Location: /login" );
+  }
+}
 ?>

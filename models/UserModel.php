@@ -67,3 +67,37 @@ function login_check() {
         }    
     }
 }
+
+// ユーザーの情報を呼び出す・・・これはここで良いのか？
+function get_user($user_id) {
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    $query = "SELECT * FROM users WHERE id = {$user_id}";
+
+    $user = $dbh->query($query); 
+
+    $dbh = null;
+    return $user;
+    
+}
+
+
+
+// ユーザー削除処理
+function all_delete($delete_id) {
+    // DBの接続
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // serviceテーブルのデータ削除処理用のSQL
+    $query = "DELETE FROM services WHERE user_id = {$delete_id}";
+    // SQL実行
+    $result = $dbh->query($query);
+
+    // userテーブルからのデータ削除
+    $query = "DELETE FROM users WHERE id = {$delete_id}";
+    // SQL実行
+    $user = $dbh->query($query);
+
+    // 接続を閉じる
+    $dbh = null;
+
+    return $user;
+}

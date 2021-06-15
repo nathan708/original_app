@@ -2,20 +2,7 @@
 // ユーザモデルの読み込み　ほとんどのfunctionで呼び出しているから最初に定義
 require(dirname(__FILE__).'/../models/MylistModel.php');
 
-// ログインしている状態か確認
-function log_check() {
-    session_start();
 
-    // このコードはどのページに行っても必要なのでは？
-    // ログインをして、最後に動作をしたのは一時間以内か
-    if(isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
-        $_SESSION['time'] = time();
-
-    } else {
-      // でなければ、ログイン画面へ遷移する
-        header( "Location: /login" );
-    }
-}
 
 
 

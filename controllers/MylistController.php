@@ -31,6 +31,23 @@ function top_index(){
 
     // その月の総額を読み込む ...SQLはあっていると思うが、表示させられない。
     $amount = get_amount($user_id); 
+    
+    // foreach($amount as $value){
+    
+    //     $value['monthly_fee'];
+    // }
+    // echo $value['monthly_fee'];
+    
+    // return $value;
+
+    // var_dump($value['monthly_fee']);
+    // var_dump($amount);
+
+
+
+
+
+
 
     
     // 指定のユーザーのservice情報を呼び出す
@@ -55,6 +72,9 @@ function mylist_regist(){
 
 // サブスク登録確認画面
 function mylist_regist_conf(){
+
+
+    
     log_check();
     
     $genre = GENRE;
@@ -97,38 +117,36 @@ function mylist_regist_conf(){
 function mylist_regist_fin(){
     log_check();
 
+    $token = filter_input(INPUT_POST, 'one_token');
+
+    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+        exit('不正なリクエスト');
+    }
+    unset ($_SESSION['one_token']);
+
+
+
+
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
     $payment_method = PAYMENT_METHOD;
 
     if(!empty($_POST)) {
         unset($_POST['regist']);
-        
+        unset($_POST['one_token']);
+
     }
     // POST値をDB処理するパラメータとして定義
     $db_param = $_POST;
     // サブスクリプション登録処理(返り値に登録した情報)
     $mylist = mylist_insert($db_param);
     // 多重投稿のためもう一度読み込む
-    header("Location: /mypage/mylist/regist/fin");
-    // require(dirname(__FILE__).'/../views/mylist_regist_fin.php');
-
-}
-
-
-
-// 多重投稿防止の為
-function mylist_regist_conp() {
-    log_check();
-
-// 最後に入力したIDを呼び出せたらと思うがうまく機能せず
-    $mylist = mylist_last_insert();
-    
-
-    // ビューファイル読み込み
+    // header("Location: /mypage/mylist/regist/fin");
     require(dirname(__FILE__).'/../views/mylist_regist_fin.php');
 
 }
+
+
 
 // 登録しているサブスクの一覧表示
 function mylist(){
@@ -157,16 +175,13 @@ function mylist_edit(){
     
 
 
+    
     // GETパラーメータとして付与されているidをユーザIDをとして定義
     // このままでは他のidの人が登録できてしまうためNG
-    $service_id = $_GET['id'];
+    $service_id = $_POST['service_id'];
+
     // サービスIDを元に更新対象のデータ情報の取得
     $service = get_service($service_id);
-
-
-
-
-
 
     // DBから引っ張ってくる。”編集”をクリックした時点でidとリンクしていないといけないのでは
     require(dirname(__FILE__).'/../views/mylist_edit.php');
@@ -181,8 +196,7 @@ function mylist_edit_fin(){
     $payment_type = PAYMENT_TYPE;
     $payment_method = PAYMENT_METHOD;
 
-    $service_id = $_GET['id'];
-
+    $service_id = $_POST['service_id'];
     // エラーチェック
     if (!empty($_POST)) {
         if (empty($_POST['name'])) {
@@ -214,12 +228,12 @@ function mylist_edit_fin(){
 
         }else {
             unset($_POST['submit']);
+            unset($_POST['service_id']);
             $db_param = $_POST;
             $service = services_update($db_param, $service_id);
 
             require(dirname(__FILE__).'/../views/mylist_edit_fin.php');
 
-            
         }
     }
 }
@@ -232,7 +246,7 @@ function mylist_delete(){
     // DBから引っ張ってくる　削除　をクリックした時点でidと照合されてないといけない
 
      // GETパラメータとして付与されているidをユーザIDとして定義
-    $service_id = $_GET['id'];
+    $service_id = $_POST['service_id'];
     // 指定された情報読み込み
     $service = get_service($service_id);
     // ビューファイル読み込み
@@ -241,9 +255,10 @@ function mylist_delete(){
 
 // 削除処理
 function mylist_delete_fin(){
+    log_check();
     // DBに接続しデータを削除する
-    // getパラメータのidをサービスidとして定義
-    $service_id = $_GET['id'];
+    // POSTでservice_idを定義
+    $service_id = $_POST['service_id'];
     // サービスidをもとに削除対象のユーザー情報の取得
     $service = get_service($service_id);
     // サービスidを元に削除処理

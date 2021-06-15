@@ -1,9 +1,9 @@
 
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
-<?php require_once(dirname(__FILE__).'/header2.php'); ?>
+<?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
-<form action="/mypage/mylist/edit?id=<?= $service_id ?>" method="POST">
+<form action="/mypage/mylist/edit/fin" method="POST">
 
 <!-- ※DBから予め登録したデータを引っ張りたい -->
 <?php foreach($service as $value): ?>
@@ -12,11 +12,14 @@
       <p class="error">サービス名を入力してください。</p>
     <?php  endif; ?>
 
-    <!-- セレクタの場合セッションで記憶できるのか？ -->
     <p>ジャンル： 
       <select name="genre" id="">
         <?php foreach( $genre as $i => $v){ ?>
-          <option value="<?php echo $i; ?>"><?php echo $v; ?></option>
+          <?php if ($value['genre'] == $i) { ?>
+            <option value="<?php echo $i; ?>" selected><?php echo $v; ?></option>
+          <?php }else { ?>
+            <option value="<?php echo $i; ?>"><?php echo $v; ?></option>
+          <?php } ?>
         <?php } ?>
       </select>
     </p>
@@ -27,7 +30,11 @@
     <p>支払い種別：
       <select name="payment_type" id="">
         <?php foreach( $payment_type as $i => $v){ ?>
-          <option value="<?php echo $i; ?>"><?php echo $v; ?></option>
+          <?php if ($value['payment_type'] == $i) { ?>
+            <option value="<?php echo $i; ?>" selected><?php echo $v; ?></option>
+          <?php }else { ?>
+            <option value="<?php echo $i; ?>"><?php echo $v; ?></option>
+          <?php } ?>
         <?php } ?>
       </select>
     </p>
@@ -45,10 +52,15 @@
     <p>支払い方法：
       <select name="payment_method" id="">
         <?php foreach( $payment_method as $i => $v) { ?>
-          <option value="<?php echo $i; ?>"><?php echo $v; ?></option>
+          <?php if( $value['payment_method'] == $i) { ?>
+            <option value="<?= $i; ?>" selected><?= $v; ?></option>
+          <?php }else { ?>
+            <option value="<?= $i; ?>"><?= $v; ?></option>
+          <?php } ?>
         <?php } ?>
       </select>
     </p>
+
     <?php if ($error['payment_type'] === 'blank'): ?>
       <p class="error">支払い方法を選択してください。</p>
     <?php  endif; ?>
@@ -56,6 +68,7 @@
     <p>備考：<br>
     <textarea name="note" id="" cols="40" rows="10"><?= $value['note'] ?></textarea></p>
     <input type="submit" name="submit" value="更新">
+    <input type="hidden" name="service_id" value="<?= $_POST['service_id'] ?>">
   <?php endforeach; ?>
   </form>
 

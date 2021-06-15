@@ -31,10 +31,68 @@ function get_user($user_id) {
     
 }
 
+// 特定のユーザーのservice一覧を読み込む
+function get_services_all($user_id) {
+    // DBの接続
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // ログインuser_idのserviceテーブルの全てのデータを取得する
+    $query = "SELECT * FROM services WHERE user_id={$user_id};";
+    // SQL実行　
+    $result = $dbh -> query($query);
+    // DB接続を閉じる
+    $dbh = null;
+
+    return $result;
+}
+
+// 特定のユーザーの当月の支払い一覧を読み込む（トップページ用）
+// function get_services_month($user_id) {
+//     // DBの接続
+//     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+//     // ログインuser_idのserviceテーブルの全てのデータを取得する
+//     $query = "SELECT * FROM services WHERE user_id={$user_id} AND ;";
+//     // SQL実行　
+//     $result = $dbh -> query($query);
+//     // DB接続を閉じる
+//     $dbh = null;
+
+//     return $result;
+// }
+
+
+// 指定されたserviceを読み込む
+function get_service($service_id) {
+        // DBの接続
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    
+        // 登録したユーザー情報を取得する
+        $query = "SELECT * FROM services WHERE id = {$service_id};";
+        // SQL実行
+        $result = $dbh->query($query);
+    
+        // 接続を閉じる
+        $dbh = null;
+    
+        return $result;
+}
+
+
 // 当月の支払総額計算
-// 年額以外のものを足せば良い  -> 支払い種別が"1" のものだけ全部足せば良い。 id と　userid を指定する？
-// 例    SELECT SUM(monthly_fee) FROM services WHERE payment_type=1 AND user_id=15
 function get_amount($user_id) {
+    // 取得したものをPHP上で足す・・・わからない
+//     //DB接続 
+//     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+//     // 指定したユーザーIDの月額のものだけ抽出
+//     $query = "SELECT monthly_fee FROM services WHERE payment_type=1 AND user_id = {$user_id};";
+// // SQL実行
+//     $result = $dbh->query($query);
+
+//     $dbh = null;
+//     return $result;
+    
+
+    // 年額以外のものを足せば良い  -> 支払い種別が"1" のものだけ全部足せば良い。 id と　userid を指定する？
+    // 例    SELECT SUM(monthly_fee) FROM services WHERE payment_type=1 AND user_id=15
     // DB接続
     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
     // 指定したユーザーIDの月額のものだけ足す
@@ -44,7 +102,6 @@ function get_amount($user_id) {
 
     $dbh = null;
     return $result;
-
 }
 
 
@@ -108,36 +165,6 @@ function mylist_last_insert(){
     return $result;
 }
 
-// 特定のユーザーのservice一覧を読み込む
-function get_services_all($user_id) {
-    // DBの接続
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-    // ログインuser_idのserviceテーブルの全てのデータを取得する
-    $query = "SELECT * FROM services WHERE user_id={$user_id};";
-    // SQL実行　
-    $result = $dbh -> query($query);
-    // DB接続を閉じる
-    $dbh = null;
-
-    return $result;
-}
-
-
-// 指定されたserviceを読み込む
-function get_service($service_id) {
-        // DBの接続
-        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-    
-        // 登録したユーザー情報を取得する
-        $query = "SELECT * FROM services WHERE id = {$service_id};";
-        // SQL実行
-        $result = $dbh->query($query);
-    
-        // 接続を閉じる
-        $dbh = null;
-    
-        return $result;
-}
 
 
 

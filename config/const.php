@@ -70,20 +70,38 @@ const ROUTE_LIST = array(
     'get_function'  =>  'mylist_regist',
     'post_function' =>  'mylist_regist_conf'
   ),
+// マイリスト登録ー確認ー書き直し
+  '/mypage/mylist/regist/rewrite' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  'mylist_regist',
+    'post_function' =>  'mylist_regist'
+  ),
 // マイリスト登録確認ー完了
   '/mypage/mylist/regist/fin' => array(
     'controller'    =>  'MyListController',
-    'get_function'  =>  'mylist_regist_conp',
+    'get_function'  =>  '',
     'post_function' =>  'mylist_regist_fin'
   ),
 // マイリスト編集
   '/mypage/mylist/edit' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  '',
+    'post_function' =>  'mylist_edit'
+  ),
+// マイリスト編集ー完了
+  '/mypage/mylist/edit/fin' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'mylist_edit',
     'post_function' =>  'mylist_edit_fin'
   ),
 // マイリスト削除
   '/mypage/mylist/delete' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  '',
+    'post_function' =>  'mylist_delete'
+  ),
+// マイリスト削除ー完了
+  '/mypage/mylist/delete/fin' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'mylist_delete',
     'post_function' =>  'mylist_delete_fin'
@@ -150,5 +168,29 @@ const PAYMENT_TYPE = array(
 const PAYMENT_METHOD = array(
   '選択してください', "クレジットカード", "銀行引き落とし", "その他"
 );
+
+
+
+
+// ワンタイムトークン生成・・・多重投稿防止
+function setToken() {
+  // トークンを生成
+  // フォームからそのトークンを送信
+  // 送信後の画面でそのトークンを照会
+  // トークンを削除
+
+  session_start();
+  $one_token = bin2hex(random_bytes(32));
+  $_SESSION['one_token'] = $one_token;
+
+  return $one_token;
+}
+
+
+// XSS対策：エスケープ処理
+function h($str) {
+  return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+}
+
 
 ?>

@@ -3,7 +3,7 @@
 
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
-<?php require_once(dirname(__FILE__).'/header2.php'); ?>
+<?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
 
   <div class="mypage_layout">
@@ -38,28 +38,23 @@
 
 <!-- フォームタグにしてPOSTで送信したら良いのではないか
             POSTで送信したらfin に飛ぶようになっている -->
-            <!-- <td>
+            <td>
               <form action="/mypage/mylist/edit" method="POST">
+                <input type="hidden" name="service_id" value="<?= $myservice['id'] ?>">
                 <input type="submit" name="edit" value="編集">
               </form>
               <form action="/mypage/mylist/delete" method="POST">
+                <input type="hidden" name="service_id" value="<?= $myservice['id'] ?>">
                 <input type="submit" name="delete" value="削除">
               </form>
-            </td> -->
+            </td>
 
-
-
-
-
-            <!-- ここがid で遷移するから行けない -->
+            <!-- ここがid で遷移するから行けない
               <td>
                 <a href="/mypage/mylist/edit?id=<?= $myservice['id'] ?>">編集</a>
                 <p>／</p>
                 <a href="/mypage/mylist/delete?id=<?= $myservice['id'] ?>">削除</a>
-              </td>
-
-
-
+              </td> -->
 
             </tr>
           <?php endforeach; ?>

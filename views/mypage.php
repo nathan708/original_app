@@ -11,9 +11,13 @@
   <h3><?php echo date('n') . "月"?>は</h3>
   <h2 class="amount">
     <!-- データベースから総額を引っ張ってくる -->
-    13000
-    <!-- <?= $amoun ?> -->
-    <?php var_dump($amount); ?>
+
+<?php foreach($amount as $value): ?>
+<?= $value[0] ?>
+<?php endforeach; ?>
+
+
+    
   </h2>
   <h2>円</h2>
     

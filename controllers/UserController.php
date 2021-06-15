@@ -65,11 +65,22 @@ function signup(){
 function signup_fin(){
     
     // ※「登録する」が押されたらデータベースに接続して、データベースに挿入する
-    
+    session_start();
+    $token = filter_input(INPUT_POST, 'one_token');
+    // トークンがない、もしくは一致しない場合、処理を中止
+    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+        exit('不正なリクエスト');
+    }
+    unset($_SESSION['one_token']);
+
+
+
     //中身が無ければもとに戻す
     // POSTから外す
     if (!empty($_POST)) {
         unset($_POST['regist']);
+        unset($_POST['one_token']);
+
     
         // // POST値をDB処理するパラメータとして定義
         $db_param = $_POST;
@@ -79,10 +90,8 @@ function signup_fin(){
 
         // ※POSTの値が残っているので、更新すると何回も登録されてしまう
         // ビューファイル読み込み
-        // header("Location: /signup/fin");
         require(dirname(__FILE__).'/../views/user_signup_fin.php');
     }
-        
 }
 
 

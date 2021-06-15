@@ -1,10 +1,10 @@
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
-<?php require_once(dirname(__FILE__).'/header2.php'); ?>
+<?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
  
   <div class="main">
-  <form action="" method="POST">
+  <form action="/mypage/mylist/delete/fin" method="POST">
     <!-- ※データベースから引っ張りたい -->
     <!-- コレ自体もforeachで一括でできるはず -->
 
@@ -52,8 +52,7 @@
       <input type="hidden" name="payment_date" value="<?= $value['payment_date']?>">
       <input type="hidden" name="payment_method" value="<?= $value['payment_method']?>">
       <input type="hidden" name="note" value="<?= $value['note']?>">
-
-  </form>
+      <input type="hidden" name="service_id" value="<?= $_POST['service_id']?>">
 
       
   </div>

@@ -38,6 +38,7 @@
                 
             </p>
             <p class="error"><?= $validation_msg ?></p>
+            <input type="hidden" name="one_token" value="<?= setToken(); ?>">
             <input type="submit" name="send" value="新規登録"><br>
         </form>
         既に登録済みの方はこちらから <a href="/login">ログイン</a> してください。

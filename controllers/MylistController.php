@@ -13,27 +13,14 @@ function top_index(){
     // 指定のユーザー情報を呼び出す  名前を表示するため
     $user = get_user($user_id);
 
-    // その月の総額を読み込む ...SQLはあっていると思うが、表示させられない。
+    // その月の総額を読み込む
     $amount = get_amount($user_id); 
     
-    // foreach($amount as $value){
-    
-    //     $value['monthly_fee'];
-    // }
-    // echo $value['monthly_fee'];
-    
-    // return $value;
+    $sum = 0;
+    foreach($amount as $value){
+        $sum = $sum + $value['monthly_fee'];
+    }
 
-    // var_dump($value['monthly_fee']);
-    // var_dump($amount);
-
-
-
-
-
-
-
-    
     // 指定のユーザーのservice情報を呼び出す
     $services = get_services_all($user_id);
 
@@ -58,6 +45,14 @@ function mylist_regist(){
 function mylist_regist_conf(){
     
     log_check();
+
+       // ワンタイムトークン確認
+    $token = filter_input(INPUT_POST, 'one_token');
+     // トークンがない、もしくは一致しない場合、処理を中止
+    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+        exit('不正なリクエスト');
+    }
+        unset($_SESSION['one_token']);
     
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;

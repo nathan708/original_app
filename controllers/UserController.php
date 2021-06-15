@@ -18,6 +18,16 @@ function signup(){
     $page_title = PAGE_TITLE['SIGNUP'];
     $validation_msg = '';
 
+   // ワンタイムトークン確認
+    session_start();
+    $token = filter_input(INPUT_POST, 'one_token');
+   // トークンがない、もしくは一致しない場合、処理を中止
+    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+        exit('不正なリクエスト');
+    }
+        unset($_SESSION['one_token']);
+
+
     // エラーチェック
     if (!empty($_POST)){
         if (empty($_POST['name']) ||
@@ -61,6 +71,8 @@ function signup(){
 function signup_fin(){
     
     // ※「登録する」が押されたらデータベースに接続して、データベースに挿入する
+
+    // ワンタイムトークン確認
     session_start();
     $token = filter_input(INPUT_POST, 'one_token');
     // トークンがない、もしくは一致しない場合、処理を中止
@@ -120,11 +132,6 @@ function destroy() {
 
     // セッションの中身を消す
     $_SESSION = array();
-    if (ini_set('session.use_cookies')) {
-        $params = session_get_cookie_params();
-        setcookie(session_name() . '', time() - 42000, 
-            $params['path'], $params['domain'], $params['secure'], $params['httponly']);
-    }
     session_destroy();
 
     //ビューファイル読み込み

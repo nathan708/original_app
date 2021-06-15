@@ -84,27 +84,27 @@ function get_amount($user_id) {
 
     // 取得したものをPHP上で足す・・・わからない
 //     //DB接続 
-//     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-//     // 指定したユーザーIDの月額のものだけ抽出
-//     $query = "SELECT monthly_fee FROM services WHERE payment_type=1 AND user_id = {$user_id};";
-// // SQL実行
-//     $result = $dbh->query($query);
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // 指定したユーザーIDの月額のものだけ抽出
+    $query = "SELECT monthly_fee FROM services WHERE payment_type=1 AND user_id = {$user_id};";
+// SQL実行
+    $result = $dbh->query($query);
 
-//     $dbh = null;
-//     return $result;
+    $dbh = null;
+    return $result;
     
 
     // 年額以外のものを足せば良い  -> 支払い種別が"1" のものだけ全部足せば良い。 id と　userid を指定する？
     // 例    SELECT SUM(monthly_fee) FROM services WHERE payment_type=1 AND user_id=15
     // DB接続
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-    // 指定したユーザーIDの月額のものだけ足す
-    $query = "SELECT SUM(monthly_fee) FROM services WHERE payment_type=1 AND user_id = {$user_id};";
+    // $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // // 指定したユーザーIDの月額のものだけ足す
+    // $query = "SELECT SUM(monthly_fee) FROM services WHERE payment_type=1 AND user_id = {$user_id};";
 
-    $result =  $dbh->query($query);
+    // $result =  $dbh->query($query);
 
-    $dbh = null;
-    return $result;
+    // $dbh = null;
+    // return $result;
 }
 
 

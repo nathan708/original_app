@@ -1,11 +1,14 @@
 
+
+
+
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
  
   <div class="main">
-  <form action="/mypage/mylist/regist/fin" method="POST">
+  <form action="/mypage/mylist/regist" method="POST">
     <table>
       <tr>
         <th>サービス名：　</th>
@@ -73,6 +76,7 @@
       <input type="hidden" name="payment_date" value="<?= h($_POST['payment_date'])?>">
       <input type="hidden" name="payment_method" value="<?= h($_POST['payment_method'])?>">
       <input type="hidden" name="note" value="<?= h($_POST['note'])?>">
+      <input type="hidden" name="one_token" value="<?= setToken(); ?>">
       <input type="submit" name="rewrite" value="書き直す" >
   </form>
       

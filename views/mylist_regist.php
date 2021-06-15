@@ -1,3 +1,4 @@
+
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
@@ -62,6 +63,7 @@
     </p>
     <p>備考：<br>
     <textarea name="note" id="" cols="40" rows="10"></textarea></p>
+    <input type="hidden" name="one_token" value="<?= setToken(); ?>">
     <input type="submit" name="submit" value="新規登録">
   </form>
 

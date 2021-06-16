@@ -8,7 +8,7 @@
 <body>
  
   <div class="main">
-  <form action="/mypage/mylist/regist" method="POST">
+  <form action="/mypage/mylist/create/fin" method="POST">
     <table>
       <tr>
         <th>サービス名：　</th>
@@ -65,10 +65,10 @@
       <input type="hidden" name="note" value="<?= h($_POST['note'])?>">
       <input type="hidden" name="one_token" value="<?= setToken() ?>">
     <p>上記の情報を登録します。よろしいですか？</p>
-    <input type="submit" name="regist" value="登録する" >
+    <input type="submit" name="create" value="登録する" >
   </form>
 
-  <form action="/mypage/mylist/regist/rewrite" method="POST">
+  <form action="/mypage/mylist/create" method="POST">
       <input type="hidden" name="name" value="<?= h($_POST['name'])?>">
       <input type="hidden" name="genre" value="<?= h($_POST['genre'])?>">
       <input type="hidden" name="payment_type" value="<?= h($_POST['payment_type'])?>">

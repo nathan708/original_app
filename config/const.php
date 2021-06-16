@@ -17,16 +17,16 @@ const ROUTE_LIST = array(
     'post_function'    =>''
   ),
 // 新規登録
-  '/signup' => array(
+  '/create' => array(
     'controller'    =>  'UserController',
-    'get_function'  =>  'create',
-    'post_function' =>  'signup'
+    'get_function'  =>  'enter',
+    'post_function' =>  'create'
   ),
 // 新規登録確認ー完了
-  '/signup/fin' => array(
+  '/create/fin' => array(
     'controller'    =>  'UserController',
     'get_function'  =>  '',
-    'post_function' =>  'signup_fin'
+    'post_function' =>  'create_fin'
   ),
 // ログイン処理
   '/login' => array(
@@ -65,22 +65,22 @@ const ROUTE_LIST = array(
     'post_function' =>  ''
   ),
 // マイリスト登録
-  '/mypage/mylist/regist' => array(
+  '/mypage/mylist/create' => array(
     'controller'    =>  'MyListController',
-    'get_function'  =>  'mylist_regist',
-    'post_function' =>  'mylist_regist_conf'
+    'get_function'  =>  'mylist_create',
+    'post_function' =>  'mylist_create_conf'
   ),
 // マイリスト登録ー確認ー書き直し
-  '/mypage/mylist/regist/rewrite' => array(
-    'controller'    =>  'MyListController',
-    'get_function'  =>  'mylist_regist',
-    'post_function' =>  'mylist_regist'
-  ),
-// マイリスト登録確認ー完了
-  '/mypage/mylist/regist/fin' => array(
+  '/mypage/mylist/create/rewrite' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  '',
-    'post_function' =>  'mylist_regist_fin'
+    'post_function' =>  'mylist_create'
+  ),
+// マイリスト登録確認ー完了
+  '/mypage/mylist/create/fin' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  '',
+    'post_function' =>  'mylist_create_fin'
   ),
 // マイリスト編集
   '/mypage/mylist/edit' => array(
@@ -132,7 +132,7 @@ const ROUTE_LIST = array(
 
 const PAGE_TITLE = array(
   'TOP'       => 'サブスクリプション管理',
-  'SIGNUP'    => 'ユーザー新規登録',
+  'CREATE'    => 'ユーザー新規登録',
   'LOGIN'    => 'ログイン',
   'PASSFORM'    => 'パスワード再設定',
   'CONTACT'     => 'お問い合わせ',

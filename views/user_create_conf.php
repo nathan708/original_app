@@ -4,7 +4,7 @@
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
   <p>記入した内容を確認して、「登録」ボタンをクリックしてください。</p>
-  <form action="signup/fin" method="POST" value='submit'>
+  <form action="create/fin" method="POST" value='submit'>
       <p>
         <label for="">ユーザーネーム：</label>
         <?php echo h($_POST['name']);?>
@@ -24,7 +24,7 @@
       <input type="hidden" name="password" value="<?=h($_POST['password'])?>">
       <input type="hidden" name="one_token" value="<?= setToken(); ?>">
 
-      <a href="/signup?action=rewrite">&laquo;&nbsp;書き直す</a> | <input type="submit" name="regist" value="登録する" /></div>
+      <a href="/create?action=rewrite">&laquo;&nbsp;書き直す</a> | <input type="submit" name="create" value="登録する" /></div>
   </form>
 
 

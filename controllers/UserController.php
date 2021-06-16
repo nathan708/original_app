@@ -4,18 +4,18 @@ require(dirname(__FILE__).'/../models/UserModel.php');
 
 
 // 入力画面表示
-function create(){
+function enter(){
 
     // タイトル
-    $page_title = PAGE_TITLE['SIGNUP'];
+    $page_title = PAGE_TITLE['CREATE'];
     // ビューファイル読み込み
-    require(dirname(__FILE__).'/../views/user_signup.php');
+    require(dirname(__FILE__).'/../views/user_create.php');
 }
 
 // 登録処理
 
-function signup(){
-    $page_title = PAGE_TITLE['SIGNUP'];
+function create(){
+    $page_title = PAGE_TITLE['create'];
     $validation_msg = '';
 
    // ワンタイムトークン確認
@@ -59,16 +59,16 @@ function signup(){
                 }
         }        
         if (empty($error)){
-            require(dirname(__FILE__).'/../views/user_signup_conf.php');
+            require(dirname(__FILE__).'/../views/user_create_conf.php');
             // エラーが有るなら書き直す
         }else{
-            require(dirname(__FILE__).'/../views/user_signup.php');
+            require(dirname(__FILE__).'/../views/user_create.php');
             }
     }
 }
 
 // 確認画面
-function signup_fin(){
+function create_fin(){
     
     // ※「登録する」が押されたらデータベースに接続して、データベースに挿入する
 
@@ -86,7 +86,7 @@ function signup_fin(){
     //中身が無ければもとに戻す
     // POSTからいらないものを外す
     if (!empty($_POST)) {
-        unset($_POST['regist']);
+        unset($_POST['create']);
         unset($_POST['one_token']);
     
         // // POST値をDB処理するパラメータとして定義
@@ -97,7 +97,7 @@ function signup_fin(){
 
         // ※POSTの値が残っているので、更新すると何回も登録されてしまう
         // ビューファイル読み込み
-        require(dirname(__FILE__).'/../views/user_signup_fin.php');
+        require(dirname(__FILE__).'/../views/user_create_fin.php');
     }
 }
 

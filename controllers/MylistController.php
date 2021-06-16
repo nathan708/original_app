@@ -30,7 +30,7 @@ function top_index(){
 
 
 // サブスク登録画面
-function mylist_regist(){
+function mylist_create(){
     log_check();
 
     $genre = GENRE;
@@ -38,21 +38,21 @@ function mylist_regist(){
     $payment_method = PAYMENT_METHOD;
 
     // ビューファイル読み込み
-    require(dirname(__FILE__).'/../views/mylist_regist.php');
+    require(dirname(__FILE__).'/../views/mylist_create.php');
 }
 
 // サブスク登録確認画面
-function mylist_regist_conf(){
+function mylist_create_conf(){
     
     log_check();
 
-       // ワンタイムトークン確認
-    $token = filter_input(INPUT_POST, 'one_token');
-     // トークンがない、もしくは一致しない場合、処理を中止
-    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
-        exit('不正なリクエスト');
-    }
-        unset($_SESSION['one_token']);
+    //    // ワンタイムトークン確認
+    // $token = filter_input(INPUT_POST, 'one_token');
+    //  // トークンがない、もしくは一致しない場合、処理を中止
+    // if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+    //     exit('不正なリクエスト');
+    // }
+    //     unset($_SESSION['one_token']);
     
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
@@ -81,32 +81,32 @@ function mylist_regist_conf(){
         if (empty($_POST['payment_method'])) {
             $error['payment_method'] = 'blank';
         }
-// エラーが無ければ登録
+// エラーが無ければ表示
         if (empty($error)) {
-            require(dirname(__FILE__).'/../views/mylist_regist_conf.php');
+            require(dirname(__FILE__).'/../views/mylist_create_conf.php');
         }else {
-            require(dirname(__FILE__).'/../views/mylist_regist.php');
+            require(dirname(__FILE__).'/../views/mylist_create.php');
         } 
     }
 }
 
 // サブスク登録完了画面
-function mylist_regist_fin(){
+function mylist_create_fin(){
     log_check();
 
-    $token = filter_input(INPUT_POST, 'one_token');
+    // $token = filter_input(INPUT_POST, 'one_token');
 
-    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
-        exit('不正なリクエスト');
-    }
-    unset ($_SESSION['one_token']);
+    // if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+    //     exit('不正なリクエスト');
+    // }
+    // unset ($_SESSION['one_token']);
 
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
     $payment_method = PAYMENT_METHOD;
 
     if(!empty($_POST)) {
-        unset($_POST['regist']);
+        unset($_POST['create']);
         unset($_POST['one_token']);
 
     }
@@ -115,8 +115,8 @@ function mylist_regist_fin(){
     // サブスクリプション登録処理(返り値に登録した情報)
     $mylist = mylist_insert($db_param);
     // 多重投稿のためもう一度読み込む
-    // header("Location: /mypage/mylist/regist/fin");
-    require(dirname(__FILE__).'/../views/mylist_regist_fin.php');
+    // header("Location: /mypage/mylist/create/fin");
+    require(dirname(__FILE__).'/../views/mylist_create_fin.php');
 }
 
 

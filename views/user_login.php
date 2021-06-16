@@ -34,7 +34,7 @@
 
         <input type="submit" name="login" value="ログイン">
     </form>
-    <p>新規登録は<a href="/signup">　こちらから　</a>お願いします。</p>
+    <p>新規登録は<a href="/create">　こちらから　</a>お願いします。</p>
     <br>
     <br>
     <p><a href="/pass_form">パスワードを忘れた方はこちら</a></p>

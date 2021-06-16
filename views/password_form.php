@@ -17,7 +17,7 @@
     <?php endif; ?>
     <input type="submit" name="submit" value="送信">
   </form>
-  <p>新規登録は<a href="/signup"> 「こちらから」 </a>お願いします。</p>
+  <p>新規登録は<a href="/create"> 「こちらから」 </a>お願いします。</p>
 
 
 </body>

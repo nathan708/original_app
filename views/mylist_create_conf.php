@@ -12,44 +12,44 @@
       <tr>
         <th>サービス名：　</th>
         <td>
-        <?php echo h($_POST['name']);?>
+        <?= h($_POST['name']);?>
         </td>
       </tr>
       <tr>
         <th>ジャンル：　</th>
         <td>
-        <?php echo h(GENRE[$_POST['genre']]); ?><br>
+        <?= h(GENRE[$_POST['genre']]); ?><br>
         </td>
       </tr>
 
       <tr>
         <th>支払い種別：　</th>
         <td>
-        <?php echo h(PAYMENT_TYPE[$_POST['payment_type']]);?>
+        <?= h(PAYMENT_TYPE[$_POST['payment_type']]);?>
         </td>
       </tr>
       <tr>
         <th>金額：　</th>
         <td>
-        <?php echo h($_POST['monthly_fee']);?>円
+        <?= h($_POST['monthly_fee']);?>円
         </td>
       </tr>
       <tr>
         <th>支払日：　</th>
         <td>
-        <?php echo h($_POST['payment_date']);?>
+        <?= h($_POST['payment_month']);?>月<?= h($_POST['payment_date']);?>日
         </td>
       </tr>
       <tr>
         <th>支払い方法：　</th>
         <td>
-        <?php echo h(PAYMENT_METHOD[$_POST['payment_method']]);?>
+        <?= h(PAYMENT_METHOD[$_POST['payment_method']]);?>
         </td>
       </tr>
       <tr>
         <th>備考：　</th>
         <td>
-        <?php echo h($_POST['note']);?>
+        <?= h($_POST['note']);?>
         </td>
       </tr>
     </table>
@@ -59,6 +59,7 @@
       <input type="hidden" name="genre" value="<?= h($_POST['genre'])?>">
       <input type="hidden" name="payment_type" value="<?= h($_POST['payment_type'])?>">
       <input type="hidden" name="monthly_fee" value="<?= h($_POST['monthly_fee'])?>">
+      <input type="hidden" name="payment_month" value="<?= h($_POST['payment_month'])?>">
       <input type="hidden" name="payment_date" value="<?= h($_POST['payment_date'])?>">
       <input type="hidden" name="payment_method" value="<?= h($_POST['payment_method'])?>">
       <input type="hidden" name="note" value="<?= h($_POST['note'])?>">

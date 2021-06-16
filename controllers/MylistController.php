@@ -46,13 +46,18 @@ function mylist_create_conf(){
     
     log_check();
 
-    //    // ワンタイムトークン確認
-    // $token = filter_input(INPUT_POST, 'one_token');
-    //  // トークンがない、もしくは一致しない場合、処理を中止
+       // ワンタイムトークン確認
+    $token = filter_input(INPUT_POST, 'one_token');
+
+
+    var_dump($_SESSION['one_token']);
+    var_dump($token);
+    
+    // トークンがない、もしくは一致しない場合、処理を中止
     // if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
     //     exit('不正なリクエスト');
     // }
-    //     unset($_SESSION['one_token']);
+    // unset($_SESSION['one_token']);
     
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
@@ -85,6 +90,7 @@ function mylist_create_conf(){
         if (empty($error)) {
             require(dirname(__FILE__).'/../views/mylist_create_conf.php');
         }else {
+            
             require(dirname(__FILE__).'/../views/mylist_create.php');
         } 
     }
@@ -93,8 +99,13 @@ function mylist_create_conf(){
 // サブスク登録完了画面
 function mylist_create_fin(){
     log_check();
+    var_dump($_SESSION['one_token']);
 
-    // $token = filter_input(INPUT_POST, 'one_token');
+
+    var_dump($_POST['one_token']);
+
+    $token = filter_input(INPUT_POST, 'one_token');
+
 
     // if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
     //     exit('不正なリクエスト');
@@ -114,8 +125,8 @@ function mylist_create_fin(){
     $db_param = $_POST;
     // サブスクリプション登録処理(返り値に登録した情報)
     $mylist = mylist_insert($db_param);
-    // 多重投稿のためもう一度読み込む
-    // header("Location: /mypage/mylist/create/fin");
+
+    // ビューファイルの読み込み
     require(dirname(__FILE__).'/../views/mylist_create_fin.php');
 }
 

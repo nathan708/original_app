@@ -1,7 +1,6 @@
 
 
 
-
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
@@ -63,8 +62,11 @@
       <input type="hidden" name="payment_date" value="<?= h($_POST['payment_date'])?>">
       <input type="hidden" name="payment_method" value="<?= h($_POST['payment_method'])?>">
       <input type="hidden" name="note" value="<?= h($_POST['note'])?>">
-      <input type="hidden" name="one_token" value="<?= setToken() ?>">
     <p>上記の情報を登録します。よろしいですか？</p>
+      <input type="hidden" name="one_token" value="<?= $_POST['one_token'] ?>">
+
+
+
     <input type="submit" name="create" value="登録する" >
   </form>
 

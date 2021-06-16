@@ -4,7 +4,7 @@
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 
 <body>
-  <form action="" method="POST">
+  <form action="/mypage/mylist/create/conf" method="POST">
     <p>サービス名：<input type="text" name="name" value="<?php echo h($_POST['name']);?>"></p>
     <?php if ($error['name'] === 'blank'): ?>
       <p class="error">サービス名を入力してください。</p>
@@ -63,7 +63,7 @@
     </p>
     <p>備考：<br>
     <textarea name="note" id="" cols="40" rows="10"></textarea></p>
-    <input type="hidden" name="one_token" value="<?= setToken(); ?>">
+    <input type="hidden" name="one_token" value="<?= h(setToken()); ?>">
     <input type="submit" name="submit" value="新規登録">
   </form>
 

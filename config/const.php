@@ -68,6 +68,12 @@ const ROUTE_LIST = array(
   '/mypage/mylist/create' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'mylist_create',
+    'post_function' =>  'mylist_create'
+  ),
+// マイリスト登録ー確認
+  '/mypage/mylist/create/conf' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  '',
     'post_function' =>  'mylist_create_conf'
   ),
 // マイリスト登録ー確認ー書き直し
@@ -179,7 +185,7 @@ function setToken() {
   // 送信後の画面でそのトークンを照会
   // トークンを削除
 
-  session_start();
+  // session_start();
   $one_token = bin2hex(random_bytes(32));
   $_SESSION['one_token'] = $one_token;
 

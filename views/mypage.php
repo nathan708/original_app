@@ -1,4 +1,5 @@
 
+
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
@@ -36,7 +37,10 @@
           <td><?= $service['name'] ?></td>
           <td><?= GENRE[$service['genre']] ?></td>
           <td><?= $service['monthly_fee'] ?>円</td>
-          <td><?= $service['payment_date'] ?></td>
+          <td>
+              <?= substr($service['payment_date'], 5, 2) ?>月
+              <?= substr($service['payment_date'], 8, 2) ?>日
+          </td>
           <td><?= PAYMENT_METHOD[$service['payment_method']] ?></td>
           <td><?= $service['note'] ?></td>
         </tr>

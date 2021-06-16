@@ -23,7 +23,10 @@
       </tr>
       <tr>
         <th>支払い日：</th>
-        <td><?= $value['payment_date'] ?></td>
+        <td>
+          <?= substr($value['payment_date'], 5, 2) ?>月
+          <?= substr($value['payment_date'], 8, 2) ?>日
+        </td>
       </tr>
       <tr>
         <th>支払い方法：</th>

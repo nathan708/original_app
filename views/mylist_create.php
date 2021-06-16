@@ -64,7 +64,7 @@
           <input type="text" name="monthly_fee" value="<?= h($_POST['monthly_fee']);?>">円</p>
         </td>
         <td>
-          <?php if ($error['monthly_fee'] === 'blank' || $error['monthly_fee'] === 'wrong'): ?>
+          <?php if ($error['monthly_fee'] === 'blank' || $error['monthly_fee'] === 'under'): ?>
             <p class="error">０より大きい金額を入力してください。</p>
           <?php  endif; ?>
         </td>
@@ -84,9 +84,9 @@
               <?php } ?>
             <?php } ?>
           </select>月
-          <select name="payment_date" id="">
-            <?php foreach( $payment_date as $i => $v) { ?>
-              <?php if ($_POST['payment_date'] == $i) { ?>
+          <select name="payment_day" id="">
+            <?php foreach( $payment_day as $i => $v) { ?>
+              <?php if ($_POST['payment_day'] == $i) { ?>
                 <option value="<?= $i; ?>" selected><?= $v; ?></option>
               <?php }else { ?>
                 <option value="<?= $i; ?>" ><?= $v; ?></option>

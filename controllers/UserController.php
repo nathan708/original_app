@@ -19,13 +19,13 @@ function create(){
     $validation_msg = '';
 
    // ワンタイムトークン確認
-    session_start();
-    $token = filter_input(INPUT_POST, 'one_token');
-   // トークンがない、もしくは一致しない場合、処理を中止
-    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
-        exit('不正なリクエスト');
-    }
-        unset($_SESSION['one_token']);
+//     session_start();
+//     $token = filter_input(INPUT_POST, 'one_token');
+//    // トークンがない、もしくは一致しない場合、処理を中止
+//     if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+//         exit('不正なリクエスト');
+//     }
+//         unset($_SESSION['one_token']);
 
 
     // エラーチェック
@@ -73,13 +73,13 @@ function create_fin(){
     // ※「登録する」が押されたらデータベースに接続して、データベースに挿入する
 
     // ワンタイムトークン確認
-    session_start();
-    $token = filter_input(INPUT_POST, 'one_token');
-    // トークンがない、もしくは一致しない場合、処理を中止
-    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
-        exit('不正なリクエスト');
-    }
-    unset($_SESSION['one_token']);
+    // session_start();
+    // $token = filter_input(INPUT_POST, 'one_token');
+    // // トークンがない、もしくは一致しない場合、処理を中止
+    // if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+    //     exit('不正なリクエスト');
+    // }
+    // unset($_SESSION['one_token']);
 
 
 

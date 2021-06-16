@@ -1,6 +1,8 @@
 <?php
 // 定数ファイルの読み込み
 require(dirname(__FILE__).'/../config/const.php');
+// 関数ファイルの読み込み
+require(dirname(__FILE__).'/../config/functions.php');
 
 // ドメイン以降のアクセスされたURLを取得
 $url = $_SERVER['REQUEST_URI'];

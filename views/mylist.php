@@ -31,7 +31,10 @@
               <td><?= PAYMENT_TYPE[$myservice['payment_type']] ?></td>
               <td><?= $myservice['monthly_fee'] ?>円</td>
               <!-- 毎月とか毎年とかにしたい -->
-              <td><?= $myservice['payment_date'] ?></td>
+              <td>
+                  <?= substr($myservice['payment_date'], 5, 2) ?>月
+                  <?= substr($myservice['payment_date'], 8, 2) ?>日
+              </td>
               <td><?= PAYMENT_METHOD[$myservice['payment_method']] ?></td>
               <td><?= $myservice['note'] ?></td>
 

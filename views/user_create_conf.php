@@ -22,7 +22,7 @@
       <input type="hidden" name="name" value="<?=h($_POST['name'])?>">
       <input type="hidden" name="address" value="<?=h($_POST['address'])?>">
       <input type="hidden" name="password" value="<?=h($_POST['password'])?>">
-      <input type="hidden" name="one_token" value="<?= setToken(); ?>">
+      <!-- <input type="hidden" name="one_token" value="<?= setToken(); ?>"> -->
 
       <a href="/create?action=rewrite">&laquo;&nbsp;書き直す</a> | <input type="submit" name="create" value="登録する" /></div>
   </form>

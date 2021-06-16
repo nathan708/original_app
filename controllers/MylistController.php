@@ -36,7 +36,7 @@ function mylist_create(){
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
     $payment_month = PAYMENT_MONTH;
-    $payment_date = PAYMENT_DATE;
+    $payment_day = PAYMENT_DAY;
     $payment_method = PAYMENT_METHOD;
 
     // ビューファイル読み込み
@@ -52,8 +52,8 @@ function mylist_create_conf(){
     $token = filter_input(INPUT_POST, 'one_token');
 
 
-    var_dump($_SESSION['one_token']);
-    var_dump($token);
+    // var_dump($_SESSION['one_token']);
+    // var_dump($token);
     
     // トークンがない、もしくは一致しない場合、処理を中止
     // if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
@@ -64,7 +64,7 @@ function mylist_create_conf(){
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
     $payment_month = PAYMENT_MONTH;
-    $payment_date = PAYMENT_DATE;
+    $payment_day = PAYMENT_DAY;
     $payment_method = PAYMENT_METHOD;
     
     // エラーチェック
@@ -82,11 +82,11 @@ function mylist_create_conf(){
         if (empty($_POST['monthly_fee'])) {
             $error['monthly_fee'] = 'blank';
             }elseif ($_POST['monthly_fee'] <= 0) {
-                $error['monthly_fee'] = 'wrong';
+                $error['monthly_fee'] = 'under';
         }
-        if (empty($_POST['payment_date'])) {
-            $error['payment_date'] = 'blank';
-        }
+        // if (empty($_POST['payment_date'])) {
+        //     $error['payment_date'] = 'blank';
+        // }
         if (empty($_POST['payment_method'])) {
             $error['payment_method'] = 'blank';
         }
@@ -121,22 +121,20 @@ function mylist_create_fin(){
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
     $payment_month = PAYMENT_MONTH;
-    $payment_date = PAYMENT_DATE;
+    $payment_day = PAYMENT_DAY;
     $payment_method = PAYMENT_METHOD;
 
+    // $_POST の月日と9999年をくっつけて改めて作る
+    $payment_day = "9999" . "-" . $_POST['payment_month'] . "-" . $_POST['payment_day'];
+    $_POST['payment_date'] = $payment_day;
 
     if(!empty($_POST)) {
         unset($_POST['create']);
         unset($_POST['one_token']);
+        unset($_POST['payment_month']);
+        unset($_POST['payment_day']);
     }
-    var_dump($_POST);
-
-    // 支払日生成
-
     
-
-
-
     // POST値をDB処理するパラメータとして定義
     $db_param = $_POST;
     // サブスクリプション登録処理(返り値に登録した情報)
@@ -167,6 +165,8 @@ function mylist_edit(){
 
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
+    $payment_month = PAYMENT_MONTH;
+    $payment_day = PAYMENT_DAY;
     $payment_method = PAYMENT_METHOD;
 
     // POST値で付与されているidをユーザIDをとして定義
@@ -186,6 +186,8 @@ function mylist_edit_fin(){
 
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
+    $payment_month = PAYMENT_MONTH;
+    $payment_day = PAYMENT_DAY;
     $payment_method = PAYMENT_METHOD;
 
     $service_id = $_POST['service_id'];

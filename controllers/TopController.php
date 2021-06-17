@@ -1,5 +1,4 @@
 <?php
-
 function top(){
 
 // viewファイルの読み込み

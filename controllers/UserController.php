@@ -5,27 +5,31 @@ require(dirname(__FILE__).'/../models/UserModel.php');
 
 // 入力画面表示
 function enter(){
-
     // タイトル
     $page_title = PAGE_TITLE['CREATE'];
     // ビューファイル読み込み
     require(dirname(__FILE__).'/../views/user_create.php');
 }
 
-// 登録処理
 
+// 確認画面・エラー確認
 function create(){
+    
+    
+    
     $page_title = PAGE_TITLE['create'];
     $validation_msg = '';
+    
+    // ワンタイムトークン確認
+    session_start();
 
-   // ワンタイムトークン確認
-//     session_start();
-//     $token = filter_input(INPUT_POST, 'one_token');
-//    // トークンがない、もしくは一致しない場合、処理を中止
-//     if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
-//         exit('不正なリクエスト');
-//     }
-//         unset($_SESSION['one_token']);
+    // POST空トークンを取り出す
+    $token = filter_input(INPUT_POST, 'one_token');
+
+       // トークンがない、もしくは一致しない場合、処理を中止
+    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+        exit('不正なリクエスト');
+    }
 
 
     // エラーチェック
@@ -58,7 +62,8 @@ function create(){
                 $error['address'] = 'duplicate';
                 }
         }        
-        if (empty($error)){
+        // エラーが無く書き直しでも無ければ
+        if (empty($error) && empty($_POST['rewrite'])){
             require(dirname(__FILE__).'/../views/user_create_conf.php');
             // エラーが有るなら書き直す
         }else{
@@ -67,19 +72,20 @@ function create(){
     }
 }
 
-// 確認画面
+// 確認画面ー登録処理
 function create_fin(){
     
     // ※「登録する」が押されたらデータベースに接続して、データベースに挿入する
-
+    
     // ワンタイムトークン確認
-    // session_start();
-    // $token = filter_input(INPUT_POST, 'one_token');
+    session_start();
+    $token = filter_input(INPUT_POST, 'one_token');
+    
     // // トークンがない、もしくは一致しない場合、処理を中止
-    // if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
-    //     exit('不正なリクエスト');
-    // }
-    // unset($_SESSION['one_token']);
+    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+        exit('不正なリクエスト');
+    }
+    unset($_SESSION['one_token']);
 
 
 
@@ -104,7 +110,7 @@ function create_fin(){
 
 // ※削除確認画面 お問い合わせに組み込んだが、ログインしてから出ないと消せないはず
 function delete(){
-    log_check();
+    login_check();
 
     // View関係
     $page_title = PAGE_TITLE['USERDELETE'];
@@ -120,7 +126,7 @@ function delete(){
 
 // 削除処理
 function destroy() {
-    log_check();
+    login_check();
 
     // ユーザーIDを取得
     $user_id = $_SESSION['id'];

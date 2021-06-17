@@ -6,7 +6,7 @@ require(dirname(__FILE__).'/../models/MylistModel.php');
 // マイページのトップ画面　未完
 function top_index(){
 // Sessionが入ってるか確認
-    log_check();
+    login_check();
 
     // 呼び出したいユーザーIDをを指定
     $user_id = $_SESSION['id'];
@@ -29,9 +29,9 @@ function top_index(){
 }
 
 
-// サブスク登録画面
-function mylist_create(){
-    log_check();
+// サブスク入力画面
+function mylist_enter(){
+    login_check();
 
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
@@ -43,23 +43,19 @@ function mylist_create(){
     require(dirname(__FILE__).'/../views/mylist_create.php');
 }
 
-// サブスク登録確認画面
-function mylist_create_conf(){
+// サブスク登録確認画面・エラーチェック
+function mylist_create(){
     
-    log_check();
+    login_check();
 
        // ワンタイムトークン確認
     $token = filter_input(INPUT_POST, 'one_token');
 
 
-    // var_dump($_SESSION['one_token']);
-    // var_dump($token);
-    
     // トークンがない、もしくは一致しない場合、処理を中止
-    // if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
-    //     exit('不正なリクエスト');
-    // }
-    // unset($_SESSION['one_token']);
+    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+        exit('不正なリクエスト');
+    }
     
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
@@ -84,39 +80,39 @@ function mylist_create_conf(){
             }elseif ($_POST['monthly_fee'] <= 0) {
                 $error['monthly_fee'] = 'under';
         }
-        // if (empty($_POST['payment_date'])) {
-        //     $error['payment_date'] = 'blank';
-        // }
+        if (empty($_POST['payment_month']) || empty($_POST['payment_day'])) {
+            $error['payment_date'] = 'blank';
+        }
         if (empty($_POST['payment_method'])) {
             $error['payment_method'] = 'blank';
         }
-// エラーが無ければ表示
-        if (empty($error)) {
+
+        // エラーが無く書き直しでも無ければ
+        if (empty($error) && empty($_POST['rewrite'])) {
             require(dirname(__FILE__).'/../views/mylist_create_conf.php');
         }else {
-            
             require(dirname(__FILE__).'/../views/mylist_create.php');
         } 
     }
 }
 
-// サブスク登録完了画面
+// サブスク登録処理ー完了画面
 function mylist_create_fin(){
-    log_check();
+    login_check();
 
 
-    // var_dump($_SESSION['one_token']);
-
-
-    // var_dump($_POST['one_token']);
-
+    
     $token = filter_input(INPUT_POST, 'one_token');
+    var_dump($_SESSION['one_token']);
 
 
-    // if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
-    //     exit('不正なリクエスト');
-    // }
-    // unset ($_SESSION['one_token']);
+    var_dump($_POST['one_token']);
+
+    // トークンがない、もしくは一致しない場合、処理を中止
+    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+        exit('不正なリクエスト');
+    }
+    unset ($_SESSION['one_token']);
 
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
@@ -149,7 +145,7 @@ function mylist_create_fin(){
 // 登録しているサブスクの一覧表示
 function mylist(){
     // Sessionに入っているか確認
-    log_check();
+    login_check();
     // user_idを取り込む
     $user_id = $_SESSION['id'];
     // 特定のuser_idの登録データを読み込む
@@ -161,7 +157,7 @@ function mylist(){
 
 // マイリスト編集画面表示 ///idの数字を変えたら他の人のデータを編集できるのでは。
 function mylist_edit(){
-    log_check();
+    login_check();
 
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
@@ -182,7 +178,7 @@ function mylist_edit(){
 
 // マイリスト更新処理ー完了画面
 function mylist_edit_fin(){
-    log_check();
+    login_check();
 
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
@@ -235,7 +231,7 @@ function mylist_edit_fin(){
 
 // 削除画面表示
 function mylist_delete(){
-    log_check();
+    login_check();
 
     // DBから引っ張ってくる　削除　をクリックした時点でidと照合されてないといけない
 
@@ -249,7 +245,7 @@ function mylist_delete(){
 
 // 削除処理
 function mylist_delete_fin(){
-    log_check();
+    login_check();
     // DBに接続しデータを削除する
     // POSTでservice_idを定義
     $service_id = $_POST['service_id'];

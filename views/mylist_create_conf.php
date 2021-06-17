@@ -64,22 +64,25 @@
       <input type="hidden" name="payment_method" value="<?= h($_POST['payment_method'])?>">
       <input type="hidden" name="note" value="<?= h($_POST['note'])?>">
     <p>上記の情報を登録します。よろしいですか？</p>
+      <!-- ワンタイムトークン確認用 -->
       <input type="hidden" name="one_token" value="<?= $_POST['one_token'] ?>">
-
-
 
     <input type="submit" name="create" value="登録する" >
   </form>
 
-  <form action="/mypage/mylist/create" method="POST">
+  <form action="" method="POST">
       <input type="hidden" name="name" value="<?= h($_POST['name'])?>">
       <input type="hidden" name="genre" value="<?= h($_POST['genre'])?>">
       <input type="hidden" name="payment_type" value="<?= h($_POST['payment_type'])?>">
       <input type="hidden" name="monthly_fee" value="<?= h($_POST['monthly_fee'])?>">
+      <input type="hidden" name="payment_month" value="<?= h($_POST['payment_month'])?>">
       <input type="hidden" name="payment_day" value="<?= h($_POST['payment_day'])?>">
       <input type="hidden" name="payment_method" value="<?= h($_POST['payment_method'])?>">
       <input type="hidden" name="note" value="<?= h($_POST['note'])?>">
-      <input type="hidden" name="one_token" value="<?= setToken(); ?>">
+
+      <!-- ワンタイムトークン確認用 -->
+      <input type="hidden" name="one_token" value="<?= $_POST['one_token'] ?>">
+
       <input type="submit" name="rewrite" value="書き直す" >
   </form>
       

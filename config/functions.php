@@ -7,7 +7,7 @@ function setToken() {
   // 送信後の画面でそのトークンを照会
   // トークンを削除
 
-  // session_start();
+  session_start();
   $one_token = bin2hex(random_bytes(32));
   $_SESSION['one_token'] = $one_token;
 
@@ -21,7 +21,7 @@ function h($str) {
 }
 
 // ログインしている状態か確認
-function log_check() {
+function login_check() {
   session_start();
 
   // ログインをして、最後に動作をしたのは一時間以内か

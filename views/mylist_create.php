@@ -4,7 +4,7 @@
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 
 <body>
-  <form action="/mypage/mylist/create/conf" method="POST">
+  <form action="" method="POST">
     <table>
       <tr>
         <th>サービス名：</th>
@@ -95,11 +95,12 @@
           </select>日
         </td>
         <td>
-                error文
+          <?php if ($error['payment_date'] === 'blank' ): ?>
+            <p class="error">直近の支払い日の”月”と”日”を両方選択してください。</p>
+          <?php  endif; ?>
         </td>
       </tr>
       
-
 
 
 
@@ -128,11 +129,13 @@
           <textarea name="note" id="" cols="40" rows="10"></textarea>
         </td>
       </tr>
+
+    <!-- ワンタイムトークン用 -->
       <input type="hidden" name="one_token" value="<?= h(setToken()); ?>">
       <tr>
         <td></td>
         <td>
-          <input type="submit" name="submit" value="新規登録">
+          <input type="submit" name="submit" value="登録確認画面へ">
         </td>
       </tr>
     </table>

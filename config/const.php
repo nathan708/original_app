@@ -16,6 +16,7 @@ const ROUTE_LIST = array(
     'get_function'     =>'top',
     'post_function'    =>''
   ),
+
 // 新規登録
   '/create' => array(
     'controller'    =>  'UserController',
@@ -64,30 +65,19 @@ const ROUTE_LIST = array(
     'get_function'  =>  'mylist',
     'post_function' =>  ''
   ),
-// マイリスト登録
-  '/mypage/mylist/create' => array(
-    'controller'    =>  'MyListController',
-    'get_function'  =>  'mylist_create',
-    'post_function' =>  'mylist_create'
-  ),
-// マイリスト登録ー確認
-  '/mypage/mylist/create/conf' => array(
-    'controller'    =>  'MyListController',
-    'get_function'  =>  '',
-    'post_function' =>  'mylist_create_conf'
-  ),
-// マイリスト登録ー確認ー書き直し
-  '/mypage/mylist/create/rewrite' => array(
-    'controller'    =>  'MyListController',
-    'get_function'  =>  '',
-    'post_function' =>  'mylist_create'
-  ),
-// マイリスト登録確認ー完了
-  '/mypage/mylist/create/fin' => array(
-    'controller'    =>  'MyListController',
-    'get_function'  =>  '',
-    'post_function' =>  'mylist_create_fin'
-  ),
+  // マイリスト登録
+    '/mypage/mylist/create' => array(
+      'controller'    =>  'MyListController',
+      'get_function'  =>  'mylist_enter',
+      'post_function' =>  'mylist_create'
+    ),
+    // マイリスト登録確認ー完了
+      '/mypage/mylist/create/fin' => array(
+        'controller'    =>  'MyListController',
+        'get_function'  =>  '',
+        'post_function' =>  'mylist_create_fin'
+      ),
+
 // マイリスト編集
   '/mypage/mylist/edit' => array(
     'controller'    =>  'MyListController',
@@ -120,16 +110,12 @@ const ROUTE_LIST = array(
   ),
 
 
-
-
-
-
 // 指定URL以外を表示した場合のエラー
   '/error' => array(
     'controller'    => 'ErrorController',
     'get_function'  => 'error_404',
     'post_function' => '',
-),
+  ),
 
 );
 

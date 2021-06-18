@@ -4,6 +4,9 @@
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 
 <body>
+  <h2><?= $page_title ?></h2>  
+
+
   <form action="" method="POST">
     <table>
       <tr>

@@ -3,6 +3,7 @@
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
+  <h2><?= $page_title ?></h2>
   <table>
     <?php foreach($mylist as $value): ?>
       <tr>

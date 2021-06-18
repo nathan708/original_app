@@ -3,20 +3,17 @@
 // ログイン処理　及び　ユーザー情報
 function login_check_db() {
     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-    // 空ならログイン処理を行わない
-    if(!empty($_POST)) {
-        if ($_POST['address'] !== '' && $_POST['password'] !== '') {
-            $login = $dbh->prepare('SELECT * FROM users WHERE address=? AND password=?');
-            $login->execute(array (
-                $_POST['address'],
-                $_POST['password']
-            ));
-            $user = $login->fetch();
-            $dbh = null;
 
-            return $user ;
-        }    
-    }
+    // アドレスとパスワードを呼び出す
+    $login = $dbh->prepare('SELECT * FROM users WHERE address=? AND password=?');
+    $login->execute(array (
+        $_POST['address'],
+        $_POST['password']
+    ));
+    $user = $login->fetch();
+    $dbh = null;
+
+    return $user ;
 }
 
 // ユーザーの情報を呼び出す・・・これはここで良いのか？
@@ -49,20 +46,95 @@ function get_services_all($user_id) {
 }
 
 
-// 検討中
 // 特定のユーザーの当月の支払い一覧を読み込む（トップページ用）
-// function get_services_month($user_id) {
-//     // DBの接続
-//     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-//     // ログインuser_idのserviceテーブルの全てのデータを取得する
-//     $query = "SELECT * FROM services WHERE user_id={$user_id} AND ;";
-//     // SQL実行　
-//     $result = $dbh -> query($query);
-//     // DB接続を閉じる
-//     $dbh = null;
+function get_services_month($user_id) {
+    // DBの接続
+    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
 
+    // ログインuser_idのserviceテーブルの当月にあたる年額のデータを取得する
+    $query = "SELECT *FROM services WHERE user_id = {$user_id} AND payment_type = 2 AND DATE_FORMAT(payment_date, '%m') = MONTH(NOW());";
+    // SQL実行
+    $stmt = $dbh -> query($query);
+    // SQLの結果を配列の形で受け取る
+    $yearly = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+
+
+    // ログインuser_idのserviceテーブルの月額のデータを取得する
+    $query = "SELECT *FROM services WHERE user_id = {$user_id} AND payment_type = 1 ;";
+    // SQL実行
+    $stmt = $dbh -> query($query);
+    // SQLの結果を配列の形で受け取る
+    $monthly = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // 再定義機するためにそれぞれを一度展開
+    foreach ($yearly as $key => $value) {
+        $yearly[$key] = $value;
+    }
+
+    foreach ($monthly as $key => $value) {
+        $monthly[$key] = $value;
+    }
+
+    // 空の配列を定義
+    $result = array();
+    // 合わせたものを定義
+    $result = array_merge($yearly, $monthly);
+
+    // DB接続を閉じる
+    $dbh = null;
+
+    return $result;
+}
+
+
+// 当月の支払総額計算別枠はいらないのでは
+// function get_amount_month($user_id) {
+
+//     //DB接続 
+//     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+//     // 指定したユーザーIDの月額のものだけ抽出
+
+
+//     // ログインuser_idのserviceテーブルの当月にあたる年額のデータを取得する
+//     $query = "SELECT *FROM services WHERE user_id = {$user_id} AND payment_type = 2 AND DATE_FORMAT(payment_date, '%m') = MONTH(NOW());";
+//     // SQL実行
+//     $stmt = $dbh -> query($query);
+//     // SQLの結果を配列の形で受け取る
+//     $yearly = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+//     // ログインuser_idのserviceテーブルの月額のデータを取得する
+//     $query = "SELECT *FROM services WHERE user_id = {$user_id} AND payment_type = 1 ;";
+//     // SQL実行
+//     $stmt = $dbh -> query($query);
+//     // SQLの結果を配列の形で受け取る
+//     $monthly = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+//     // 再定義機するためにそれぞれを一度展開
+//     foreach ($yearly as $key => $value) {
+//         $yearly[$key] = $value;
+//     }
+
+//     foreach ($monthly as $key => $value) {
+//         $monthly[$key] = $value;
+//     }
+
+//     // 空の配列を定義
+//     $result = array();
+//     // 合わせたものを定義
+//     $result = array_merge($yearly, $monthly);
+
+
+
+//     $dbh = null;
 //     return $result;
+    
+
 // }
+
+
+
+
 
 
 // 指定されたserviceを読み込む
@@ -83,40 +155,7 @@ function get_service($service_id) {
     
         return $result;
 
-}
-
-// 検討中
-// 当月の支払総額計算
-function get_amount($user_id) {
-
-    // 取得したものをPHP上で足す・・・わからない
-//     //DB接続 
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-    // 指定したユーザーIDの月額のものだけ抽出
-    $query = "SELECT monthly_fee FROM services WHERE payment_type=1 AND user_id = {$user_id};";
-// SQL実行
-    $result = $dbh->query($query);
-
-    $dbh = null;
-    return $result;
-    
-
-    // 年額以外のものを足せば良い  -> 支払い種別が"1" のものだけ全部足せば良い。 id と　userid を指定する？
-    // 例    SELECT SUM(monthly_fee) FROM services WHERE payment_type=1 AND user_id=15
-    // DB接続
-    // $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-    // // 指定したユーザーIDの月額のものだけ足す
-    // $query = "SELECT SUM(monthly_fee) FROM services WHERE payment_type=1 AND user_id = {$user_id};";
-
-    // $result =  $dbh->query($query);
-
-    // $dbh = null;
-    // return $result;
-}
-
-
-
-
+}        
 
 
 

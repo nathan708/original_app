@@ -8,21 +8,19 @@
     <form action="" method="POST"
         <p>
             <label for="address">メールアドレス： </label>
-            <input type="email" name="address" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['address']), ENT_QUOTES);?>"><br>
-        
-            
+            <input type="email" name="address" size="35" maxlength="255" value="<?php echo h($_POST['address']);?>"><br>
 
         </p>
         <p>
             <label for="password"> パスワード　　： </label>
-            <input type="text" name="password" size="10" maxlength="20" value="<?php echo htmlspecialchars(($_POST['password']), ENT_QUOTES);?>"><br>
+            <input type="text" name="password" size="10" maxlength="20" value="<?php echo h($_POST['password']);?>"><br>
             
             
         </p>
         <p>
         <!-- エラーメッセージ -->
             <?php if ($error['login'] === 'blank'): ?>
-            <p class="error"><?= ERROR_MEASSAGE['blank']?></p>
+            <p class="error"><?= ERROR_MEASSAGE['BLANK']?></p>
             <?php endif; ?>
             <?php if ($error['login'] === 'failed'): ?>
             <p class="error"><?= ERROR_MEASSAGE['LOGIN_FAILED']?></p>

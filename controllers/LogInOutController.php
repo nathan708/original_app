@@ -15,27 +15,32 @@ function input(){
 // ログイン処理
 function login(){
     session_start();
-    $user = login_check_db();
-
-    // ログインに成功していたら
-        if($user) {
-            $_SESSION['id'] = $user['id'];
-            $_SESSION['time'] = time();
-            header("Location: /mypage");
-
-            // ログインに失敗したら
-        }else {
-            $error['login'] = 'failed';
-            require (dirname(__FILE__).'/../views/user_login.php');
-
+    if(!empty($_POST)) {
+        if($_POST['address'] !== "" && $_POST['password'] !== "") {
+        
+            // DBで確認する
+            $user = login_check_db();
+            var_dump($_POST);
+            var_dump($user);
             
+            // ログインに成功していたら
+            if($user) {
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['time'] = time();
+                header("Location: /mypage");
+        
+            // ログインに失敗したら
+            }else {
+                $error['login'] = 'failed';
+                require (dirname(__FILE__).'/../views/user_login.php');
+            }
+        }else {
+            $error['login'] = 'blank';
+            require (dirname(__FILE__).'/../views/user_login.php');
         }
-        // ログインフォームが空なら
-    if (empty($_POST)){
-        $error['login'] = 'blank';
-        require (dirname(__FILE__).'/../views/user_login.php');
     }
 }
+
 
 
 // ログアウト処理

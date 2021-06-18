@@ -130,6 +130,11 @@ const PAGE_TITLE = array(
   'CONTACT'     => 'お問い合わせ',
   'USERDELETE'     => 'ユーザー情報削除',
   'LOGOUT'     => 'ログアウト',
+  'SUBSCRIPTION_LIST' => 'サブスクリプション登録一覧',
+  'MYLIST_ENTER' => 'サブスクリプション入力画面',
+  'MYLIST_CREATE' => 'サブスクリプション入力確認画面',
+  'MYLIST_CREATE_FIN' => 'サブスクリプション登録完了画面',
+
 
   
   

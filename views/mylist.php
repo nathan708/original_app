@@ -5,7 +5,8 @@
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
-
+<h2><?= $page_title ?></h2>  
+  
   <div class="mypage_layout">
  
   <div class="main">
@@ -38,9 +39,7 @@
               <td><?= PAYMENT_METHOD[$myservice['payment_method']] ?></td>
               <td><?= $myservice['note'] ?></td>
 
-
-  <!-- フォームタグにしてPOSTで送信したら良いのではないか
-              POSTで送信したらfin に飛ぶようになっている -->
+            <!-- formタグでPost送信 -->
               <td>
                 <form action="/mypage/mylist/edit" method="POST">
                   <input type="hidden" name="service_id" value="<?= $myservice['id'] ?>">

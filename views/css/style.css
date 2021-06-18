@@ -163,10 +163,15 @@ a:hover {
 }
 .service_list {
     border-collapse: collapse;
+
 }
+
+
+
 .service_list td {
     border: 1px solid black ;
-    
+    text-align: center;
+    /* font-weight: bold; */
 }
 
 

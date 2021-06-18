@@ -14,19 +14,22 @@ function top_index(){
     $user = get_user($user_id);
 
     // その月の総額を読み込む
-    $amount = get_amount($user_id); 
+    $amount = get_services_month($user_id); 
     
     $sum = 0;
     foreach($amount as $value){
         $sum = $sum + $value['monthly_fee'];
     }
 
-    // 指定のユーザーのservice情報を呼び出す
-    $services = get_services_all($user_id);
+    // 指定のユーザーの当月にあてはまるservice情報を呼び出す
+    $services = get_services_month($user_id);
+
+
+
+    // 空の場合は未登録と表示させる
     if(empty($services)) {
         $services = null;
     }
-
 
 
     // ビュー読み込み
@@ -37,6 +40,8 @@ function top_index(){
 // サブスク入力画面
 function mylist_enter(){
     login_check();
+    $page_title = PAGE_TITLE['MYLIST_ENTER'];
+
 
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
@@ -50,7 +55,6 @@ function mylist_enter(){
 
 // サブスク登録確認画面・エラーチェック
 function mylist_create(){
-    
     login_check();
 
        // ワンタイムトークン確認
@@ -61,6 +65,9 @@ function mylist_create(){
     if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
         exit('不正なリクエスト');
     }
+
+    $page_title = PAGE_TITLE['MYLIST_CREATE'];
+
     
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
@@ -112,6 +119,9 @@ function mylist_create_fin(){
     }
     unset ($_SESSION['one_token']);
 
+
+    $page_title = PAGE_TITLE['MYLIST_CREATE_FIN'];
+
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
     $payment_month = PAYMENT_MONTH;
@@ -142,6 +152,7 @@ function mylist_create_fin(){
 
 // 登録しているサブスクの一覧表示
 function mylist(){
+    $page_title = PAGE_TITLE['SUBSCRIPTION_LIST'];
     // Sessionに入っているか確認
     login_check();
     // user_idを取り込む

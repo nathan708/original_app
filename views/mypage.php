@@ -4,7 +4,7 @@
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
-  <h2><?= htmlspecialchars($user['name'], ENT_QUOTES); ?>さんのサブスク</h2>         
+  <h2><?= h($user['name']); ?>さんのサブスク</h2>  
   <div class="mypage_layout">
     <div class="aside">
       <h3>割合</h3>
@@ -26,8 +26,9 @@
       <tr>
         <th>サービス名</th>
         <th>ジャンル</th>
+        <th>支払い種別</th>
         <th>金額</th>
-        <th>支払い日</th>
+        <th>支払い（登録）月日</th>
         <th>支払い方法</th>
         <th>備考</th>
       </tr>
@@ -36,6 +37,7 @@
         <tr>
           <td><?= $service['name'] ?></td>
           <td><?= GENRE[$service['genre']] ?></td>
+          <td><?= PAYMENT_TYPE[$service['payment_type']] ?></td>
           <td><?= $service['monthly_fee'] ?>円</td>
           <td>
               <?= substr($service['payment_date'], 5, 2) ?>月

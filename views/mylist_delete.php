@@ -2,7 +2,7 @@
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
- 
+  <h2><?= $page_title ?></h2>
   <div class="main">
   <form action="/mypage/mylist/delete/fin" method="POST">
     <!-- ※データベースから引っ張りたい -->
@@ -11,34 +11,34 @@
     <table>
     <?php foreach($service as $value): ?>
       <tr>
-        <th>サービス名</th>
+        <th>サービス名：</th>
         <td><?= h($value['name'])?></td>
       </tr>
       <tr>
-        <th>ジャンル</th>
+        <th>ジャンル：</th>
         <td><?= h(GENRE[$value['genre']])?></td>
       </tr>
-        <th>支払い種別</th>
+        <th>支払い種別：</th>
           <td><?= h(PAYMENT_TYPE[$value['payment_type']])?></td>
       </tr>
       <tr>
-        <th>金額</th>
+        <th>金額：</th>
         <td><?= h($value['monthly_fee'])?>円</td>
       </tr>
       <tr>
       <tr>
-        <th>支払い日</th>
+        <th>支払い（登録）日：</th>
         <td>
           <?= substr($value['payment_date'], 5, 2) ?>月
           <?= substr($value['payment_date'], 8, 2) ?>日
         </td>
       </tr>
       <tr>
-        <th>支払い方法</th>
+        <th>支払い方法：</th>
         <td><?= h(PAYMENT_METHOD[$value['payment_method']])?></td>
       </tr>
       <tr>
-        <th>備考</th>
+        <th>備考：</th>
         <td><?= h($value['note'])?></td>
       </tr>
     <?php endforeach; ?>

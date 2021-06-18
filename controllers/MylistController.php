@@ -40,6 +40,7 @@ function top_index(){
 // サブスク入力画面
 function mylist_enter(){
     login_check();
+    // トップページ定義
     $page_title = PAGE_TITLE['MYLIST_ENTER'];
 
 
@@ -152,6 +153,7 @@ function mylist_create_fin(){
 
 // 登録しているサブスクの一覧表示
 function mylist(){
+    // トップページ定義
     $page_title = PAGE_TITLE['SUBSCRIPTION_LIST'];
     // Sessionに入っているか確認
     login_check();
@@ -168,6 +170,10 @@ function mylist(){
 function mylist_edit(){
     login_check();
 
+    // トップページ定義
+    $page_title = PAGE_TITLE['MYLIST_EDIT'];
+
+    // セレクタ定義
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
     $payment_month = PAYMENT_MONTH;
@@ -205,6 +211,8 @@ function mylist_edit(){
 // マイリスト更新処理ー完了画面
 function mylist_edit_fin(){
     login_check();
+
+
 
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
@@ -264,6 +272,9 @@ function mylist_edit_fin(){
 // 削除画面表示
 function mylist_delete(){
     login_check();
+
+    // トップページ定義
+    $page_title = PAGE_TITLE['MYLIST_DELETE'];
 
     // DBから引っ張ってくる削除をクリックした時点でidと照合されてないといけない
 

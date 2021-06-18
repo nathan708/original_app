@@ -134,6 +134,9 @@ const PAGE_TITLE = array(
   'MYLIST_ENTER' => 'サブスクリプション入力画面',
   'MYLIST_CREATE' => 'サブスクリプション入力確認画面',
   'MYLIST_CREATE_FIN' => 'サブスクリプション登録完了画面',
+  'MYLIST_EDIT' => 'マイサブスクリプション編集画面',
+  'MYLIST_DELETE' => 'マイサブスクリプション削除画面',
+
 
 
   

@@ -88,55 +88,6 @@ function get_services_month($user_id) {
 }
 
 
-// 当月の支払総額計算別枠はいらないのでは
-// function get_amount_month($user_id) {
-
-//     //DB接続 
-//     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-//     // 指定したユーザーIDの月額のものだけ抽出
-
-
-//     // ログインuser_idのserviceテーブルの当月にあたる年額のデータを取得する
-//     $query = "SELECT *FROM services WHERE user_id = {$user_id} AND payment_type = 2 AND DATE_FORMAT(payment_date, '%m') = MONTH(NOW());";
-//     // SQL実行
-//     $stmt = $dbh -> query($query);
-//     // SQLの結果を配列の形で受け取る
-//     $yearly = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-//     // ログインuser_idのserviceテーブルの月額のデータを取得する
-//     $query = "SELECT *FROM services WHERE user_id = {$user_id} AND payment_type = 1 ;";
-//     // SQL実行
-//     $stmt = $dbh -> query($query);
-//     // SQLの結果を配列の形で受け取る
-//     $monthly = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-//     // 再定義機するためにそれぞれを一度展開
-//     foreach ($yearly as $key => $value) {
-//         $yearly[$key] = $value;
-//     }
-
-//     foreach ($monthly as $key => $value) {
-//         $monthly[$key] = $value;
-//     }
-
-//     // 空の配列を定義
-//     $result = array();
-//     // 合わせたものを定義
-//     $result = array_merge($yearly, $monthly);
-
-
-
-//     $dbh = null;
-//     return $result;
-    
-
-// }
-
-
-
-
-
-
 // 指定されたserviceを読み込む
 function get_service($service_id) {
         // DBの接続

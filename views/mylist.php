@@ -39,26 +39,18 @@
               <td><?= $myservice['note'] ?></td>
 
 
-<!-- フォームタグにしてPOSTで送信したら良いのではないか
-            POSTで送信したらfin に飛ぶようになっている -->
-            <td>
-              <form action="/mypage/mylist/edit" method="POST">
-                <input type="hidden" name="service_id" value="<?= $myservice['id'] ?>">
-                <input type="submit" name="edit" value="編集">
-              </form>
-              <form action="/mypage/mylist/delete" method="POST">
-                <input type="hidden" name="service_id" value="<?= $myservice['id'] ?>">
-                <input type="submit" name="delete" value="削除">
-              </form>
-            </td>
-
-            <!-- ここがid で遷移するから行けない
+  <!-- フォームタグにしてPOSTで送信したら良いのではないか
+              POSTで送信したらfin に飛ぶようになっている -->
               <td>
-                <a href="/mypage/mylist/edit?id=<?= $myservice['id'] ?>">編集</a>
-                <p>／</p>
-                <a href="/mypage/mylist/delete?id=<?= $myservice['id'] ?>">削除</a>
-              </td> -->
-
+                <form action="/mypage/mylist/edit" method="POST">
+                  <input type="hidden" name="service_id" value="<?= $myservice['id'] ?>">
+                  <input type="submit" name="edit" value="編集">
+                </form>
+                <form action="/mypage/mylist/delete" method="POST">
+                  <input type="hidden" name="service_id" value="<?= $myservice['id'] ?>">
+                  <input type="submit" name="delete" value="削除">
+                </form>
+              </td>
             </tr>
           <?php endforeach; ?>
         <?php else: ?>

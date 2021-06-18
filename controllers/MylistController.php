@@ -23,6 +23,11 @@ function top_index(){
 
     // 指定のユーザーのservice情報を呼び出す
     $services = get_services_all($user_id);
+    if(empty($services)) {
+        $services = null;
+    }
+
+
 
     // ビュー読み込み
     require(dirname(__FILE__).'/../views/mypage.php');
@@ -87,7 +92,7 @@ function mylist_create(){
             $error['payment_method'] = 'blank';
         }
 
-        // エラーが無く書き直しでも無ければ
+        // エラーが無く、書き直しでも無ければ
         if (empty($error) && empty($_POST['rewrite'])) {
             require(dirname(__FILE__).'/../views/mylist_create_conf.php');
         }else {
@@ -99,14 +104,7 @@ function mylist_create(){
 // サブスク登録処理ー完了画面
 function mylist_create_fin(){
     login_check();
-
-
-    
     $token = filter_input(INPUT_POST, 'one_token');
-    var_dump($_SESSION['one_token']);
-
-
-    var_dump($_POST['one_token']);
 
     // トークンがない、もしくは一致しない場合、処理を中止
     if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
@@ -169,7 +167,24 @@ function mylist_edit(){
     $service_id = $_POST['service_id'];
 
     // サービスIDを元に更新対象のデータ情報の取得
-    $service = get_service($service_id);
+    $services = get_service($service_id);
+
+    // $servicesをforeachで展開しデータを入れ直す
+    // 空の配列を定義
+    $service = array();
+    // foreachで展開し、配列に定義する
+    foreach($services as $keys => $values) {
+        foreach($values as $key => $value) {
+            $service[$key] = $value ;
+        }
+    }
+
+        // $payment_dateのデータを取得し、配列に再定義。
+        $service['payment_month'] =  substr($service['payment_date'], 5, 2);
+        $service['payment_day'] =  substr($service['payment_date'], 8, 2);
+
+        // 改めて$servicesを定義する
+        $services = array($service);
 
     // DBから引っ張ってくる。”編集”をクリックした時点でidとリンクしていないといけないのでは
     require(dirname(__FILE__).'/../views/mylist_edit.php');
@@ -203,7 +218,7 @@ function mylist_edit_fin(){
         } elseif ($_POST['monthly_fee'] <= 0) {
             $error['monthly_fee'] = 'wrong';
         }
-        if (empty($_POST['payment_date'])) {
+        if (empty($_POST['payment_month']) || empty($_POST['payment_day'])) {
             $error['payment_date'] = 'blank';
         }
         if ($_POST['payment_method'] <= 0) {
@@ -213,12 +228,18 @@ function mylist_edit_fin(){
         // エラーが無ければDBに送って　次に進む
         if (!empty($error)){
 
-            $service = get_service($service_id);
             require(dirname(__FILE__).'/../views/mylist_edit.php');
 
         }else {
+
+            // $_POST の月日と9999年をくっつけて改めて作る
+            $payment_day = "9999" . "-" . $_POST['payment_month'] . "-" . $_POST['payment_day'];
+            $_POST['payment_date'] = $payment_day;
+
             unset($_POST['submit']);
             unset($_POST['service_id']);
+            unset($_POST['payment_month']);
+            unset($_POST['payment_day']);
             $db_param = $_POST;
             $service = services_update($db_param, $service_id);
 
@@ -233,7 +254,7 @@ function mylist_edit_fin(){
 function mylist_delete(){
     login_check();
 
-    // DBから引っ張ってくる　削除　をクリックした時点でidと照合されてないといけない
+    // DBから引っ張ってくる削除をクリックした時点でidと照合されてないといけない
 
      // POST値のidをユーザIDとして定義
     $service_id = $_POST['service_id'];

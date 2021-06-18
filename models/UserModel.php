@@ -52,7 +52,7 @@ function address_duplicate() {
 }
 
 // ログイン処理
-function login_check() {
+function login_check_db() {
     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
     // 空ならログイン処理を行わない
     if(!empty($_POST)) {

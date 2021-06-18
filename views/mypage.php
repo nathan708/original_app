@@ -47,7 +47,7 @@
       <?php endforeach; ?>
     <?php else: ?>
       <tr>
-      <td colspan="4"></td>
+        <td colspan="4">何も登録されていません</td>
       </tr>
     <?php endif; ?>
     

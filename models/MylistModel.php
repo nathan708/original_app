@@ -1,7 +1,7 @@
 <?php 
 
 // ログイン処理　及び　ユーザー情報
-function login_check() {
+function login_check_db() {
     $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
     // 空ならログイン処理を行わない
     if(!empty($_POST)) {
@@ -38,7 +38,10 @@ function get_services_all($user_id) {
     // ログインuser_idのserviceテーブルの全てのデータを取得する
     $query = "SELECT * FROM services WHERE user_id={$user_id};";
     // SQL実行　
-    $result = $dbh -> query($query);
+    $stmt = $dbh->query($query);
+    // SQLの結果を配列の形で受け取る
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     // DB接続を閉じる
     $dbh = null;
 
@@ -70,12 +73,16 @@ function get_service($service_id) {
         // 登録したユーザー情報を取得する
         $query = "SELECT * FROM services WHERE id = {$service_id};";
         // SQL実行
-        $result = $dbh->query($query);
+        $stmt = $dbh->query($query);
+        // SQLの結果を配列の形で受け取る
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     
         // 接続を閉じる
         $dbh = null;
     
         return $result;
+
 }
 
 // 検討中

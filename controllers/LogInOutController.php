@@ -15,7 +15,7 @@ function input(){
 // ログイン処理
 function login(){
     session_start();
-    $user = login_check();
+    $user = login_check_db();
 
     // ログインに成功していたら
         if($user) {

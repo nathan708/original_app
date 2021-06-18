@@ -14,24 +14,24 @@
                 <input type="email" name="address" size="35" maxlength="255" value="<?php echo h($_POST['address']);?>"><br>
                 
                 <?php if ($error['address'] === 'duplicate'): ?>
-                    <p class="error"><?= ERROR_MEASSAGE['duplicate']?></p>
+                    <p class="error"><?= ERROR_MEASSAGE['DUPLICATE']?></p>
                 <?php endif; ?>
             </p>
             <p>
                 <label for="password"> パスワード　　： </label>
                 <input type="text" name="password" size="10" maxlength="20" value="<?php echo h($_POST['password']);?>"><br>
                 <?php if ($error['password'] === 'length'): ?>
-                    <p class="error"><?= ERROR_MEASSAGE['length'] ?></p>
+                    <p class="error"><?= ERROR_MEASSAGE['LENGTH'] ?></p>
                 <?php endif; ?>
             </p>
             <p>
                 <label for="password_conf"> パスワード確認： </label>
                 <input type="text" name="password_conf" size="10" maxlength="20" value="<?php echo h($_POST['password_conf']);?>"><br>
                 <?php if ($error['password_conf'] === 'length'): ?>
-                    <p class="error"><?= ERROR_MEASSAGE['length'] ?></p>
+                    <p class="error"><?= ERROR_MEASSAGE['LENGTH'] ?></p>
                 <?php endif; ?>
                 <?php if ($error['password_conf'] === 'wrong'): ?>
-                    <p class="error"><?= ERROR_MEASSAGE['wrong'] ?></p>
+                    <p class="error"><?= ERROR_MEASSAGE['WRONG'] ?></p>
                 <?php endif; ?>
                 
             </p>

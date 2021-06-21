@@ -113,15 +113,10 @@ function create_fin(){
 
 
 // ユーザー情報変更画面
-    //Sessionからユーザーデータを呼び出す
-    // 新しいアドレスなどを入力してもらう
-    // 確認画面を出す
-    // 完了処理
-
 function change(){
     login_check();
 
-//     // View関係
+    // View関係
     $page_title = PAGE_TITLE['USER_CHANGE'];
     
     // データベースから引っ張って画面に写したい
@@ -211,6 +206,67 @@ function change_fin() {
 }
 
 
+// パスワード変更入力画面
+function change_password() {
+    login_check();
+    // ページタイトル定義
+    $page_title = PAGE_TITLE['USER_CHANGE_FIN'];
+    // ビューファイル読み込み
+    require(dirname(__FILE__).'/../views/user_pass_change.php');
+}
+
+// パスワード変更処理ー完了画面
+function pass_change_fin() {
+    
+    login_check();
+
+    $page_title = PAGE_TITLE['PASSWORD_CHANGE_FIN'];
+
+    // バリデーション
+    if (!empty($_POST)){
+        // 空欄確認
+        if (empty($_POST['password'])||
+            empty($_POST['password_conf'])
+            ) {
+                $error['blank'] = 'blank';
+                $validation_msg = ERROR_MEASSAGE['BLANK'];
+            }
+        // パスワード最低文字数
+        if (strlen($_POST['password']) < 4 ){
+            $error['password'] = 'length';
+        }
+        
+        // パスワードが一致しているか
+        if ($_POST['password'] !== $_POST['password_conf']) {
+            $error['password_conf'] = 'wrong';
+        }
+        // パスワード確認最低文字数
+        if (strlen($_POST['password_conf']) < 4 ){
+            $error['password_conf'] = 'length';
+        }
+
+        if(empty($error)) {
+        // idをSessionから定義
+        $user_id = $_SESSION['id'];
+        
+        // POSTからいらないものを外す
+            unset($_POST['password_conf']);
+            unset($_POST['user_change_conf']);
+        // POST値をDB処理するパラメータとして定義
+        $db_param = $_POST;
+        // ユーザー登録処理（返り値に登録したユーザー情報）
+        $user = users_update($db_param, $user_id);
+
+        // ビューファイル読み込み
+        require(dirname(__FILE__).'/../views/user_pass_change_fin.php');
+        } else {
+            require(dirname(__FILE__).'/../views/user_pass_change.php');
+        }
+    }else {
+        require(dirname(__FILE__).'/../views/user_pass_change.php');
+
+    }
+}
 
 
 

@@ -62,8 +62,8 @@ const ROUTE_LIST = array(
 // パスワード変更処理
   '/contact/change/password' => array(
     'controller'    =>  'UserController',
-    'get_function'  =>  'change',
-    'post_function' =>  'send'
+    'get_function'  =>  'change_password',
+    'post_function' =>  'pass_change_fin'
   ),
 // ユーザー情報削除
   '/delete' => array(
@@ -151,6 +151,8 @@ const PAGE_TITLE = array(
   'USER_CHANGE'     => 'ユーザー情報変更',
   'USER_CHANGE_CONF'     => 'ユーザー情報変更確認画面',
   'USER_CHANGE_FIN'     => 'ユーザー情報変更完了画面',
+  'PASSWORD_CHANGE'     => 'パスワード変更画面',
+  'PASSWORD_CHANGE_FIN'     => 'パスワード変更完了画面',
   'USER_DELETE'     => 'ユーザー情報削除確認画面',
   'USER_DELETE'     => 'ユーザー情報削除完了画面',
   'LOGOUT'     => 'ログアウト',

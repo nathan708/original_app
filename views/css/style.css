@@ -164,6 +164,23 @@ a:hover {
 
 
 
+/* マイリスト */
+.mylist_layout .main {
+    width: 90%;
+    height: 100vh;
+    margin: 0 auto;
+}
+.mylist_layout table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+
+
+
 /* 表の表示設定 */
 .service_list_index {
     border-collapse: collapse;
@@ -180,6 +197,8 @@ a:hover {
 .input  th {
     text-align: right;
 }
+
+
 
 
 /* フッター */

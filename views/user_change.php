@@ -42,7 +42,6 @@
     <p>よろしければ、確認を押してください</p>
     <input type="submit" name="user_change_conf" value="確認">
   </form>
-
       
   </div>
 </div>

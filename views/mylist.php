@@ -5,11 +5,9 @@
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
-<h2><?= $page_title ?></h2>  
-  
-  <div class="mypage_layout">
- 
-  <div class="main">
+  <div class="mylist_layout">
+    <div class="main">
+    <h2><?= $page_title ?></h2>  
     <!-- ※データベースから引っ張りたい -->
     <!-- コレ自体もforeachで一括でできるはず -->
     <table class="service_list_index">

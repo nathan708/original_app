@@ -12,11 +12,11 @@
     <table class="input">
       <tr>
         <th>ユーザー名：</th>
-        <td><?= $_POST['name'] ?></td>
+        <td><?= h($_POST['name']) ?></td>
       </tr>
       <tr>
         <th>メールアドレス：</th>
-        <td><?= $_POST['address'] ?></td>
+        <td><?= h($_POST['address']) ?></td>
       </tr>
     </table>
       <input type="hidden" name="user_id" value="<?= h($_SESSION['id'])?>">

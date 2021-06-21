@@ -4,7 +4,7 @@
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
   <h2><?= $page_title ?></h2>
-  <table>
+  <table class="input">
     <?php foreach($mylist as $value): ?>
       <tr>
         <th>サービス名：</th>

@@ -47,6 +47,24 @@ const ROUTE_LIST = array(
     'get_function'  =>  'input',
     'post_function' =>  'send'
   ),
+// 登録情報変更
+  '/contact/change' => array(
+    'controller'    =>  'UserController',
+    'get_function'  =>  'change',
+    'post_function' =>  'change_conf'
+  ),
+// 登録情報完了処理
+  '/contact/change/fin' => array(
+    'controller'    =>  'UserController',
+    'get_function'  =>  'change',
+    'post_function' =>  'change_fin'
+  ),
+// パスワード変更処理
+  '/contact/change/password' => array(
+    'controller'    =>  'UserController',
+    'get_function'  =>  'change',
+    'post_function' =>  'send'
+  ),
 // ユーザー情報削除
   '/delete' => array(
     'controller'    =>  'UserController',
@@ -125,10 +143,16 @@ const ROUTE_LIST = array(
 const PAGE_TITLE = array(
   'TOP'       => 'サブスクリプション管理',
   'CREATE'    => 'ユーザー新規登録',
-  'LOGIN'    => 'ログイン',
+  'CREATE_CONF'    => 'ユーザー登録確認画面',
+  'CREATE_FIN'    => 'ユーザー登録完了画面',
+  'LOGIN'    => 'ログインフォーム',
   'PASSFORM'    => 'パスワード再設定',
   'CONTACT'     => 'お問い合わせ',
-  'USERDELETE'     => 'ユーザー情報削除',
+  'USER_CHANGE'     => 'ユーザー情報変更',
+  'USER_CHANGE_CONF'     => 'ユーザー情報変更確認画面',
+  'USER_CHANGE_FIN'     => 'ユーザー情報変更完了画面',
+  'USER_DELETE'     => 'ユーザー情報削除確認画面',
+  'USER_DELETE'     => 'ユーザー情報削除完了画面',
   'LOGOUT'     => 'ログアウト',
   'SUBSCRIPTION_LIST' => 'サブスクリプション登録一覧',
   'MYLIST_ENTER' => 'サブスクリプション入力画面',

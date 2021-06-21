@@ -4,11 +4,11 @@
 // ユーザー登録処理
 function user_insert($param){
     // DBの接続
-    // try {
+    try {
         $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-    // } catch(PDOException $e) {
-    //     print('DB接続エラー:' . $e->getMessage());
-    // }
+    } catch(PDOException $e) {
+        print('DB接続エラー:' . $e->getMessage());
+    }
     // columnes配列の定義
     $columns = array();
     // $values配列の定義
@@ -40,10 +40,16 @@ function user_insert($param){
     return $result;
 }
 
-// アカウントの重複をチェック・・・機能していない
+// アカウントの重複をチェック
 function address_duplicate() {
+    // DB接続
+    try {
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
 
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+
     $user = $dbh->prepare('SELECT COUNT(*) AS cnt FROM users WHERE address=?');
     $user->execute(array($_POST['address']));
     $record = $user->fetch();
@@ -53,39 +59,76 @@ function address_duplicate() {
 
 // ログイン処理
 function login_check_db() {
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-    // 空ならログイン処理を行わない
-    if(!empty($_POST)) {
-        if ($_POST['address'] !== '' && $_POST['password'] !== '') {
-            $login = $dbh->prepare('SELECT * FROM users WHERE address=? AND password=?');
-            $login->execute(array (
-                $_POST['address'],
-                $_POST['password']
-            ));
-            $user = $login->fetch();
-            return $user ;
-        }    
+    // DB接続
+    try {
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
     }
+
+    $login = $dbh->prepare('SELECT * FROM users WHERE address=? AND password=?');
+    $login->execute(array (
+        $_POST['address'],
+        $_POST['password']
+    ));
+    $user = $login->fetch();
+    return $user ;
 }
 
-// ユーザーの情報を呼び出す・・・これはここで良いのか？
+// ユーザーの情報を呼び出す
 function get_user($user_id) {
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // DB接続
+    try {
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
     $query = "SELECT * FROM users WHERE id = {$user_id}";
-
-    $user = $dbh->query($query); 
+    // SQL実行
+    $stmt = $dbh->query($query); 
+    // SQLの結果を配列の形で受け取る
+    $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $dbh = null;
     return $user;
     
 }
 
+// ユーザー情報更新処理
+function users_update($param, $update_id) {
+    // DB接続
+    try {
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
+    // $col_values配列の定義
+    $col_values = array();
+    // DB処理を行うためのパラメータの整形
+    foreach($param as $key => $value) {
+        // $columns配列に$key,$valueを使用した文字列を追加する
+        $col_values[] = $key . " = '" . $value . "'";
+    }
+        // $col_values配列をカンマ区切りで文字列に整形
+        $col_values = implode(', ', $col_values);
+        // serviceテーブルへの更新処理用のSQL
+        $query = "UPDATE users SET {$col_values} WHERE id = {$update_id};";
+        // SQL実行
+        $result = $dbh->query($query);
+        // 接続を閉じる
+        $dbh = null;
+        return $result;
+}
 
 
 // ユーザー削除処理
 function all_delete($delete_id) {
-    // DBの接続
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // DB接続
+    try {
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
     // serviceテーブルのデータ削除処理用のSQL
     $query = "DELETE FROM services WHERE user_id = {$delete_id}";
     // SQL実行

@@ -8,7 +8,7 @@
   <h2><?= $page_title ?></h2>
   <div class="main">
   <form action="/mypage/mylist/create/fin" method="POST">
-    <table>
+    <table class="input"le>
       <tr>
         <th>サービス名：　</th>
         <td>

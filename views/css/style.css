@@ -161,19 +161,25 @@ a:hover {
     margin: 0 20px;
 
 }
-.service_list {
+
+
+
+/* 表の表示設定 */
+.service_list_index {
     border-collapse: collapse;
 
 }
 
-
-
-.service_list td {
+.service_list_index td {
     border: 1px solid black ;
     text-align: center;
     /* font-weight: bold; */
 }
 
+/* 入力関係 */
+.input  th {
+    text-align: right;
+}
 
 
 /* フッター */

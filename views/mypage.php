@@ -22,7 +22,7 @@
     <h3><?php echo date('n') . "月"?>の支払い一覧</h3>
     <!-- ※データベースから引っ張りたい -->
     <!-- コレ自体もforeachで一括でできるはず -->
-    <table class="service_list">
+    <table class="service_list_index">
       <tr>
         <th>サービス名</th>
         <th>ジャンル</th>

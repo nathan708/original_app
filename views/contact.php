@@ -10,7 +10,7 @@
 
   <form action="" method="POST">
     <p>
-        <label for="">お名前　　　　： </label>
+        <label for="">お名前： </label>
         <input type="text" name="name" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['email']), ENT_QUOTES);?>"><br>
     
         <?php if ($error['name'] === 'blank'): ?>
@@ -36,6 +36,9 @@
     <input type="submit" name="send" value="送信">
   </form>
 
+
+<h3><a href="/contact/change">ユーザー登録情報を変更されたい方はこちら</a></h3>
+<h3><a href="/contact/change/password">パスワードを変更されたい方はこちら</a></h3>
 <h3><a href="/delete">退会を希望される方はこちら</a></h3>
 
 

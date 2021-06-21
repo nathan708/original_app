@@ -2,10 +2,15 @@
 
 // ログイン処理　及び　ユーザー情報
 function login_check_db() {
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-
-    // アドレスとパスワードを呼び出す
+    // DB接続
+    try {
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
+    // アドレスとパスワードが一致しているかを確認する
     $login = $dbh->prepare('SELECT * FROM users WHERE address=? AND password=?');
+    // executeメソッドで入れる
     $login->execute(array (
         $_POST['address'],
         $_POST['password']
@@ -18,7 +23,12 @@ function login_check_db() {
 
 // ユーザーの情報を呼び出す・・・これはここで良いのか？
 function get_user($user_id) {
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // DB接続
+    try {
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
 
     $users = $dbh->prepare('SELECT * FROM users WHERE id=?');
     $users->execute(array($_SESSION['id']));
@@ -30,8 +40,12 @@ function get_user($user_id) {
 
 // 特定のユーザーのservice一覧を読み込む
 function get_services_all($user_id) {
-    // DBの接続
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // DB接続
+    try {
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
     // ログインuser_idのserviceテーブルの全てのデータを取得する
     $query = "SELECT * FROM services WHERE user_id={$user_id};";
     // SQL実行　
@@ -48,8 +62,12 @@ function get_services_all($user_id) {
 
 // 特定のユーザーの当月の支払い一覧を読み込む（トップページ用）
 function get_services_month($user_id) {
-    // DBの接続
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    // DB接続
+    try {
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
 
     // ログインuser_idのserviceテーブルの当月にあたる年額のデータを取得する
     $query = "SELECT *FROM services WHERE user_id = {$user_id} AND payment_type = 2 AND DATE_FORMAT(payment_date, '%m') = MONTH(NOW());";
@@ -90,21 +108,25 @@ function get_services_month($user_id) {
 
 // 指定されたserviceを読み込む
 function get_service($service_id) {
-        // DBの接続
+    // DB接続
+    try {
         $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
     
-        // 登録したユーザー情報を取得する
-        $query = "SELECT * FROM services WHERE id = {$service_id};";
-        // SQL実行
-        $stmt = $dbh->query($query);
-        // SQLの結果を配列の形で受け取る
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // 登録したユーザー情報を取得する
+    $query = "SELECT * FROM services WHERE id = {$service_id};";
+    // SQL実行
+    $stmt = $dbh->query($query);
+    // SQLの結果を配列の形で受け取る
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    
-        // 接続を閉じる
-        $dbh = null;
-    
-        return $result;
+
+    // 接続を閉じる
+    $dbh = null;
+
+    return $result;
 
 }        
 
@@ -112,8 +134,12 @@ function get_service($service_id) {
 
 // マイリスト登録処理
 function mylist_insert($param){
-    // DBの接続
+    // DB接続
+    try {
         $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
     // columnes配列の定義
     $columns = array();
     // $values配列の定義
@@ -150,7 +176,11 @@ function mylist_insert($param){
 // mylist更新処理
 function services_update($param, $update_id) {
     // DB接続
-    $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    try {
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
     // $col_values配列の定義
     $col_values = array();
     // DB処理を行うためのパラメータの整形
@@ -172,15 +202,19 @@ function services_update($param, $update_id) {
 
 // サービス削除処理
 function service_delete($delete_id){
-        // DBの接続
+    // DB接続
+    try {
         $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
-        // serviceテーブルへの削除処理用のSQL
-        $query  = "DELETE FROM services WHERE id = {$delete_id}";
-        // SQL実行
-        $result = $dbh->query($query);
-        // 接続を閉じる
-        $dbh = null;
-        
-        return $result;
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
+    // serviceテーブルへの削除処理用のSQL
+    $query  = "DELETE FROM services WHERE id = {$delete_id}";
+    // SQL実行
+    $result = $dbh->query($query);
+    // 接続を閉じる
+    $dbh = null;
+    
+    return $result;
 
 }

@@ -8,7 +8,7 @@
 
 
   <form action="" method="POST">
-    <table>
+    <table class="input">
       <tr>
         <th>サービス名：</th>
         <td>

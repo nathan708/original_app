@@ -161,7 +161,10 @@ function mylist(){
     $user_id = $_SESSION['id'];
     // 特定のuser_idの登録データを読み込む
     $myservices = get_services_all($user_id);
-
+    // 空の場合は未登録と表示させる
+    if(empty($myservices)) {
+        $myservices = null;
+    }
     // ビューファイル読み込み
     require(dirname(__FILE__).'/../views/mylist.php');
 }

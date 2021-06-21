@@ -12,7 +12,7 @@
   <div class="main">
     <!-- ※データベースから引っ張りたい -->
     <!-- コレ自体もforeachで一括でできるはず -->
-    <table class="service_list">
+    <table class="service_list_index">
       <tr>
         <th>サービス名</th>
         <th>ジャンル</th>
@@ -54,7 +54,7 @@
           <?php endforeach; ?>
         <?php else: ?>
             <tr>
-              <td colspan="4"></td>
+              <td colspan="4">何も登録されていません</td>
             </tr>
         <?php endif; ?>
       <tr>

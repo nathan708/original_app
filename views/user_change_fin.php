@@ -1,10 +1,9 @@
+
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
-
-    
 <body>
-  <h2> <?= $page_title ?></h2>
+  <h2><?= $page_title ?></h2>
   <table class="input">
     <?php foreach($user as $value): ?>
       <tr>
@@ -17,9 +16,8 @@
       </tr>
     <?php endforeach; ?>
   </table>
-
-  <h2>上記のデータの削除が完了しました。</h2>
-  <h2><a href="/"> トップページへ</a></h2>
+  <h2>上記のデータの登録が完了しました。</h2>
+  <h2><a href="/mypage"> マイページへ</a></h2>
 
 </body>
 <?php require_once(dirname(__FILE__).'/footer.php'); ?>

@@ -9,14 +9,14 @@
     <!-- ※ユーザー情報をデータベースから引っ張りたい -->
     <!-- コレ自体もforeachで一括でできるはず -->
   <h2><?=$page_title?></h2>
-    <table>
+    <table class="input">
       <?php foreach($user as $value): ?>
       <tr>
-        <th>ユーザー名</th>
+        <th>ユーザー名：</th>
         <td><?= $value['name'] ?></td>
       </tr>
       <tr>
-        <th>メールアドレス</th>
+        <th>メールアドレス：</th>
         <td><?= $value['address'] ?></td>
       </tr>
       <?php endforeach; ?>

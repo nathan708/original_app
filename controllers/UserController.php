@@ -15,9 +15,7 @@ function enter(){
 // 確認画面・エラー確認
 function create(){
     
-    
-    
-    $page_title = PAGE_TITLE['create'];
+    $page_title = PAGE_TITLE['CREATE'];
     $validation_msg = '';
     
     // ワンタイムトークン確認
@@ -32,24 +30,27 @@ function create(){
     }
 
 
-    // エラーチェック
+    // バリデーション
     if (!empty($_POST)){
+        // 空欄確認
         if (empty($_POST['name']) ||
             empty($_POST['address'])||
             empty($_POST['password'])||
             empty($_POST['password_conf'])
             ) {
                 $error['blank'] = 'blank';
-                $validation_msg = ERROR_MEASSAGE['blank'];
+                $validation_msg = ERROR_MEASSAGE['BLANK'];
             }
-        
+        // パスワード最低文字数
         if (strlen($_POST['password']) < 4 ){
             $error['password'] = 'length';
         }
-            
+        
+        // パスワードが一致しているか
         if ($_POST['password'] !== $_POST['password_conf']) {
             $error['password_conf'] = 'wrong';
         }
+        // パスワード確認最低文字数
         if (strlen($_POST['password_conf']) < 4 ){
             $error['password_conf'] = 'length';
         }
@@ -61,9 +62,12 @@ function create(){
             if ($record['cnt'] > 0 ) {
                 $error['address'] = 'duplicate';
                 }
-        }        
+        }
         // エラーが無く書き直しでも無ければ
         if (empty($error) && empty($_POST['rewrite'])){
+            // トップページタイトル再定義
+            $page_title = PAGE_TITLE['CREATE_CONF'];
+            // ビューファイル読み込み
             require(dirname(__FILE__).'/../views/user_create_conf.php');
             // エラーが有るなら書き直す
         }else{
@@ -100,20 +104,123 @@ function create_fin(){
         // // ユーザー登録処理（返り値に登録したユーザー情報）
         $user = user_insert($db_param);
 
-
-        // ※POSTの値が残っているので、更新すると何回も登録されてしまう
+        // ページタイトル定義
+        $page_title = PAGE_TITLE['CREATE_FIN'];
         // ビューファイル読み込み
         require(dirname(__FILE__).'/../views/user_create_fin.php');
     }
 }
 
 
-// ※削除確認画面 お問い合わせに組み込んだが、ログインしてから出ないと消せないはず
+// ユーザー情報変更画面
+    //Sessionからユーザーデータを呼び出す
+    // 新しいアドレスなどを入力してもらう
+    // 確認画面を出す
+    // 完了処理
+
+function change(){
+    login_check();
+
+//     // View関係
+    $page_title = PAGE_TITLE['USER_CHANGE'];
+    
+    // データベースから引っ張って画面に写したい
+    $user_id = $_SESSION['id'];
+    //ユーザIDを元に取得
+    $user = get_user($user_id);
+    // ビューファイル読み込み
+    require(dirname(__FILE__).'/../views/user_change.php');
+}
+
+// ユーザー情報変更確認
+function change_conf() {
+    login_check();
+    
+    // 空白なら元のユーザー名とメールアドレスを入れる
+    // DBから呼び出す
+    // データベースから引っ張って画面に写したい
+    $user_id = $_SESSION['id'];
+    //ユーザIDを元に取得
+    $user = get_user($user_id);
+
+    foreach($user as $key => $value) {
+        $user = $value;
+    }
+
+
+    // エラーチェック
+    if(!empty($_POST) && empty($_POST['rewrite'])) {
+        if($_POST['name'] === "") {
+            $_POST['name'] = $user['name'];
+        }
+        if($_POST['address'] === "") {
+            $_POST['address'] = $user['address'];
+        }
+
+        // 元のアドレスと違うアドレスの重複チェック
+        if($_POST['address'] !== $user['address']) {
+            
+            $record = address_duplicate();
+            if ($record['cnt'] > 0 ) {
+                $error['address'] = 'duplicate';
+            }
+        }
+
+        if(empty($error)) {
+            // ビューファイルを読み込む
+            $page_title = PAGE_TITLE['USER_CHANGE_CONF'];
+            require(dirname(__FILE__).'/../views/user_change_conf.php');
+
+        } else{
+            $user = array($user);
+            require(dirname(__FILE__).'/../views/user_change.php');
+        }
+    } else {
+        $user = array($user);
+        require(dirname(__FILE__).'/../views/user_change.php');
+    }
+}
+
+// 登録処理ー完了画面
+function change_fin() {
+    
+    // ※「登録する」が押されたらデータベースに接続して、データベースに挿入する
+    login_check();
+    // ワンタイムトークン確認
+    session_start();
+
+    $user_id = $_POST['user_id'];
+    //中身が無ければもとに戻す
+    // POSTからいらないものを外す
+    if (!empty($_POST)) {
+        unset($_POST['user_change']);
+        unset($_POST['user_id']);
+        
+        // POST値をDB処理するパラメータとして定義
+        $db_param = $_POST;
+        // ユーザー登録処理（返り値に登録したユーザー情報）
+        $user = users_update($db_param, $user_id);
+
+        //完了画面表示のため呼び出す
+        $user = get_user($user_id);
+        // ページタイトル定義
+        $page_title = PAGE_TITLE['USER_CHANGE_FIN'];
+        // ビューファイル読み込み
+        require(dirname(__FILE__).'/../views/user_change_fin.php');
+    }
+}
+
+
+
+
+
+
+// 削除確認画面
 function delete(){
     login_check();
 
     // View関係
-    $page_title = PAGE_TITLE['USERDELETE'];
+    $page_title = PAGE_TITLE['USER_DELETE'];
     
     // データベースから引っ張って画面に写したい
     $user_id = $_SESSION['id'];
@@ -141,6 +248,7 @@ function destroy() {
     session_destroy();
 
     //ビューファイル読み込み
+    $page_title = PAGE_TITLE['USER_DELTE_FIN'];
     require(dirname(__FILE__).'/../views/user_delete_fin.php');
 
 }

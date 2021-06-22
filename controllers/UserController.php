@@ -18,17 +18,6 @@ function create(){
     $page_title = PAGE_TITLE['CREATE'];
     $validation_msg = '';
     
-    // ワンタイムトークン確認
-    session_start();
-
-    // POST空トークンを取り出す
-    $token = filter_input(INPUT_POST, 'one_token');
-
-       // トークンがない、もしくは一致しない場合、処理を中止
-    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
-        exit('不正なリクエスト');
-    }
-
 
     // バリデーション
     if (!empty($_POST)){
@@ -41,18 +30,16 @@ function create(){
                 $error['blank'] = 'blank';
                 $validation_msg = ERROR_MEASSAGE['BLANK'];
             }
-        // パスワード最低文字数
-        if (strlen($_POST['password']) < 4 ){
-            $error['password'] = 'length';
+
+        // パスワード正規表現（アルファベット大文字・小文字・数字を１種類以上使用）　
+        $password = $_POST['password'];
+        if (!preg_match("/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{4,10}+\z/", $password)){
+            $error['password'] = 'unsafe';
         }
         
         // パスワードが一致しているか
         if ($_POST['password'] !== $_POST['password_conf']) {
             $error['password_conf'] = 'wrong';
-        }
-        // パスワード確認最低文字数
-        if (strlen($_POST['password_conf']) < 4 ){
-            $error['password_conf'] = 'length';
         }
 
         // エラーが無いなら、確認画面にいく

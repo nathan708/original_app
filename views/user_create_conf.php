@@ -2,10 +2,12 @@
 
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
-<body>
+<body class="wrapper">
+  
   <h2><?=$page_title?></h2>
   <p>記入した内容を確認して、「登録」ボタンをクリックしてください。</p>
-  <form action="create/fin" method="POST" value='submit'>
+  
+  <form class="create_conf" action="create/fin" method="POST" value='submit'>
     <table class="input">
       <tr>
         <th>
@@ -37,23 +39,15 @@
       <input type="hidden" name="address" value="<?=h($_POST['address'])?>">
       <input type="hidden" name="password" value="<?=h($_POST['password'])?>">
       <input type="hidden" name="one_token" value="<?= h($_POST['one_token'])?>">
-    <tr>
-      <td>
-        <input type="submit" name="create" value="登録する" /></div>
-      </td>
-    </tr>
     </table>
+    <input class="regist" type="submit" name="create" value="登録する" /></div>
   </form>
   <form action="" method="POST">
       <input type="hidden" name="name" value="<?=h($_POST['name'])?>">
       <input type="hidden" name="address" value="<?=h($_POST['address'])?>">
       <input type="hidden" name="password" value="<?=h($_POST['password'])?>">
       <input type="hidden" name="one_token" value="<?= h($_POST['one_token'])?>">
-    <table>
-      <tr>
-        <input type="submit" name="rewrite" value="書き直し">
-      </tr>
-    </table>
+      <input class="rewrite"  type="submit" name="rewrite" value="書き直し">
   </form>
 
 

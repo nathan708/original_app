@@ -1,4 +1,4 @@
-<?php 
+<?php
 // DB接続情報
 const HOST = '127.0.0.1';
 const USERNAME = 'root';
@@ -13,114 +13,114 @@ const ROUTE_LIST = array(
   // トップページ
   '/' => array(
     'controller'       => 'TopController',
-    'get_function'     =>'top',
-    'post_function'    =>''
+    'get_function'     => 'top',
+    'post_function'    => ''
   ),
 
-// 新規登録
+  // 新規登録
   '/create' => array(
     'controller'    =>  'UserController',
     'get_function'  =>  'enter',
     'post_function' =>  'create'
   ),
-// 新規登録確認ー完了
+  // 新規登録確認ー完了
   '/create/fin' => array(
     'controller'    =>  'UserController',
     'get_function'  =>  '',
     'post_function' =>  'create_fin'
   ),
-// ログイン処理
+  // ログイン処理
   '/login' => array(
     'controller'    =>  'LogInOutController',
     'get_function'  =>  'input',
     'post_function' =>  'login'
   ),
-// パスワード問い合わせ処理
+  // パスワード問い合わせ処理
   '/pass_form' => array(
     'controller'    =>  'PassFormController',
     'get_function'  =>  'input',
     'post_function' =>  'send'
   ),
-// お問い合わせ処理
+  // お問い合わせ処理
   '/contact' => array(
     'controller'    =>  'ContactController',
     'get_function'  =>  'input',
     'post_function' =>  'send'
   ),
-// 登録情報変更
+  // 登録情報変更
   '/contact/change' => array(
     'controller'    =>  'UserController',
     'get_function'  =>  'change',
     'post_function' =>  'change_conf'
   ),
-// 登録情報完了処理
+  // 登録情報完了処理
   '/contact/change/fin' => array(
     'controller'    =>  'UserController',
     'get_function'  =>  'change',
     'post_function' =>  'change_fin'
   ),
-// パスワード変更処理
+  // パスワード変更処理
   '/contact/change/password' => array(
     'controller'    =>  'UserController',
     'get_function'  =>  'change_password',
     'post_function' =>  'pass_change_fin'
   ),
-// ユーザー情報削除
+  // ユーザー情報削除
   '/delete' => array(
     'controller'    =>  'UserController',
     'get_function'  =>  'delete',
     'post_function' =>  'destroy'
   ),
-// マイページトップ
+  // マイページトップ
   '/mypage' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'top_index',
     'post_function' =>  ''
   ),
-// マイリスト一覧
+  // マイリスト一覧
   '/mypage/mylist' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'mylist',
     'post_function' =>  ''
   ),
   // マイリスト登録
-    '/mypage/mylist/create' => array(
-      'controller'    =>  'MyListController',
-      'get_function'  =>  'mylist_enter',
-      'post_function' =>  'mylist_create'
-    ),
-    // マイリスト登録確認ー完了
-      '/mypage/mylist/create/fin' => array(
-        'controller'    =>  'MyListController',
-        'get_function'  =>  '',
-        'post_function' =>  'mylist_create_fin'
-      ),
+  '/mypage/mylist/create' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  'mylist_enter',
+    'post_function' =>  'mylist_create'
+  ),
+  // マイリスト登録確認ー完了
+  '/mypage/mylist/create/fin' => array(
+    'controller'    =>  'MyListController',
+    'get_function'  =>  '',
+    'post_function' =>  'mylist_create_fin'
+  ),
 
-// マイリスト編集
+  // マイリスト編集
   '/mypage/mylist/edit' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  '',
     'post_function' =>  'mylist_edit'
   ),
-// マイリスト編集ー完了
+  // マイリスト編集ー完了
   '/mypage/mylist/edit/fin' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'mylist_edit',
     'post_function' =>  'mylist_edit_fin'
   ),
-// マイリスト削除
+  // マイリスト削除
   '/mypage/mylist/delete' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  '',
     'post_function' =>  'mylist_delete'
   ),
-// マイリスト削除ー完了
+  // マイリスト削除ー完了
   '/mypage/mylist/delete/fin' => array(
     'controller'    =>  'MyListController',
     'get_function'  =>  'mylist_delete',
     'post_function' =>  'mylist_delete_fin'
   ),
-// ログアウト
+  // ログアウト
   '/logout' => array(
     'controller'    =>  'LogInOutController',
     'get_function'  =>  'logout',
@@ -128,7 +128,7 @@ const ROUTE_LIST = array(
   ),
 
 
-// 指定URL以外を表示した場合のエラー
+  // 指定URL以外を表示した場合のエラー
   '/error' => array(
     'controller'    => 'ErrorController',
     'get_function'  => 'error_404',
@@ -165,18 +165,18 @@ const PAGE_TITLE = array(
 
 
 
-  
-  
+
+
 
 );
-  
+
 
 
 // エラーメッセージ
 const ERROR_MEASSAGE = array(
   'BLANK' => '入力されていない項目があります。',
   'WRONG' => '１つ目のパスワードと同じものを入力してください',
-  'LENGTH' => '4文字以上で入力してください',
+  'UNSAFE' => 'パスワードは半角英小文字、半角英大文字、数字をそれぞれ１種類以上使用し、4文字以上１０文字以内で入力してください',
   'DUPLICATE' => '指定されたアドレスは登録済みです',
   'LOGIN_FAILED'   => 'メールアドレスとパスワードが一致しません。'
 );
@@ -184,11 +184,11 @@ const ERROR_MEASSAGE = array(
 
 // セレクタ関連
 const GENRE = array(
-  '未選択', '音楽', '動画' ,'本・雑誌', 'ウェブサービス', 'ショッピング', 'その他',
+  '未選択', '音楽', '動画', '本・雑誌', 'ウェブサービス', 'ショッピング', 'その他',
 );
 
 const PAYMENT_TYPE = array(
-  '未選択', '月額' ,'年額', 'その他'
+  '未選択', '月額', '年額', 'その他'
 );
 
 const PAYMENT_METHOD = array(
@@ -198,8 +198,5 @@ const PAYMENT_MONTH = array(
   "未選択", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 );
 const PAYMENT_DAY = array(
-  "未選択", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,24, 25, 26, 27, 28, 29, 30, 31
+  "未選択", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
 );
-
-
-?>

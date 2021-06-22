@@ -10,16 +10,28 @@ body {
     line-height: 1.7;
     color: #432;
 }
-a {
-    text-decoration: none;
-    color: black;
-}
 img {
     max-width: 100%;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 a:hover {
     color: blue;
+}
+
+.btn {
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    margin-left: 60px;
+}
+.btn:hover {
+    background-color: black;
+    color: white;
 }
 
 
@@ -47,26 +59,46 @@ a:hover {
 #page_header a:hover {
     color: gray;
 }
-２
+
 
 #page_header h1 {
-    line-height: 70px;
+    line-height: 35px;
 }
+
+/* ナビメニュー */
 
 .top_nav {
     list-style: none;
     display: flex;
-
-
 }
 
 
 .top_nav li {
-    margin: 20px;
+    margin: 10px;
 }
 
 
 /* メイン */
+
+/* 共通項目 */
+/* 登録ボタン・書き直しボタン */
+/* form {
+    display: inline-block;
+    margin-right: 0px;
+}
+
+form {
+
+    display: inline-block;
+}
+
+form .regist {
+    margin-left: 140px;
+}
+form .rewrite {
+    margin-left: 70px;
+    margin-right: -100px;
+} */
 
 /* トップページ */
 
@@ -194,7 +226,11 @@ a:hover {
 }
 
 /* 入力関係 */
-.input  th {
+.input tr {
+    height: 50px;
+
+}
+.input th {
     text-align: right;
 }
 

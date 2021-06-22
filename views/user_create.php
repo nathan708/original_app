@@ -36,8 +36,8 @@
                         <input type="password" name="password" size="10" maxlength="20" value="<?php echo h($_POST['password']);?>"><br>
                     </td>
                     <td>
-                        <?php if ($error['password'] === 'length'): ?>
-                            <p class="error"><?= ERROR_MEASSAGE['LENGTH'] ?></p>
+                        <?php if ($error['password'] === 'unsafe'): ?>
+                            <p class="error"><?= ERROR_MEASSAGE['UNSAFE'] ?></p>
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -64,6 +64,7 @@
                         <p class="error"><?= $validation_msg ?></p>
                     </td>
                 </tr>
+                <!-- ワンタイムトークンをセット -->
                 <input type="hidden" name="one_token" value="<?= setToken(); ?>">
                 <th>
                     <input type="submit" name="send" value="登録確認画面へ"><br>

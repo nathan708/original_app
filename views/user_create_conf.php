@@ -2,8 +2,9 @@
 
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
-<body class="wrapper">
-  
+<body>
+  <div class="main">
+
   <h2><?=$page_title?></h2>
   <p>記入した内容を確認して、「登録」ボタンをクリックしてください。</p>
   
@@ -49,6 +50,7 @@
       <input type="hidden" name="one_token" value="<?= h($_POST['one_token'])?>">
       <input class="rewrite"  type="submit" name="rewrite" value="書き直し">
   </form>
+  </div>
 
 
 </body>

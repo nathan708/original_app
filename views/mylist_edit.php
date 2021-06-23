@@ -3,6 +3,8 @@
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
+  <div class="main">
+
   <h2><?= $page_title ?></h2>
 
   <form action="/mypage/mylist/edit/fin" method="POST">
@@ -12,7 +14,7 @@
         <tr>
           <th>サービス名：</th>
           <td>
-            <input type="text" name="name" value="<?= $value["name"] ?>"></サービス名：>
+            <input type="text" name="name" size="35" maxlength="255" value="<?= $value["name"] ?>"></サービス名：>
           </td>
           <td>
             <?php if ($error['name'] === 'blank'): ?>
@@ -64,7 +66,7 @@
         <tr>
           <th>金額：</th>
           <td>
-            <input type="text" name="monthly_fee" value="<?= $value['monthly_fee'] ?>">円</p>
+            <input type="text" name="monthly_fee" maxlength="8" value="<?= $value['monthly_fee'] ?>">円</p>
           </td>
           <td>
             <?php if ($error['monthly_fee'] === 'blank' || $error['monthly_fee'] === 'wrong'): ?>
@@ -108,13 +110,13 @@
                 <?php if( $value['payment_method'] == $i) { ?>
                   <option value="<?= $i; ?>" selected><?= $v; ?></option>
                 <?php }else { ?>
-                  <option value="<?= $i; ?>"><?= $v; ?></option>
+                  <option value="<?= $i; ?>" ><?= $v; ?></option>
                 <?php } ?>
               <?php } ?>
             </select>
           </td>
           <td>
-            <?php if ($error['payment_type'] === 'blank'): ?>
+            <?php if ($error['payment_method'] === 'blank'): ?>
               <p class="error">支払い方法を選択してください。</p>
             <?php  endif; ?>
           </td>
@@ -122,7 +124,7 @@
         <tr>
           <th>備考：</th>
           <td>
-          <textarea name="note" id="" cols="40" rows="10"><?= $value['note'] ?></textarea></p>
+          <textarea name="note" id="" cols="40" rows="10" maxlength="600"><?= $value['note'] ?></textarea></p>
           </td>
         </tr>
         <tr>
@@ -140,7 +142,7 @@
         <tr>
           <th>サービス名：</th>
           <td>
-            <input type="text" name="name" value="<?= $_POST["name"] ?>"></サービス名：>
+            <input type="text" name="name" size="35" maxlength="255" value="<?= $_POST["name"] ?>"></サービス名：>
           </td>
           <td>
             <?php if ($error['name'] === 'blank'): ?>
@@ -192,7 +194,7 @@
         <tr>
           <th>金額：</th>
           <td>
-            <input type="text" name="monthly_fee" value="<?= $_POST['monthly_fee'] ?>">円</p>
+            <input type="text" name="monthly_fee" maxlength="8" value="<?= $_POST['monthly_fee'] ?>">円</p>
           </td>
           <td>
             <?php if ($error['monthly_fee'] === 'blank' || $error['monthly_fee'] === 'wrong'): ?>
@@ -242,7 +244,7 @@
             </select>
           </td>
           <td>
-            <?php if ($error['payment_type'] === 'blank'): ?>
+            <?php if ($error['payment_method'] === 'blank'): ?>
               <p class="error">支払い方法を選択してください。</p>
             <?php  endif; ?>
           </td>
@@ -250,7 +252,7 @@
         <tr>
           <th>備考：</th>
           <td>
-          <textarea name="note" id="" cols="40" rows="10"><?= $value['note'] ?></textarea></p>
+          <textarea name="note" id="" cols="40" rows="10" maxlength="600"><?= $value['note'] ?></textarea></p>
           </td>
         </tr>
         <tr>
@@ -264,6 +266,7 @@
 
   <?php } ?>
   </form>
+  </div>
 
 </body>
 <?php require_once(dirname(__FILE__).'/footer.php'); ?>

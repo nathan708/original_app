@@ -63,9 +63,9 @@ function mylist_create(){
 
 
     // // トークンがない、もしくは一致しない場合、処理を中止
-    // if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
-    //     exit('不正なリクエスト');
-    // }
+    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+        exit('不正なリクエスト');
+    }
 
     // ページタイトルを定義
     $page_title = PAGE_TITLE['MYLIST_CREATE'];
@@ -82,10 +82,10 @@ function mylist_create(){
         if (empty($_POST['name'])) {
             $error['name'] = 'blank';
         }
-        if (empty($_POST['genre'])) {
+        if (empty($_POST['genre']) || $_POST['genre'] > count(GENRE)) {
             $error['genre'] = 'blank';
         }
-        if (empty($_POST['payment_type'])) {
+        if (empty($_POST['payment_type']) || $_POST['payment_type'] > count(PAYMENT_TYPE)) {
             $error['payment_type'] = 'blank';
         }
         if (empty($_POST['monthly_fee'])) {
@@ -93,10 +93,10 @@ function mylist_create(){
             }elseif ($_POST['monthly_fee'] <= 0) {
                 $error['monthly_fee'] = 'under';
         }
-        if (empty($_POST['payment_month']) || empty($_POST['payment_day'])) {
+        if (empty($_POST['payment_month']) || $_POST['payment_month'] > count(PAYMENT_MONTH) || empty($_POST['payment_day']) || $_POST['payment_day'] > count(PAYMENT_DAY)) {
             $error['payment_date'] = 'blank';
         }
-        if (empty($_POST['payment_method'])) {
+        if (empty($_POST['payment_method']) || $_POST['payment_method'] > count(PAYMENT_METHOD) ) {
             $error['payment_method'] = 'blank';
         }
 
@@ -215,7 +215,7 @@ function mylist_edit(){
 function mylist_edit_fin(){
     login_check();
 
-
+    $page_title = PAGE_TITLE['MYLIST_EDIT'];
 
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
@@ -229,10 +229,10 @@ function mylist_edit_fin(){
         if (empty($_POST['name'])) {
             $error['name'] = 'blank';
         }
-        if ($_POST['genre'] <= 0) {
+        if ($_POST['genre'] <= 0 || $_POST['genre'] > count(GENRE)) {
             $error['genre'] = 'blank';
         }
-        if ($_POST['payment_type'] <= 0) {
+        if ($_POST['payment_type'] <= 0 || $_POST['payment_type'] > count(PAYMENT_TYPE)) {
             $error['payment_type'] = 'blank';
         }
         if (empty($_POST['monthly_fee'])) {
@@ -240,10 +240,10 @@ function mylist_edit_fin(){
         } elseif ($_POST['monthly_fee'] <= 0) {
             $error['monthly_fee'] = 'wrong';
         }
-        if (empty($_POST['payment_month']) || empty($_POST['payment_day'])) {
+        if (empty($_POST['payment_month']) || $_POST['payment_month'] > count(PAYMENT_MONTH) || empty($_POST['payment_day']) || $_POST['payment_day'] > count(PAYMENT_DAY)) {
             $error['payment_date'] = 'blank';
         }
-        if ($_POST['payment_method'] <= 0) {
+        if ($_POST['payment_method'] <= 0 || $_POST['payment_method'] > count(PAYMENT_METHOD) ) {
             $error['payment_method'] = 'blank';
         }
         
@@ -265,6 +265,7 @@ function mylist_edit_fin(){
             $db_param = $_POST;
             $service = services_update($db_param, $service_id);
 
+            $page_title = PAGE_TITLE['MYLIST_EDIT_FIN'];
             require(dirname(__FILE__).'/../views/mylist_edit_fin.php');
 
         }
@@ -301,6 +302,7 @@ function mylist_delete_fin(){
     service_delete($service_id);
 
     // ビューファイルの読み込み
+    $page_title = PAGE_TITLE['MYLIST_DELETE_FIN'];
     require(dirname(__FILE__).'/../views/mylist_delete_fin.php');
 
 }

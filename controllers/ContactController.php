@@ -27,7 +27,14 @@ function send(){
         if (empty($_POST['email'])){
             $error['email'] = 'blank';
         }
-        if (empty($_POST['kanso'])){
+        //メールアドレス正規表現 
+        $address_pattern = "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
+        $email = $_POST['address'];
+        if (!preg_match($address_pattern, $email)) {
+            $error['address'] = 'email';
+            }
+
+        if (empty($_POST['description'])){
             $error['kanso'] = 'blank';
         }
         if (!empty($error)) {

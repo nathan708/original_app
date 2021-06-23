@@ -38,7 +38,8 @@ function get_user($user_id) {
     
 }
 
-// 特定のユーザーのservice一覧を読み込む
+
+// 特定のユーザーのservice一覧を全て読み込む
 function get_services_all($user_id) {
     // DB接続
     try {

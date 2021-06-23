@@ -1,4 +1,5 @@
 
+
 <html lang="ja">
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
@@ -12,7 +13,7 @@
         <tr>
           <th>サービス名：</th>
           <td>
-            <input type="text" name="name" value="<?= h($_POST['name']);?>"></p>
+            <input type="text" name="name" size="35" maxlength="255" value="<?= h($_POST['name']);?>"></p>
           </td>
           <td>
             <?php if ($error['name'] === 'blank'): ?>
@@ -64,7 +65,7 @@
         <tr>
           <th>金額：</th>
           <td>
-            <input type="text" name="monthly_fee" value="<?= h($_POST['monthly_fee']);?>">円</p>
+            <input type="text" name="monthly_fee" size="25" maxlength="8" value="<?= h($_POST['monthly_fee']);?>">円</p>
           </td>
           <td>
             <?php if ($error['monthly_fee'] === 'blank' || $error['monthly_fee'] === 'under'): ?>
@@ -126,7 +127,7 @@
         <tr>
           <th>備考：</th>
           <td>
-            <textarea name="note" id="" cols="40" rows="10"></textarea>
+            <textarea name="note" id="" cols="40" rows="10" maxlength="600"></textarea>
           </td>
         </tr>
 

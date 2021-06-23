@@ -17,10 +17,11 @@ img {
 a {
     text-decoration: none;
     color: black;
-}
-
-a:hover {
-    color: blue;
+    
+    &:hover {
+        color: blue;
+        text-decoration: underline;
+    }
 }
 
 .btn {
@@ -28,13 +29,12 @@ a:hover {
     color: black;
     font-size: 20px;
     margin-left: 60px;
-}
-.btn:hover {
-    background-color: black;
-    color: white;
-}
 
-
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+}
 
 
 .error {
@@ -52,18 +52,16 @@ a:hover {
     height: 70px;
     display: flex;
     justify-content: space-between;
-}
-#page_header h1 {
-    font-size: 30px;
-}
 
-#page_header a:hover {
-    color: gray;
-}
-
-
-#page_header h1 {
-    line-height: 35px;
+    h1 {
+        font-size: 30px;
+        line-height: 35px;
+    }
+    
+    a:hover {
+        color: gray;
+    }
+    
 }
 
 /* ナビメニュー */
@@ -71,11 +69,11 @@ a:hover {
 .top_nav {
     list-style: none;
     display: flex;
-}
-
-
-.top_nav li {
-    margin: 10px;
+    
+    
+    li {
+        margin: 10px;
+    }
 }
 
 
@@ -217,25 +215,34 @@ form .rewrite {
 /* 表の表示設定 */
 .service_list_index {
     border-collapse: collapse;
-
+    
+    td {
+        border: 1px solid black ;
+        text-align: center;
+        /* font-weight: bold; */
+    }
 }
 
-.service_list_index td {
-    border: 1px solid black ;
-    text-align: center;
-    /* font-weight: bold; */
-}
 
 /* 入力関係 */
-.input tr {
-    height: 40px;
+.input {
+
+    tr {
+        height: 40px;
+    }
+    
+    th {
+        text-align: right;
+    }
+}
+
+// お問い合わせ画面
+.contact_change {
+    display: inline-block;
+    font-size: 16px;
+
 
 }
-.input th {
-    text-align: right;
-}
-
-
 
 
 /* フッター */

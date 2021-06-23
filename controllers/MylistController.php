@@ -157,10 +157,25 @@ function mylist(){
     $page_title = PAGE_TITLE['SUBSCRIPTION_LIST'];
     // Sessionに入っているか確認
     login_check();
+
+    if (isset($_REQUEST['page']) && is_numeric($_REQUEST['page'])) {
+        $page = $_REQUEST['page'];
+    }else {
+        // $_REQUEST['page'] = 1;
+        $page = 1;
+    }
+
+    
+    $start = 5 * ($page - 1);
+    
+
+
+
+
     // user_idを取り込む
     $user_id = $_SESSION['id'];
     // 特定のuser_idの登録データを読み込む
-    $myservices = get_services_all($user_id);
+    $myservices = get_services_5($start, $user_id);
     // 空の場合は未登録と表示させる
     if(empty($myservices)) {
         $myservices = null;

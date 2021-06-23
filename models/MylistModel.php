@@ -38,6 +38,32 @@ function get_user($user_id) {
     
 }
 
+// 特定のユーザーのserviceを一覧の５つ読み込む
+function get_services_5($start, $user_id) {
+
+
+
+    // DB接続
+    try {
+        $dbh = new PDO('mysql:host='.HOST.'; dbname='.DBNAME.'; charset=utf8', USERNAME, PASSWORD);
+    }catch(PDOException $e) {
+        echo 'DB接続エラー：' . $e->getMessage();
+    }
+    // ログインuser_idのserviceテーブルのid順に５つ全てのデータを取得する
+    $query = "SELECT * FROM services WHERE user_id={$user_id} LIMIT ?, 5;";
+    // SQL実行
+    $stmt = $dbh->prepare($query);
+    $stmt->bindParam(1, $start, PDO::PARAM_INT);
+    $stmt->execute();
+    // SQLの結果を配列の形で受け取る
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+    // DB接続を閉じる
+    $dbh = null;
+
+    return $result;
+}
 
 // 特定のユーザーのservice一覧を全て読み込む
 function get_services_all($user_id) {

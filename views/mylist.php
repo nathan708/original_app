@@ -49,16 +49,25 @@
                 </form>
               </td>
             </tr>
-          <?php endforeach; ?>
-        <?php else: ?>
-            <tr>
-              <td colspan="4">何も登録されていません</td>
-            </tr>
-        <?php endif; ?>
-      <tr>
+            <?php endforeach; ?>
 
-    
+            <?php else: ?>
+              <tr>
+                <td colspan="4">何も登録されていません</td>
+              </tr>
+            <?php endif; ?>
     </table>
+
+    <!-- ページネーション -->
+    <div id="page">
+      <?php if($page >=2 ): ?>
+        <a href="/mypage/mylist? page=<?= $page - 1 ?>"><?= $page - 1 ?>ページ目へ</a>  ||
+      <?php endif; ?>
+      <?php if($page < $max_page): ?>
+        <a href="/mypage/mylist?page=<?= $page + 1 ?>"><?= $page + 1 ?>ページ目へ</a>
+      <?php endif; ?>
+    </div>
+
   </div>
 </div>
 </body>

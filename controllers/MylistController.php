@@ -164,12 +164,10 @@ function mylist(){
         // $_REQUEST['page'] = 1;
         $page = 1;
     }
-
-    
     $start = 5 * ($page - 1);
     
-
-
+    $user_id = $_SESSION['id'];
+    $max_page = get_services_count($user_id);
 
 
     // user_idを取り込む
@@ -183,6 +181,8 @@ function mylist(){
     // ビューファイル読み込み
     require(dirname(__FILE__).'/../views/mylist.php');
 }
+
+
 
 // マイリスト編集画面表示 ///idの数字を変えたら他の人のデータを編集できるのでは。
 function mylist_edit(){

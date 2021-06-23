@@ -36,10 +36,26 @@ a {
     }
 }
 
+table {
+    width: 100%;
+}
+
 
 .error {
     color: red;
 }
+
+// ページネーション
+#page {
+    text-align: center;
+    margin: 20px 0;
+    a {
+        text-decoration: underline;
+        margin: 0 20px;
+    }
+}
+
+
 
 /* 全体Wrapper */
 .wrapper {
@@ -171,7 +187,7 @@ form .rewrite {
 .aside {
 
     width: 22%;
-    height: 100vh;
+
     text-align: center;
 }
 
@@ -188,7 +204,7 @@ form .rewrite {
 
 .main {
     width: 76%;
-    height: 100vh;
+    height: auto;
     margin: 0 20px;
 
 }
@@ -198,7 +214,7 @@ form .rewrite {
 /* マイリスト */
 .mylist_layout .main {
     width: 90%;
-    height: 100vh;
+    height: auto;
     margin: 0 auto;
 }
 .mylist_layout table {
@@ -226,14 +242,14 @@ form .rewrite {
 
 /* 入力関係 */
 .input {
+    th {
+        text-align: right;
+    }
 
     tr {
         height: 40px;
     }
     
-    th {
-        text-align: right;
-    }
 }
 
 // お問い合わせ画面

@@ -36,8 +36,22 @@ a:hover {
   color: white;
 }
 
+table {
+  width: 100%;
+}
+
 .error {
   color: red;
+}
+
+#page {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#page a {
+  text-decoration: underline;
+  margin: 0 20px;
 }
 
 /* 全体Wrapper */
@@ -146,7 +160,6 @@ form .rewrite {
 
 .aside {
   width: 22%;
-  height: 100vh;
   text-align: center;
 }
 
@@ -163,14 +176,14 @@ form .rewrite {
 
 .main {
   width: 76%;
-  height: 100vh;
+  height: auto;
   margin: 0 20px;
 }
 
 /* マイリスト */
 .mylist_layout .main {
   width: 90%;
-  height: 100vh;
+  height: auto;
   margin: 0 auto;
 }
 
@@ -191,12 +204,12 @@ form .rewrite {
 }
 
 /* 入力関係 */
-.input tr {
-  height: 40px;
-}
-
 .input th {
   text-align: right;
+}
+
+.input tr {
+  height: 40px;
 }
 
 .contact_change {

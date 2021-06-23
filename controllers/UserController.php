@@ -30,10 +30,18 @@ function create(){
                 $error['blank'] = 'blank';
                 $validation_msg = ERROR_MEASSAGE['BLANK'];
             }
+        //メールアドレス正規表現 
+        $address_pattern = "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
+        $email = $_POST['address'];
+        if (!preg_match($address_pattern, $email)) {
+            $error['address'] = 'email';
+            }
 
-        // パスワード正規表現（アルファベット大文字・小文字・数字を１種類以上使用）　
+
+        // パスワード正規表現（アルファベット大文字・小文字・数字を１種類以上使用）
         $password = $_POST['password'];
-        if (!preg_match("/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{4,10}+\z/", $password)){
+        $password_pattern = "/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{4,10}+\z/";
+        if (!preg_match($password_pattern, $password)){
             $error['password'] = 'unsafe';
         }
         

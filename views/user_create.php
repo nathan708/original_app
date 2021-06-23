@@ -1,7 +1,7 @@
 <?php require_once(dirname(__FILE__).'/../views/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/../views/header.php'); ?>
 <div class="signup_layout wrapper">
-    <div class="signup_form">
+    <div class="main signup_form">
         <h2><?=$page_title?></h2>
         <form action="" method="POST">
             <table class="input">
@@ -19,9 +19,12 @@
                         <label for="email">メールアドレス： </label>
                     </th>
                     <td>
-                        <input type="email" name="address" size="35" maxlength="255" value="<?php echo h($_POST['address']);?>"><br>
+                        <input type="address" name="address" size="35" maxlength="255" value="<?php echo h($_POST['address']);?>"><br>
                     </td>
                     <td> 
+                        <?php if ($error['address'] === 'email'): ?>
+                            <p class="error"><?= ERROR_MEASSAGE['EMAIL']?></p>
+                        <?php endif; ?>
                         <?php if ($error['address'] === 'duplicate'): ?>
                             <p class="error"><?= ERROR_MEASSAGE['DUPLICATE']?></p>
                         <?php endif; ?>
@@ -76,10 +79,7 @@
 
         既に登録済みの方はこちらから <a href="/login">ログイン</a> してください。
     </div>
-    <div class="register_right">
 
-
-    </div>
 
 </div>
 <?php require_once(dirname(__FILE__).'/footer.php'); ?>

@@ -62,14 +62,15 @@ function mylist_create(){
     $token = filter_input(INPUT_POST, 'one_token');
 
 
-    // トークンがない、もしくは一致しない場合、処理を中止
-    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
-        exit('不正なリクエスト');
-    }
+    // // トークンがない、もしくは一致しない場合、処理を中止
+    // if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+    //     exit('不正なリクエスト');
+    // }
 
+    // ページタイトルを定義
     $page_title = PAGE_TITLE['MYLIST_CREATE'];
-
     
+    // セレクタ定義
     $genre = GENRE;
     $payment_type = PAYMENT_TYPE;
     $payment_month = PAYMENT_MONTH;
@@ -78,7 +79,6 @@ function mylist_create(){
     
     // エラーチェック
     if (!empty($_POST)) {
-
         if (empty($_POST['name'])) {
             $error['name'] = 'blank';
         }

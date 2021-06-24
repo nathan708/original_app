@@ -1,9 +1,9 @@
 <?php
 // DB接続情報
-const HOST = '127.0.0.1';
-const USERNAME = 'root';
-const PASSWORD = 'root';
-const DBNAME = 'original_db';
+const HOST = 'us-cdbr-east-04.cleardb.com';
+const USERNAME = 'b9943f17c1ba11';
+const PASSWORD = '18191c76';
+const DBNAME = 'heroku_5f3cc8b61a2fa79';
 const PORT = '3306';
 
 

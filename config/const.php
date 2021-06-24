@@ -73,13 +73,13 @@ const ROUTE_LIST = array(
   ),
   // マイページトップ
   '/mypage' => array(
-    'controller'    =>  'MyListController',
+    'controller'    =>  'MylistController',
     'get_function'  =>  'top_index',
     'post_function' =>  ''
   ),
   // マイリスト一覧
   '/mypage/mylist' => array(
-    'controller'    =>  'MyListController',
+    'controller'    =>  'MylistController',
     'get_function'  =>  'mylist',
     'post_function' =>  ''
   ),
@@ -91,32 +91,32 @@ const ROUTE_LIST = array(
   ),
   // マイリスト登録確認ー完了
   '/mypage/mylist/create/fin' => array(
-    'controller'    =>  'MyListController',
+    'controller'    =>  'MylistController',
     'get_function'  =>  '',
     'post_function' =>  'mylist_create_fin'
   ),
 
   // マイリスト編集
   '/mypage/mylist/edit' => array(
-    'controller'    =>  'MyListController',
+    'controller'    =>  'MylistController',
     'get_function'  =>  '',
     'post_function' =>  'mylist_edit'
   ),
   // マイリスト編集ー完了
   '/mypage/mylist/edit/fin' => array(
-    'controller'    =>  'MyListController',
+    'controller'    =>  'MylistController',
     'get_function'  =>  'mylist_edit',
     'post_function' =>  'mylist_edit_fin'
   ),
   // マイリスト削除
   '/mypage/mylist/delete' => array(
-    'controller'    =>  'MyListController',
+    'controller'    =>  'MylistController',
     'get_function'  =>  '',
     'post_function' =>  'mylist_delete'
   ),
   // マイリスト削除ー完了
   '/mypage/mylist/delete/fin' => array(
-    'controller'    =>  'MyListController',
+    'controller'    =>  'MylistController',
     'get_function'  =>  'mylist_delete',
     'post_function' =>  'mylist_delete_fin'
   ),

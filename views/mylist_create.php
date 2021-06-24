@@ -7,7 +7,7 @@
 <body>
 
   <div class="main">
-    <h2><?= $page_title ?></h2>  
+    <h2 class="page_title"><?= $page_title ?></h2>  
     <form action="" method="POST">
       <table class="input">
         <tr>

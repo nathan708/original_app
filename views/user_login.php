@@ -3,7 +3,7 @@
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
     <div class="wrapper">
-        <h2><?= $page_title ?></h2>
+        <h2 class="page_title"><?= $page_title ?></h2>
         <p>メールアドレスとパスワードを入力してください。</p>
 
         <form action="" method="POST">

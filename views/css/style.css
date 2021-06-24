@@ -117,6 +117,10 @@ form .rewrite {
     margin-left: 70px;
     margin-right: -100px;
 } */
+.page_title {
+  margin-left: 80px;
+}
+
 /* トップページ */
 .bg_img {
   background-image: url(../images/top_bg.jpeg);

@@ -2,7 +2,7 @@
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
-  <h2><?= $page_title ?></h2>
+  <h2 class="page_title"><?= $page_title ?></h2>
   <div class="main">
   <form action="/mypage/mylist/delete/fin" method="POST">
     <!-- ※データベースから引っ張りたい -->

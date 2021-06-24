@@ -5,8 +5,8 @@
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
-  <div class="main">
-    <h2><?=$page_title?></h2>
+  <div class="wrapper">
+    <h2 class="page_title"><?=$page_title?></h2>
     <p>ご意見、ご感想やお問い合わせはこちらからお願いいたします。</p>
 
     <form action="" method="POST">

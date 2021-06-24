@@ -5,7 +5,7 @@
 <body>
   <div class="main">
 
-    <h2><?= $page_title ?></h2>
+    <h2 class="page_title"><?= $page_title ?></h2>
     <table class="input">
       <?php foreach($mylist as $value): ?>
         <tr>

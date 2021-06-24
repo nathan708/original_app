@@ -85,7 +85,7 @@ const ROUTE_LIST = array(
   ),
   // マイリスト登録
   '/mypage/mylist/create' => array(
-    'controller'    =>  'TopController',
+    'controller'    =>  'MylistController',
     'get_function'  =>  'mylist_enter',
     'post_function' =>  'mylist_create'
   ),

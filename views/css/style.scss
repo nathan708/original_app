@@ -17,10 +17,11 @@ img {
 a {
     text-decoration: none;
     color: black;
+    text-decoration: underline;
+    
     
     &:hover {
         color: blue;
-        text-decoration: underline;
     }
 }
 
@@ -68,10 +69,13 @@ table {
     height: 70px;
     display: flex;
     justify-content: space-between;
-
     h1 {
+        text-decoration: none;
         font-size: 30px;
         line-height: 35px;
+    }
+    a {
+        text-decoration: none;
     }
     
     a:hover {
@@ -80,7 +84,7 @@ table {
     
 }
 
-/* ナビメニュー */
+/* ヘッダー　ナビメニュー */
 
 .top_nav {
     list-style: none;
@@ -138,9 +142,7 @@ form .rewrite {
 .signup_layout {
     height: 500px;
 }
-.signup_form a:hover {
-    color: gray;
-}
+
 
 
 

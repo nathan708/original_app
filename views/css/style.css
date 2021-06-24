@@ -17,11 +17,11 @@ img {
 a {
   text-decoration: none;
   color: black;
+  text-decoration: underline;
 }
 
 a:hover {
   color: blue;
-  text-decoration: underline;
 }
 
 .btn {
@@ -72,15 +72,20 @@ table {
 }
 
 #page_header h1 {
+  text-decoration: none;
   font-size: 30px;
   line-height: 35px;
+}
+
+#page_header a {
+  text-decoration: none;
 }
 
 #page_header a:hover {
   color: gray;
 }
 
-/* ナビメニュー */
+/* ヘッダー　ナビメニュー */
 .top_nav {
   list-style: none;
   display: -webkit-box;
@@ -133,10 +138,6 @@ form .rewrite {
 /* 新規登録ページ */
 .signup_layout {
   height: 500px;
-}
-
-.signup_form a:hover {
-  color: gray;
 }
 
 /* ログインページ */

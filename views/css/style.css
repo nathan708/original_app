@@ -119,6 +119,7 @@ form .rewrite {
 } */
 .page_title {
   margin-left: 80px;
+  text-align: center;
 }
 
 /* トップページ */
@@ -204,6 +205,23 @@ form .rewrite {
 .mylist_layout table {
   margin-left: auto;
   margin-right: auto;
+}
+
+.mylist_create_fin {
+  text-align: center;
+}
+
+.mylist_create_fin .page_title {
+  margin: 30px auto;
+}
+
+.mylist_create_fin .mylist_create_fin_comp {
+  margin: auto;
+}
+
+.mylist_create_fin .mylist_create_fin_comp h3 {
+  margin: 0 20px;
+  display: inline-block;
 }
 
 /* 表の表示設定 */

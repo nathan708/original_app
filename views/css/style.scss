@@ -123,6 +123,7 @@ form .rewrite {
 // ページタイトル
 .page_title {
     margin-left: 80px;
+    text-align: center;
 }
 
 
@@ -239,6 +240,27 @@ form .rewrite {
 }
 
 
+
+
+// マイリスト登録完了画面
+
+.mylist_create_fin {
+    text-align: center;
+
+    .page_title {
+        margin: 30px auto;
+    }
+
+    .mylist_create_fin_comp {
+        margin: auto;
+        
+
+        h3 {
+            margin: 0 20px;
+            display: inline-block;
+        }
+    }
+}
 
 
 

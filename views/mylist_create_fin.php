@@ -3,7 +3,8 @@
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
-  <div class="main">
+  <div class="wrapper mylist_create_fin">
+    
 
     <h2 class="page_title"><?= $page_title ?></h2>
     <table class="input">
@@ -43,7 +44,10 @@
     </table>
     
     <h2>上記のデータの登録が完了しました。</h2>
-    <h2><a href="/mypage"> マイページへ</a></h2>
+    <div class="mylist_create_fin_comp">
+      <h3><a href="/mypage"> マイページへ</a></h3>
+      <h3><a href="/mypage/mylist/create">更に登録する</a></h3>
+    </div>
   </div>
 
 </body>

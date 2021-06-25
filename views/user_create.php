@@ -1,7 +1,7 @@
 <?php require_once(dirname(__FILE__).'/../views/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/../views/header.php'); ?>
 <div class="signup_layout wrapper">
-    <div class="main signup_form">
+    <div class="user_create_login">
         <h2><?=$page_title?></h2>
         <form action="" method="POST">
             <table class="input">
@@ -69,9 +69,10 @@
                 </tr>
                 <!-- ワンタイムトークンをセット -->
                 <input type="hidden" name="one_token" value="<?= setToken(); ?>">
-                <th>
+                <th></th>
+                <td>
                     <input type="submit" name="send" value="登録確認画面へ"><br>
-                </th>
+                </td>
             </table>
         </form>
 

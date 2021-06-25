@@ -13,7 +13,7 @@
                         <label for="address">メールアドレス： </label>
                     </th>
                     <td>
-                        <input type="email" name="address" size="35" maxlength="255" value="<?php echo h($_POST['address']);?>"><br>
+                        <input type="email" name="address" size="35" maxlength="255" value="<?php if(!empty($_POST['address'])) {echo h($_POST['address']);}?>"><br>
                     </td>
                 </tr>
                 <tr>
@@ -21,19 +21,17 @@
                         <label for="password"> パスワード： </label>
                     </th>
                     <td>
-                        <input type="password" name="password" size="10" maxlength="20" value="<?php echo h($_POST['password']);?>"><br>
+                        <input type="password" name="password" size="10" maxlength="20" value="<?php if(!empty($_POST['password'])) {echo h($_POST['password']);}?>"><br>
                     </td>
                 </tr>
                 <tr>
                     <th></th>
                     <!-- エラーメッセージ -->
                     <td>
-                        <?php if ($error['login'] === 'blank'): ?>
+                        <?php if (!empty($error['login']) && $error['login'] === 'blank'): ?>
                         <p class="error"><?= ERROR_MEASSAGE['BLANK']?></p>
                         <?php endif; ?>
-                        <?php if ($error['login'] === 'failed'): ?>
-                        <p class="error"><?= ERROR_MEASSAGE['LOGIN_FAILED']?></p>
-                        <?php endif; ?>
+
                     </td>
                 </tr>
             </table>

@@ -10,7 +10,7 @@
                         <label for="username">ユーザー名：</label>
                     </th>
                     <td>
-                        <input type="text" name="name" size="35" maxlength="255" value="<?php echo h($_POST['name']);?>"><br>
+                        <input type="text" name="name" size="35" maxlength="255" value="<?php if($_POST) {echo h($_POST['name']);}?>">
                     </td>
                 </tr>
                 
@@ -19,13 +19,13 @@
                         <label for="email">メールアドレス： </label>
                     </th>
                     <td>
-                        <input type="address" name="address" size="35" maxlength="255" value="<?php echo h($_POST['address']);?>"><br>
+                        <input type="address" name="address" size="35" maxlength="255" value="<?php if (!empty($_POST)) {echo h($_POST['address']);}?>">
                     </td>
                     <td> 
-                        <?php if ($error['address'] === 'email'): ?>
+                        <?php if(!empty($error) && $error['address'] === 'email'): ?>
                             <p class="error"><?= ERROR_MEASSAGE['EMAIL']?></p>
                         <?php endif; ?>
-                        <?php if ($error['address'] === 'duplicate'): ?>
+                        <?php if (!empty($error) && $error['address'] === 'duplicate'): ?>
                             <p class="error"><?= ERROR_MEASSAGE['DUPLICATE']?></p>
                         <?php endif; ?>
                     </td>
@@ -36,10 +36,10 @@
                         <label for="password"> パスワード： </label>
                     </th>
                     <td>
-                        <input type="password" name="password" size="10" maxlength="20" value="<?php echo h($_POST['password']);?>"><br>
+                        <input type="password" name="password" size="10" maxlength="20" value="<?php if(!empty ($_POST)) {echo h($_POST['password']);}?>"><br>
                     </td>
                     <td>
-                        <?php if ($error['password'] === 'unsafe'): ?>
+                        <?php if (!empty($error['password']) && $error['password'] == 'unsafe'): ?>
                             <p class="error"><?= ERROR_MEASSAGE['UNSAFE'] ?></p>
                         <?php endif; ?>
                     </td>
@@ -50,13 +50,10 @@
                         <label for="password_conf"> パスワード確認： </label>
                     </th>
                     <td>
-                        <input type="password" name="password_conf" size="10" maxlength="20" value="<?php echo h($_POST['password_conf']);?>"><br>
+                        <input type="password" name="password_conf" size="10" maxlength="20" value="<?php if (!empty($_POST)) {echo h($_POST['password_conf']);}?>"><br>
                     </td>
                     <td>
-                        <?php if ($error['password_conf'] === 'length'): ?>
-                            <p class="error"><?= ERROR_MEASSAGE['LENGTH'] ?></p>
-                        <?php endif; ?>
-                        <?php if ($error['password_conf'] === 'wrong'): ?>
+                        <?php if (!empty($error['password_conf']) && $error['password_conf'] == 'wrong'): ?>
                             <p class="error"><?= ERROR_MEASSAGE['WRONG'] ?></p>
                         <?php endif; ?>
                     </td>
@@ -64,7 +61,7 @@
                 <tr>
                     <th></th>
                     <td>
-                        <p class="error"><?= $validation_msg ?></p>
+                        <p class="error"><?php if(!empty($validation_msg)) {echo $validation_msg;} ?></p>
                     </td>
                 </tr>
                 <!-- ワンタイムトークンをセット -->

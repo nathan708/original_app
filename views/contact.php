@@ -17,10 +17,10 @@
             <label for="">お名前： </label>
           </th>
           <td>
-            <input type="text" name="name" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['email']), ENT_QUOTES);?>"><br>
+            <input type="text" name="name" size="35" maxlength="255" value="<?php if (!empty($_POST)) {h($_POST['name']);}?>">
           </td>
           <td>
-            <?php if ($error['name'] === 'blank'): ?>
+            <?php if (!empty($error) && $error['name'] === 'blank'): ?>
               <p class="error">お名前を入力してください。</p>
             <?php endif; ?>
             </td>
@@ -31,13 +31,13 @@
             <label for="">メールアドレス： </label>
           </th>
           <td>
-            <input type="email" name="email" size="35" maxlength="255" value="<?php echo htmlspecialchars(($_POST['email']), ENT_QUOTES);?>"><br>
+            <input type="email" name="address" size="35" maxlength="255" value="<?php  if(!empty($_POST)) {echo h($_POST['address']);}?>">
           </td>
           <td>
-            <?php if ($error['email'] === 'blank'): ?>
+            <?php if (!empty($error['email']) && $error['email'] === 'blank'): ?>
               <p class="error">Emailを入力してください。</p>
             <?php endif; ?>
-            <?php if ($error['address'] === 'email'): ?>
+            <?php if (!empty($error) && $error['address'] === 'email'): ?>
               <p class="error"><?= ERROR_MEASSAGE['EMAIL']?></p>
             <?php endif; ?>
           </td>
@@ -50,7 +50,7 @@
             <textarea name="description"  cols="60" rows="10" maxlength="600"></textarea>
           </td>
           <td>
-            <?php if ($error['description'] === 'blank'): ?>
+            <?php if (!empty($error['description']) && $error['description'] = 'blank'): ?>
               <p class="error">お問合わせ内容を入力してください。</p>
             <?php endif; ?>
           </td>

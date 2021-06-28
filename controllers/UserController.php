@@ -42,12 +42,12 @@ function create(){
         $password = $_POST['password'];
         $password_pattern = "/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{4,10}+\z/";
         if (!preg_match($password_pattern, $password)){
-            $error['password'] = 'unsafe';
+            $error['password'] == 'unsafe';
         }
         
         // パスワードが一致しているか
         if ($_POST['password'] !== $_POST['password_conf']) {
-            $error['password_conf'] = 'wrong';
+            $error['password_conf'] == 'wrong';
         }
 
         // エラーが無いなら、確認画面にいく

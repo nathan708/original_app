@@ -24,8 +24,8 @@ function send(){
         if (empty($_POST['name'])){
             $error['name'] = 'blank';
         }
-        if (empty($_POST['email'])){
-            $error['email'] = 'blank';
+        if (empty($_POST['address'])){
+            $error['address'] = 'blank';
         }
         //メールアドレス正規表現 
         $address_pattern = "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
@@ -35,7 +35,7 @@ function send(){
             }
 
         if (empty($_POST['description'])){
-            $error['kanso'] = 'blank';
+            $error['description'] = 'blank';
         }
         if (!empty($error)) {
             require(dirname(__FILE__).'/../views/contact.php');
@@ -48,3 +48,8 @@ function send(){
     }
 
 }
+
+
+
+
+

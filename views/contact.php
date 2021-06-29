@@ -20,7 +20,7 @@
             <input type="text" name="name" size="35" maxlength="255" value="<?php if (!empty($_POST)) {h($_POST['name']);}?>">
           </td>
           <td>
-            <?php if (!empty($error) && $error['name'] === 'blank'): ?>
+            <?php if (!empty($error)): ?>
               <p class="error">お名前を入力してください。</p>
             <?php endif; ?>
             </td>
@@ -34,10 +34,7 @@
             <input type="email" name="address" size="35" maxlength="255" value="<?php  if(!empty($_POST)) {echo h($_POST['address']);}?>">
           </td>
           <td>
-            <?php if (!empty($error['email']) && $error['email'] === 'blank'): ?>
-              <p class="error">Emailを入力してください。</p>
-            <?php endif; ?>
-            <?php if (!empty($error) && $error['address'] === 'email'): ?>
+            <?php if (!empty($error)): ?>
               <p class="error"><?= ERROR_MEASSAGE['EMAIL']?></p>
             <?php endif; ?>
           </td>
@@ -50,7 +47,7 @@
             <textarea name="description"  cols="60" rows="10" maxlength="600"></textarea>
           </td>
           <td>
-            <?php if (!empty($error['description']) && $error['description'] = 'blank'): ?>
+            <?php if (!empty($error['description'])): ?>
               <p class="error">お問合わせ内容を入力してください。</p>
             <?php endif; ?>
           </td>

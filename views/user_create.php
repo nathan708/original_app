@@ -22,12 +22,7 @@
                         <input type="address" name="address" size="35" maxlength="255" value="<?php if (!empty($_POST)) {echo h($_POST['address']);}?>">
                     </td>
                     <td> 
-                        <?php if(!empty($error) && $error['address'] === 'email'): ?>
-                            <p class="error"><?= ERROR_MEASSAGE['EMAIL']?></p>
-                        <?php endif; ?>
-                        <?php if (!empty($error) && $error['address'] === 'duplicate'): ?>
-                            <p class="error"><?= ERROR_MEASSAGE['DUPLICATE']?></p>
-                        <?php endif; ?>
+                        <p class="error"><?php if (!empty($error['address'])) echo $error_msg_address;?></p>
                     </td>
                 </tr>
 
@@ -39,9 +34,7 @@
                         <input type="password" name="password" size="10" maxlength="20" value="<?php if(!empty ($_POST)) {echo h($_POST['password']);}?>"><br>
                     </td>
                     <td>
-                        <?php if (!empty($error['password']) && $error['password'] == 'unsafe'): ?>
-                            <p class="error"><?= ERROR_MEASSAGE['UNSAFE'] ?></p>
-                        <?php endif; ?>
+                        <p class="error"><?php if (!empty($error['password'])) {echo $error_msg_password;}?></p>
                     </td>
                 </tr>
 
@@ -53,9 +46,7 @@
                         <input type="password" name="password_conf" size="10" maxlength="20" value="<?php if (!empty($_POST)) {echo h($_POST['password_conf']);}?>"><br>
                     </td>
                     <td>
-                        <?php if (!empty($error['password_conf']) && $error['password_conf'] == 'wrong'): ?>
-                            <p class="error"><?= ERROR_MEASSAGE['WRONG'] ?></p>
-                        <?php endif; ?>
+                        <p class="error"><?php if (!empty($error['password_conf'])) { echo $error_msg_password_conf;}?></p>
                     </td>
                 </tr>
                 <tr>

@@ -28,11 +28,6 @@
   <form action="" method="POST">
       <input type="hidden" name="name" value="<?= h($_POST['name'])?>">
       <input type="hidden" name="address" value="<?= h($_POST['address'])?>">
-
-
-      <!-- ワンタイムトークン確認用 -->
-      <!-- <input type="hidden" name="one_token" value="<?= $_POST['one_token'] ?>"> -->
-
       <input type="submit" name="rewrite" value="書き直す" >
   </form>
 

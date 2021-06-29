@@ -6,7 +6,6 @@
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
   <div class="mylist_layout">
-    <div class="main">
     <h2 class="page_title"><?= $page_title ?></h2>  
     <!-- ※データベースから引っ張りたい -->
     <!-- コレ自体もforeachで一括でできるはず -->
@@ -41,11 +40,11 @@
               <td>
                 <form action="/mypage/mylist/edit" method="POST">
                   <input type="hidden" name="service_id" value="<?= $myservice['id'] ?>">
-                  <input type="submit" name="edit" value="編集">
+                  <input class="edit" type="submit" name="edit" value="編集">
                 </form>
                 <form action="/mypage/mylist/delete" method="POST">
                   <input type="hidden" name="service_id" value="<?= $myservice['id'] ?>">
-                  <input type="submit" name="delete" value="削除">
+                  <input class="delete" type="submit" name="delete" value="削除">
                 </form>
               </td>
             </tr>
@@ -67,9 +66,7 @@
         <a href="/mypage/mylist?page=<?= $page + 1 ?>"><?= $page + 1 ?>ページ目へ</a>
       <?php endif; ?>
     </div>
-
   </div>
-</div>
 </body>
 <?php require_once(dirname(__FILE__).'/footer.php'); ?>
 </html>

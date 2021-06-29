@@ -196,15 +196,14 @@ form .rewrite {
 }
 
 /* マイリスト */
-.mylist_layout .main {
+.mylist_layout {
   width: 90%;
   height: auto;
   margin: 0 auto;
 }
 
-.mylist_layout table {
-  margin-left: auto;
-  margin-right: auto;
+.mylist_layout h2.page_title {
+  margin: 20 0;
 }
 
 .mylist_create_fin {

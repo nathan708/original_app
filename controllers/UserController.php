@@ -35,6 +35,7 @@ function create(){
         $email = $_POST['address'];
         if (!preg_match($address_pattern, $email)) {
             $error['address'] = 'email';
+            $error_msg_address = ERROR_MEASSAGE['EMAIL'];
             }
 
 
@@ -42,12 +43,13 @@ function create(){
         $password = $_POST['password'];
         $password_pattern = "/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{4,10}+\z/";
         if (!preg_match($password_pattern, $password)){
-            $error['password'] == 'unsafe';
-        }
-        
-        // パスワードが一致しているか
-        if ($_POST['password'] !== $_POST['password_conf']) {
-            $error['password_conf'] == 'wrong';
+            $error['password'] = 'unsafe';
+            $error_msg_password = ERROR_MEASSAGE['UNSAFE'];
+
+            // パスワードが一致しているか
+        }elseif ($_POST['password'] !== $_POST['password_conf']) {
+            $error['password_conf'] = 'wrong';
+            $error_msg_password_conf = ERROR_MEASSAGE['WRONG'];
         }
 
         // エラーが無いなら、確認画面にいく
@@ -163,10 +165,12 @@ function change_conf() {
 
         } else{
             $user = array($user);
+            $page_title = PAGE_TITLE['USER_CHANGE'];
             require(dirname(__FILE__).'/../views/user_change.php');
         }
     } else {
         $user = array($user);
+        $page_title = PAGE_TITLE['USER_CHANGE'];
         require(dirname(__FILE__).'/../views/user_change.php');
     }
 }
@@ -176,8 +180,6 @@ function change_fin() {
     
     // ※「登録する」が押されたらデータベースに接続して、データベースに挿入する
     login_check();
-    // ワンタイムトークン確認
-    session_start();
 
     $user_id = $_POST['user_id'];
     //中身が無ければもとに戻す
@@ -219,41 +221,45 @@ function pass_change_fin() {
 
     // バリデーション
     if (!empty($_POST)){
+
+        // パスワード正規表現を定義（アルファベット大文字・小文字・数字を１種類以上使用）
+        $password = $_POST['password'];
+        $password_pattern = "/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{4,10}+\z/";
+
         // 空欄確認
-        if (empty($_POST['password'])||
-            empty($_POST['password_conf'])
-            ) {
-                $error['blank'] = 'blank';
+        if (empty($_POST['password']) || empty($_POST['password_conf'])){
+                $error = $error['password'] = 'blank';
                 $validation_msg = ERROR_MEASSAGE['BLANK'];
-            }
-        // パスワード最低文字数
-        if (strlen($_POST['password']) < 4 ){
-            $error['password'] = 'length';
-        }
-        
-        // パスワードが一致しているか
-        if ($_POST['password'] !== $_POST['password_conf']) {
-            $error['password_conf'] = 'wrong';
-        }
-        // パスワード確認最低文字数
-        if (strlen($_POST['password_conf']) < 4 ){
-            $error['password_conf'] = 'length';
-        }
+                require(dirname(__FILE__).'/../views/user_pass_change.php');
 
-        if(empty($error)) {
-        // idをSessionから定義
-        $user_id = $_SESSION['id'];
-        
-        // POSTからいらないものを外す
-            unset($_POST['password_conf']);
-            unset($_POST['user_change_conf']);
-        // POST値をDB処理するパラメータとして定義
-        $db_param = $_POST;
-        // ユーザー登録処理（返り値に登録したユーザー情報）
-        $user = users_update($db_param, $user_id);
+                // パスワード最低文字数
+            } elseif (strlen($_POST['password']) < 4 || !preg_match($password_pattern, $password)){
+                $error = $error['password'] = 'unsafe';
+                $validation_msg = ERROR_MEASSAGE['UNSAFE'];
+                require(dirname(__FILE__).'/../views/user_pass_change.php');
 
-        // ビューファイル読み込み
-        require(dirname(__FILE__).'/../views/user_pass_change_fin.php');
+
+            // パスワードが一致しているか
+            } elseif ($_POST['password'] !== $_POST['password_conf']) {
+                $error = $error['password'] = 'wrong';
+                $validation_msg = ERROR_MEASSAGE['WRONG'];
+                require(dirname(__FILE__).'/../views/user_pass_change.php');
+
+            // エラーがないのであれば
+            }elseif (empty($error)) {
+            // idをSessionから定義
+            $user_id = $_SESSION['id'];
+            
+            // POSTからいらないものを外す
+                unset($_POST['password_conf']);
+                unset($_POST['user_change_conf']);
+            // POST値をDB処理するパラメータとして定義
+            $db_param = $_POST;
+            // ユーザー登録処理（返り値に登録したユーザー情報）
+            $user = users_update($db_param, $user_id);
+
+            // ビューファイル読み込み
+            require(dirname(__FILE__).'/../views/user_pass_change_fin.php');
         } else {
             require(dirname(__FILE__).'/../views/user_pass_change.php');
         }

@@ -18,7 +18,7 @@
       <tr>
         <th>新しいユーザー名：</th>
         <td>
-          <input type="text" name="name" size="40" maxlength="255" placeholder="変更しない場合は何も入力しないでください" value="<?php echo h($_POST['name']);?>"><br>
+          <input type="text" name="name" size="40" maxlength="255" placeholder="変更しない場合は何も入力しないでください" value="<?php if (!empty($_POST['name'])) {echo h($_POST['name']);}?>">
         </td>
       </tr>
       <tr>
@@ -28,10 +28,10 @@
       <tr>
         <th>新しいメールアドレス：</th>
         <td>
-          <input type="email" name="address" size="40" maxlength="255" placeholder="変更しない場合は何も入力しないでください" value="<?php echo h($_POST['address']);?>"><br>
+          <input type="email" name="address" size="40" maxlength="255" placeholder="変更しない場合は何も入力しないでください" value="<?php if (!empty($_POST)) { echo h($_POST['address']);}?>">
         </td>
         <td>
-            <?php if ($error['address'] === 'duplicate'): ?>
+            <?php if (!empty($error) && $error['address'] === 'duplicate'): ?>
                 <p class="error"><?= ERROR_MEASSAGE['DUPLICATE'] ?></p>
             <?php endif; ?>
         </td>

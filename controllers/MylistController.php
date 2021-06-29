@@ -80,6 +80,7 @@ function mylist_create(){
     if (!empty($_POST)) {
         if (empty($_POST['name'])) {
             $error['name'] = 'blank';
+            
         }
         if (empty($_POST['genre']) || $_POST['genre'] > count(GENRE)) {
             $error['genre'] = 'blank';

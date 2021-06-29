@@ -17,7 +17,7 @@
             <input type="text" name="name" size="35" maxlength="255" value="<?= $value["name"] ?>"></サービス名：>
           </td>
           <td>
-            <?php if ($error['name'] === 'blank'): ?>
+            <?php if (!empty($error) && $error['name'] === 'blank'): ?>
               <p class="error">サービス名を入力してください。</p>
             <?php  endif; ?>
           </td>
@@ -37,7 +37,7 @@
             </select>
           </td>
           <td>
-            <?php if ($error['genre'] === 'blank'): ?>
+            <?php if (!empty($error) && $error['genre'] === 'blank'): ?>
               <p class="error">ジャンルを選択してください。</p>
             <?php  endif; ?>
           </td>
@@ -57,7 +57,7 @@
             </select>
           </td>
           <td>
-            <?php if ($error['payment_type'] === 'blank'): ?>
+            <?php if (!empty($error) && $error['payment_type'] === 'blank'): ?>
               <p class="error">支払い種別を選択してください。</p>
             <?php  endif; ?>
           </td>
@@ -69,9 +69,9 @@
             <input type="text" name="monthly_fee" maxlength="8" value="<?= $value['monthly_fee'] ?>">円</p>
           </td>
           <td>
-            <?php if ($error['monthly_fee'] === 'blank' || $error['monthly_fee'] === 'wrong'): ?>
+            <?php if (!empty($error)) { if ($error['monthly_fee'] === 'blank' || $error['monthly_fee'] === 'wrong'){ ?>
               <p class="error">0より大きい金額を入力してください。</p>
-            <?php  endif; ?>
+            <?php  }; }; ?>
           </td>
         </tr>
         <tr>
@@ -97,7 +97,7 @@
             </select>日
           </td>
           <td>
-            <?php if ($error['payment_date'] === 'blank' ): ?>
+            <?php if (!empty($error) && $error['payment_date'] === 'blank' ): ?>
               <p class="error">直近の支払い日の”月”と”日”を両方選択してください。</p>
             <?php  endif; ?>
           </td>
@@ -116,7 +116,7 @@
             </select>
           </td>
           <td>
-            <?php if ($error['payment_method'] === 'blank'): ?>
+            <?php if (!empty($error) && $error['payment_method'] === 'blank'): ?>
               <p class="error">支払い方法を選択してください。</p>
             <?php  endif; ?>
           </td>

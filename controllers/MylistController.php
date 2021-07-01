@@ -78,6 +78,13 @@ function mylist_create(){
     
     // エラーチェック
     if (!empty($_POST)) {
+        // 金額を半角に変換
+        
+        $str = $_POST['monthly_fee'];
+        $str = mb_convert_kana($str, "n");
+        $_POST['monthly_fee'] = $str;
+
+
         if (empty($_POST['name'])) {
             $error['name'] = 'blank';
             
@@ -88,9 +95,10 @@ function mylist_create(){
         if (empty($_POST['payment_type']) || $_POST['payment_type'] > count(PAYMENT_TYPE)) {
             $error['payment_type'] = 'blank';
         }
-        if (empty($_POST['monthly_fee'])) {
+
+        if (empty($str)) {
             $error['monthly_fee'] = 'blank';
-            }elseif ($_POST['monthly_fee'] <= 0) {
+            }elseif ($str <= 0) {
                 $error['monthly_fee'] = 'under';
         }
         if (empty($_POST['payment_month']) || $_POST['payment_month'] > count(PAYMENT_MONTH) || empty($_POST['payment_day']) || $_POST['payment_day'] > count(PAYMENT_DAY)) {

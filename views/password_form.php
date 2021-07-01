@@ -10,11 +10,9 @@
 
 <!-- どこに送るのか -->
   <form action="" method="POST">
-    <label for="">メールアドレス</label>
-    <input type="email" name="email" value=""><br><br>
-    <?php if ($error['email'] === 'blank'): ?>
-    <p class="error">メールアドレスを入力してください。</p>
-    <?php endif; ?>
+    <label for="">メールアドレス：</label>
+    <input type="email" name="address" value=""><br><br>
+    <p class="error"><?php if (!empty($error)) {echo $error_msg;} ?></p>
     <input type="submit" name="submit" value="送信">
   </form>
   <p>新規登録は<a href="/create"> 「こちらから」 </a>お願いします。</p>

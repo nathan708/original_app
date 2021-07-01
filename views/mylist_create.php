@@ -13,7 +13,7 @@
         <tr>
           <th>サービス名：</th>
           <td>
-            <input type="text" name="name" size="35" maxlength="255" value="<?php if(!empty($_POST['name'])) {h($_POST['name']);}?>"></p>
+            <input type="text" name="name" size="35" maxlength="255" value="<?php if(!empty($_POST['name'])) {echo h($_POST['name']);}?>"></p>
           </td>
           <td>
             <?php if(!empty($error['name'])): ?>
@@ -70,7 +70,7 @@
         <tr>
           <th>金額：</th>
           <td>
-            <input type="text" name="monthly_fee" size="25" maxlength="8" value="<?php if(!empty($_POST)) {h($_POST['monthly_fee']);}?>">円</p>
+            <input type="text" name="monthly_fee" size="25" maxlength="8" value="<?php if(!empty($_POST)) {echo h($_POST['monthly_fee']);}?>">円</p>
           </td>
           <td>
             <?php if (!empty($error['monthly_fee'])): ?>

@@ -100,23 +100,6 @@ table {
 /* メイン */
 /* 共通項目 */
 /* 登録ボタン・書き直しボタン */
-/* form {
-    display: inline-block;
-    margin-right: 0px;
-}
-
-form {
-
-    display: inline-block;
-}
-
-form .regist {
-    margin-left: 140px;
-}
-form .rewrite {
-    margin-left: 70px;
-    margin-right: -100px;
-} */
 .page_title {
   margin-left: 80px;
   text-align: center;

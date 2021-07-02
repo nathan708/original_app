@@ -4,7 +4,7 @@
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
-  <div class="main">
+  <div class="mylist_layout">
     <h2 class="page_title"><?= $page_title ?></h2>
     <form action="/mypage/mylist/create/fin" method="POST">
       <table class="input"le>

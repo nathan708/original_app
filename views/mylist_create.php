@@ -6,7 +6,7 @@
 
 <body>
 
-  <div class="main">
+  <div class="mylist_layout">
     <h2 class="page_title"><?= $page_title ?></h2>  
     <form action="" method="POST">
       <table class="input">

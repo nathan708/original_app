@@ -17,62 +17,63 @@ function create(){
     
     $page_title = PAGE_TITLE['CREATE'];
     $validation_msg = '';
+    require(dirname(__FILE__).'/../views/user_create_conf.php');
     
 
     // バリデーション
-    if (!empty($_POST)){
-        // 空欄確認
-        if (empty($_POST['name']) ||
-            empty($_POST['address'])||
-            empty($_POST['password'])||
-            empty($_POST['password_conf'])
-            ) {
-                $error['blank'] = 'blank';
-                $validation_msg = ERROR_MEASSAGE['BLANK'];
-            }
-        //メールアドレス正規表現 
-        $address_pattern = "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
-        $email = $_POST['address'];
-        if (!preg_match($address_pattern, $email)) {
-            $error['address'] = 'email';
-            $error_msg_address = ERROR_MEASSAGE['EMAIL'];
-            }
+    // if (!empty($_POST)){
+    //     // 空欄確認
+    //     if (empty($_POST['name']) ||
+    //         empty($_POST['address'])||
+    //         empty($_POST['password'])||
+    //         empty($_POST['password_conf'])
+    //         ) {
+    //             $error['blank'] = 'blank';
+    //             $validation_msg = ERROR_MEASSAGE['BLANK'];
+    //         }
+    //     //メールアドレス正規表現 
+    //     $address_pattern = "/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
+    //     $email = $_POST['address'];
+    //     if (!preg_match($address_pattern, $email)) {
+    //         $error['address'] = 'email';
+    //         $error_msg_address = ERROR_MEASSAGE['EMAIL'];
+    //         }
 
 
-        // パスワード正規表現（アルファベット大文字・小文字・数字を１種類以上使用）
-        $password = $_POST['password'];
-        $password_pattern = "/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{4,10}+\z/";
-        if (!preg_match($password_pattern, $password)){
-            $error['password'] = 'unsafe';
-            $error_msg_password = ERROR_MEASSAGE['UNSAFE'];
+    //     // パスワード正規表現（アルファベット大文字・小文字・数字を１種類以上使用）
+    //     $password = $_POST['password'];
+    //     $password_pattern = "/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{4,10}+\z/";
+    //     if (!preg_match($password_pattern, $password)){
+    //         $error['password'] = 'unsafe';
+    //         $error_msg_password = ERROR_MEASSAGE['UNSAFE'];
 
-            // パスワードが一致しているか
-        }elseif ($_POST['password'] !== $_POST['password_conf']) {
-            $error['password_conf'] = 'wrong';
-            $error_msg_password_conf = ERROR_MEASSAGE['WRONG'];
-        }
+    //         // パスワードが一致しているか
+    //     }elseif ($_POST['password'] !== $_POST['password_conf']) {
+    //         $error['password_conf'] = 'wrong';
+    //         $error_msg_password_conf = ERROR_MEASSAGE['WRONG'];
+    //     }
 
-        // エラーが無いなら、確認画面にいく
-        if (empty($error)){
-            // アドレスの重複チェック
-            $record = address_duplicate();
-            if ($record['cnt'] > 0 ) {
-                $error['address'] = 'duplicate';
-                $error_msg_address = ERROR_MEASSAGE['DUPLICATE'];
+    //     // エラーが無いなら、確認画面にいく
+    //     if (empty($error)){
+    //         // アドレスの重複チェック
+    //         $record = address_duplicate();
+    //         if ($record['cnt'] > 0 ) {
+    //             $error['address'] = 'duplicate';
+    //             $error_msg_address = ERROR_MEASSAGE['DUPLICATE'];
 
-                }
-        }
-        // エラーが無く書き直しでも無ければ
-        if (empty($error) && empty($_POST['rewrite'])){
-            // トップページタイトル再定義
-            $page_title = PAGE_TITLE['CREATE_CONF'];
-            // ビューファイル読み込み
-            require(dirname(__FILE__).'/../views/user_create_conf.php');
-            // エラーが有るなら書き直す
-        }else{
-            require(dirname(__FILE__).'/../views/user_create.php');
-            }
-    }
+    //             }
+    //     }
+    //     // エラーが無く書き直しでも無ければ
+    //     if (empty($error) && empty($_POST['rewrite'])){
+    //         // トップページタイトル再定義
+    //         $page_title = PAGE_TITLE['CREATE_CONF'];
+    //         // ビューファイル読み込み
+    //         require(dirname(__FILE__).'/../views/user_create_conf.php');
+    //         // エラーが有るなら書き直す
+    //     }else{
+    //         require(dirname(__FILE__).'/../views/user_create.php');
+    //         }
+    // }
 }
 
 // 確認画面ー登録処理

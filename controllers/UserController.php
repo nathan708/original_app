@@ -58,6 +58,8 @@ function create(){
             $record = address_duplicate();
             if ($record['cnt'] > 0 ) {
                 $error['address'] = 'duplicate';
+                $error_msg_address = ERROR_MEASSAGE['DUPLICATE'];
+
                 }
         }
         // エラーが無く書き直しでも無ければ

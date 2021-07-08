@@ -79,7 +79,7 @@ function mylist_create(){
     
     // エラーチェック
     if (!empty($_POST)) {
-        // 金額を半角に変換
+        // 金額を半角に変換したい
         
         // $str = $_POST['monthly_fee'];
         // $str = mb_convert_kana($str, "n");
@@ -96,6 +96,7 @@ function mylist_create(){
         if (empty($_POST['payment_type']) || $_POST['payment_type'] > count(PAYMENT_TYPE)) {
             $error['payment_type'] = 'blank';
         }
+
 
         // if (empty($str)) {
         //     $error['monthly_fee'] = 'blank';

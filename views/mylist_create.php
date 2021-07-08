@@ -72,7 +72,7 @@
           </td>
           <td>
             <?php if (!empty($error['monthly_fee'])): ?>
-              <p class="error">０より大きい金額を入力してください。</p>
+              <p class="error">０より大きい金額を半角数字で入力してください。</p>
             <?php  endif; ?>
           </td>
         </tr>

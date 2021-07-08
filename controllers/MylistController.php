@@ -55,71 +55,72 @@ function mylist_enter(){
 
 // サブスク登録確認画面・エラーチェック
 function mylist_create(){
-
-    require(dirname(__FILE__).'/../views/mylist_create_conf.php');
-
-
-
-    // login_check();
-
-    //    // ワンタイムトークン確認
-    // $token = filter_input(INPUT_POST, 'one_token');
-
-
-    // // // トークンがない、もしくは一致しない場合、処理を中止
-    // if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
-    //     exit('不正なリクエスト');
-    // }
-
-    // // ページタイトルを定義
-    // $page_title = PAGE_TITLE['MYLIST_CREATE'];
     
-    // // セレクタ定義
-    // $genre = GENRE;
-    // $payment_type = PAYMENT_TYPE;
-    // $payment_month = PAYMENT_MONTH;
-    // $payment_day = PAYMENT_DAY;
-    // $payment_method = PAYMENT_METHOD;
+    login_check();
+
+       // ワンタイムトークン確認
+    $token = filter_input(INPUT_POST, 'one_token');
+
+
+    // // トークンがない、もしくは一致しない場合、処理を中止
+    if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
+        exit('不正なリクエスト');
+    }
+
+    // ページタイトルを定義
+    $page_title = PAGE_TITLE['MYLIST_CREATE'];
     
-    // // エラーチェック
-    // if (!empty($_POST)) {
-    //     // 金額を半角に変換
+    // セレクタ定義
+    $genre = GENRE;
+    $payment_type = PAYMENT_TYPE;
+    $payment_month = PAYMENT_MONTH;
+    $payment_day = PAYMENT_DAY;
+    $payment_method = PAYMENT_METHOD;
+    
+    // エラーチェック
+    if (!empty($_POST)) {
+        // 金額を半角に変換
         
-    //     $str = $_POST['monthly_fee'];
-    //     $str = mb_convert_kana($str, "n");
-    //     $_POST['monthly_fee'] = $str;
+        // $str = $_POST['monthly_fee'];
+        // $str = mb_convert_kana($str, "n");
+        // $_POST['monthly_fee'] = $str;
 
 
-    //     if (empty($_POST['name'])) {
-    //         $error['name'] = 'blank';
+        if (empty($_POST['name'])) {
+            $error['name'] = 'blank';
             
-    //     }
-    //     if (empty($_POST['genre']) || $_POST['genre'] > count(GENRE)) {
-    //         $error['genre'] = 'blank';
-    //     }
-    //     if (empty($_POST['payment_type']) || $_POST['payment_type'] > count(PAYMENT_TYPE)) {
-    //         $error['payment_type'] = 'blank';
-    //     }
+        }
+        if (empty($_POST['genre']) || $_POST['genre'] > count(GENRE)) {
+            $error['genre'] = 'blank';
+        }
+        if (empty($_POST['payment_type']) || $_POST['payment_type'] > count(PAYMENT_TYPE)) {
+            $error['payment_type'] = 'blank';
+        }
 
-    //     if (empty($str)) {
-    //         $error['monthly_fee'] = 'blank';
-    //         }elseif ($str <= 0) {
-    //             $error['monthly_fee'] = 'under';
-    //     }
-    //     if (empty($_POST['payment_month']) || $_POST['payment_month'] > count(PAYMENT_MONTH) || empty($_POST['payment_day']) || $_POST['payment_day'] > count(PAYMENT_DAY)) {
-    //         $error['payment_date'] = 'blank';
-    //     }
-    //     if (empty($_POST['payment_method']) || $_POST['payment_method'] > count(PAYMENT_METHOD) ) {
-    //         $error['payment_method'] = 'blank';
-    //     }
+        // if (empty($str)) {
+        //     $error['monthly_fee'] = 'blank';
+        //     }elseif ($str <= 0) {
+        //         $error['monthly_fee'] = 'under';
+        // }
+        if (empty($_POST['monthly_fee'])) {
+            $error['monthly_fee'] = 'blank';
+            }elseif ($_POST['monthly_fee'] <= 0) {
+                $error['monthly_fee'] = 'under';
+        }
+        if (empty($_POST['payment_month']) || $_POST['payment_month'] > count(PAYMENT_MONTH) || empty($_POST['payment_day']) || $_POST['payment_day'] > count(PAYMENT_DAY)) {
+            $error['payment_date'] = 'blank';
+        }
+        if (empty($_POST['payment_method']) || $_POST['payment_method'] > count(PAYMENT_METHOD) ) {
+            $error['payment_method'] = 'blank';
+        }
 
-    //     // エラーが無く、書き直しでも無ければ
-    //     if (empty($error) && empty($_POST['rewrite'])) {
-    //         require(dirname(__FILE__).'/../views/mylist_create_conf.php');
-    //     }else {
-    //         require(dirname(__FILE__).'/../views/mylist_create.php');
-    //     } 
-    // }
+        // エラーが無く、書き直しでも無ければ
+        if (empty($error) && empty($_POST['rewrite'])) {
+            require(dirname(__FILE__).'/../views/mylist_create_conf.php');
+        }else {
+            require(dirname(__FILE__).'/../views/mylist_create.php');
+        } 
+    }
 }
 
 // サブスク登録処理ー完了画面

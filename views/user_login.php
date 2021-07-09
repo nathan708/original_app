@@ -25,17 +25,10 @@
                             <input type="password" name="password" size="10" maxlength="20" value="<?php if(!empty($_POST['password'])) {echo h($_POST['password']);}?>"><br>
                         </td>
                     </tr>
-                    <tr>
-                        <th></th>
-                        <!-- エラーメッセージ -->
-                        <td>
-                            <?php if (!empty($error['login']) && $error['login'] === 'blank'): ?>
-                            <p class="error"><?= ERROR_MEASSAGE['BLANK']?></p>
-                            <?php endif; ?>
-
-                        </td>
-                    </tr>
                 </table>
+                    <?php if (!empty($error['login'])): ?>
+                        <p class="error"><?= $error_msg ?></p>
+                    <?php endif; ?>
                 <br>
                 <input type="submit" name="login" value="ログイン">
             </form>

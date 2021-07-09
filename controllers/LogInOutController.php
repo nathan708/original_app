@@ -31,10 +31,12 @@ function login(){
             // ログインに失敗したらもとのログイン画面に戻る
             }else {
                 $error['login'] = 'failed';
+                $error_msg = ERROR_MEASSAGE['LOGIN_FAILED'];
                 require (dirname(__FILE__).'/../views/user_login.php');
             }
         }else {
             $error['login'] = 'blank';
+            $error_msg = ERROR_MEASSAGE['BLANK'];
 
             require (dirname(__FILE__).'/../views/user_login.php');
         }

@@ -46,6 +46,16 @@ table {
     color: red;
 }
 
+
+// 表示画面
+.content {
+    width: 90%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+
 // ページネーション
 #page {
     text-align: center;
@@ -101,17 +111,21 @@ table {
 
 /* 共通項目 */
 /* 登録ボタン・書き直しボタン */
-form {
+.create_conf {
     display: inline-block;
     margin-right: 0px;
 
-    & .regist {
-        margin-left: 140px;
-    }
-    
-    & .rewrite {
-        margin-left: 70px;
-        margin-right: -100px;
+    & ul {
+
+        list-style: none;
+        padding-left: 0;
+        display: flex;
+        line-height: 16px;
+
+
+        & li {
+            margin: 15px;
+        }
     }
 }
 

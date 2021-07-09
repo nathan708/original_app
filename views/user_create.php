@@ -1,3 +1,5 @@
+
+
 <?php require_once(dirname(__FILE__).'/../views/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/../views/header.php'); ?>
 <div class="signup_layout wrapper">

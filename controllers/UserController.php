@@ -21,6 +21,9 @@ function create(){
 
     // バリデーション
     if (!empty($_POST)){
+
+
+
         // 空欄確認
         if (empty($_POST['name']) ||
             empty($_POST['address'])||
@@ -59,9 +62,9 @@ function create(){
             if ($record['cnt'] > 0 ) {
                 $error['address'] = 'duplicate';
                 $error_msg_address = ERROR_MEASSAGE['DUPLICATE'];
-
                 }
         }
+
         // エラーが無く書き直しでも無ければ
         if (empty($error) && empty($_POST['rewrite'])){
             // トップページタイトル再定義
@@ -84,6 +87,7 @@ function create_fin(){
     session_start();
     $token = filter_input(INPUT_POST, 'one_token');
     
+
     // // トークンがない、もしくは一致しない場合、処理を中止
     if (!isset($_SESSION['one_token']) || $token !== $_SESSION['one_token']) {
         exit('不正なリクエスト');

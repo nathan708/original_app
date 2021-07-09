@@ -44,6 +44,12 @@ table {
   color: red;
 }
 
+.content {
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+}
+
 #page {
   text-align: center;
   margin: 20px 0;
@@ -100,18 +106,22 @@ table {
 /* メイン */
 /* 共通項目 */
 /* 登録ボタン・書き直しボタン */
-form {
+.create_conf {
   display: inline-block;
   margin-right: 0px;
 }
 
-form .regist {
-  margin-left: 140px;
+.create_conf ul {
+  list-style: none;
+  padding-left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 16px;
 }
 
-form .rewrite {
-  margin-left: 70px;
-  margin-right: -100px;
+.create_conf ul li {
+  margin: 15px;
 }
 
 .page_title {

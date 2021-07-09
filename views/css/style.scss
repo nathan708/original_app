@@ -113,10 +113,11 @@ table {
 /* 登録ボタン・書き直しボタン */
 .create_conf {
     display: inline-block;
-    margin-right: 0px;
 
     & ul {
-
+        
+        
+        margin-right: 0;
         list-style: none;
         padding-left: 0;
         display: flex;
@@ -133,7 +134,7 @@ table {
 
 // ページタイトル
 .page_title {
-    margin-left: 80px;
+    margin: 80px;
     text-align: center;
 }
 
@@ -262,7 +263,7 @@ table {
 .mylist_create_fin {
     text-align: center;
 
-    .page_title {
+    & .page_title {
         margin: 30px auto;
     }
 

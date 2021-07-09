@@ -3,7 +3,7 @@
 <?php require_once(dirname(__FILE__).'/head.php'); ?>
 <?php require_once(dirname(__FILE__).'/header.php'); ?>
 <body>
-  <div class="main">
+  <div class="content">
 
   <h2 class="page_title"><?= $page_title ?></h2>
 

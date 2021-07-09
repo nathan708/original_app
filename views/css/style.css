@@ -108,10 +108,10 @@ table {
 /* 登録ボタン・書き直しボタン */
 .create_conf {
   display: inline-block;
-  margin-right: 0px;
 }
 
 .create_conf ul {
+  margin-right: 0;
   list-style: none;
   padding-left: 0;
   display: -webkit-box;
@@ -125,7 +125,7 @@ table {
 }
 
 .page_title {
-  margin-left: 80px;
+  margin: 80px;
   text-align: center;
 }
 

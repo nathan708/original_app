@@ -8,9 +8,9 @@
     <h2><?= h($user['name']); ?>さんのサブスク</h2>  
     <div class="mypage_layout">
       <div class="aside">
-        <h3>割合</h3>
-        <div class="percent">box</div>
-        <h3><?php echo date('n') . "月"?>は</h3>
+        <!-- <h3>割合</h3>
+        <div class="percent">box</div> -->
+        <h3><?php echo date('n') . "月"?>の合計金額は</h3>
         <h2 class="amount">
           <!-- データベースから総額を引っ張ってくる -->
           <?= $sum ?>

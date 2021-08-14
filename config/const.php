@@ -7,7 +7,7 @@ const DBNAME = 'heroku_5f3cc8b61a2fa79';
 const PORT = '3306';
 
 
-// ルーティングの一覧
+// ルーティングの一覧です
 
 const ROUTE_LIST = array(
   // トップページ
